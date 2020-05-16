@@ -23,14 +23,15 @@ public:
 	CollisionComponent(CollisionComponent&& other) noexcept = delete;
 	CollisionComponent& operator=(const CollisionComponent& other) = delete;
 	CollisionComponent& operator=(CollisionComponent&& other) noexcept = delete;
-
-	void Update() override;
-	void Render() override;
-	virtual void Initialize() {}
-
+	
 	bool IsColliding(const Rectf& rect);
 
 	const Rectf& GetRect() { return m_CollisionBox; }
+	
+protected:
+	void Update() override;
+	void Render() override;
+	virtual void Initialize() override {}
 
 private:
 	TransformComponent* m_pTransformComponent;

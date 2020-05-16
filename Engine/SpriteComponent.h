@@ -21,10 +21,6 @@ public:
 	SpriteComponent& operator=(const SpriteComponent& other) = delete;
 	SpriteComponent& operator=(SpriteComponent&& other) noexcept = delete;
 
-	void Render() override;
-	void Update() override;
-	virtual void Initialize() {}
-
 	void SetPivot(const glm::vec2& pivot);
 	void SetTexture(const std::string& file);
 	void SetClipIndex(int index);
@@ -35,6 +31,11 @@ public:
 	const glm::vec2& GetPivot() { return m_Pivot; };
 
 	bool CheckEndOfCurrentClip();
+	
+protected:
+	void Render() override;
+	void Update() override;
+	virtual void Initialize() override {}
 
 private:
 	TransformComponent* m_pTransformComponent;

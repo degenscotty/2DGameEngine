@@ -10,20 +10,18 @@ public:
 
 	void OnUpdate() override;
 
-	inline unsigned int GetWidth() const override { return m_Data.Width; }
-	inline unsigned int GetHeight() const override { return m_Data.Height; }
+	unsigned int GetWidth() const override { return m_Data.Width; }
+	unsigned int GetHeight() const override { return m_Data.Height; }
 
-	// Window attributes
-	void SetVSync(bool enabled) override;
-	bool IsVSync() const override;
+	virtual void* GetNativeWindow() const { return m_pWindow; }
+	virtual void* GetSDLContext() const { return m_Context; }
 
-	inline virtual void* GetNativeWindow() const { return m_pWindow; }
-	inline virtual void* GetSDLContext() const { return m_Context; }
-
-	inline SDL_Window* GetSDLWindow() { return m_pWindow; }
+	SDL_Window* GetSDLWindow() { return m_pWindow; }
+	
 private:
-	virtual void Init(const WindowProps& props);
-	virtual void Shutdown();
+	void Init(const WindowProps& props);
+	void Shutdown();
+	
 private:
 	SDL_Window* m_pWindow;
 	SDL_GLContext m_Context;
@@ -33,7 +31,6 @@ private:
 	{
 		std::string Title;
 		unsigned int Width, Height;
-		bool VSync;
 	};
 
 	WindowData m_Data;

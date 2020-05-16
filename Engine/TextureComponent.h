@@ -18,15 +18,16 @@ public:
 	TextureComponent& operator=(const TextureComponent& other) = delete;
 	TextureComponent& operator=(TextureComponent&& other) noexcept = delete;
 
-	void Render() override;
-	virtual void Initialize() {}
-	virtual void Update() {}
-
 	void SetPivot(const glm::vec2& pivot);
 	void SetTexture(const std::string& file);
 
 	Texture2D* GetTexture() { return m_pTexture; };
 	const glm::vec2& GetPivot() { return m_Pivot; };
+	
+protected:
+	void Render() override;
+	virtual void Initialize() {}
+	virtual void Update() {}
 
 private:
 	std::string m_File;

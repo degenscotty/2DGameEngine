@@ -6,8 +6,7 @@ class SandboxApplication : public Application
 public:
 	SandboxApplication()
 	{
-		Scene* testScene{ new TestScene() };
-		SceneManager::GetInstance()->AddScene(testScene);
+		SceneManager::GetInstance()->AddScene(new TestScene());
 	}
 
 	~SandboxApplication()

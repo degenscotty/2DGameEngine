@@ -6,16 +6,20 @@
 #include "ResourceManager.h"
 #include "GameObject.h"
 
-TextComponent::TextComponent(const std::string& file, const std::string& text, unsigned int size)
+TextComponent::TextComponent(const std::string& text, unsigned int size, const std::string& file)
 	: m_pFont(nullptr)
 	, m_pTexture(nullptr)
 	, m_UpdateText(true)
-	, m_Text{ text }
-	, m_Color{ 255, 255, 255 }
-	, m_Renderer{ Renderer::GetInstance() }
-	, m_FontData{}
+	, m_Text( text )
+	, m_Color({ 255, 255, 255 })
+	, m_Renderer( Renderer::GetInstance() )
 {
 	SetFont(std::make_pair(file, size));
+}
+
+TextComponent::~TextComponent()
+{
+	SafeDelete(m_pTexture);
 }
 
 void TextComponent::SetText(const std::string& text)
@@ -43,7 +47,7 @@ void TextComponent::SetColor(const SDL_Color& color)
 
 void TextComponent::SetPivot(const glm::vec3& pivot)
 {
-	m_pPivot = pivot;
+	m_Pivot = pivot;
 }
 
 void TextComponent::Update()

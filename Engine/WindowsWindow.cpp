@@ -33,6 +33,9 @@ void WindowsWindow::Init(const WindowProps& props)
 		CORE_ASSERT("Core::Initialize(), error when calling SDL_Init : {0}", SDL_GetError());
 	}
 
+	SDL_GL_SetSwapInterval(1);
+	SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
+
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
@@ -77,7 +80,6 @@ void WindowsWindow::Init(const WindowProps& props)
 	}
 
 	SDL_SetWindowInputFocus(m_pWindow);
-	SetVSync(true);
 }
 
 void WindowsWindow::Shutdown()
@@ -92,18 +94,4 @@ void WindowsWindow::OnUpdate()
 	m_pInput->Update();
 }
 
-void WindowsWindow::SetVSync(bool enabled)
-{
-	if (enabled)
-		SDL_GL_SetSwapInterval(1);
-	else
-		SDL_GL_SetSwapInterval(0);
-
-	m_Data.VSync = enabled;
-}
-
-bool WindowsWindow::IsVSync() const
-{
-	return m_Data.VSync;
-}
 

@@ -9,18 +9,18 @@ class BaseComponent;
 class TransformComponent;
 class CollisionComponent;
 
-class GameObject
+class GameObject final
 {
 public:
 	GameObject();
 
-	virtual ~GameObject();
+	~GameObject();
 	GameObject(const GameObject& other) = delete;
 	GameObject(GameObject&& other) = delete;
 	GameObject& operator=(const GameObject& other) = delete;
 	GameObject& operator=(GameObject&& other) = delete;
 
-	void AddComponent(BaseComponent* component);
+	BaseComponent* AddComponent(BaseComponent* component);
 	void RemoveComponent(BaseComponent* component);
 
 	void SetCollisionCallBack(std::function<void(GameObject*)> collisionCallBack) { m_CollisionCallBack = collisionCallBack; }
@@ -32,7 +32,7 @@ public:
 
 	Scene* GetScene() { if (m_pScene) return m_pScene; else return nullptr; }
 
-	virtual void OnTrigger(GameObject* gameObject) {}
+	void OnTrigger(GameObject* gameObject) {}
 
 #pragma region 
 	///This code is completely based on Overlord engine(GP2)
@@ -58,9 +58,9 @@ public:
 #pragma endregion Template Methods
 
 protected:
-	virtual void Initialize() {}
-	virtual void Update() {}
-	virtual void Render() {}
+	void Initialize() {}
+	void Update() {}
+	void Render() {}
 
 private:
 	friend class Scene;
@@ -69,10 +69,10 @@ private:
 	void RootUpdate();
 	void RootRender();
 
-	std::string m_Tag;
+	std::string m_Tag{};
 
 	Scene* m_pScene;
-	std::vector<BaseComponent*> m_Components;
+	std::vector<BaseComponent*> m_Components{};
 	TransformComponent* m_pTransform;
 	std::function<void(GameObject*)> m_CollisionCallBack;
 };

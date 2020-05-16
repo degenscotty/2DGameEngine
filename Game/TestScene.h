@@ -18,5 +18,7 @@ protected:
 	void Render() override;
 
 private:
+	GameObject* m_pTestObject;
+	GameObject* m_pFPSCounter;
 };
 

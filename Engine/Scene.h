@@ -36,8 +36,7 @@ private:
 
 	bool m_IsInitialized;
 	std::wstring m_SceneName{};
-	std::vector<GameObject*> m_pGameObjects;
-	std::vector<CollisionComponent*> m_pCollisionComponents;
+	std::vector<GameObject*> m_pGameObjects{};
 
 	static unsigned int s_IdCounter;
 };

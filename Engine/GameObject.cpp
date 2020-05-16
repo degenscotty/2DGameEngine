@@ -6,9 +6,7 @@
 #include "CollisionComponent.h"
 
 GameObject::GameObject()
-	: m_Tag()
-	, m_Components{}
-	, m_pTransform(nullptr)
+	: m_pTransform(nullptr)
 	, m_pScene(nullptr)
 {
 	m_pTransform = new TransformComponent();
@@ -55,12 +53,12 @@ void GameObject::RootRender()
 	}
 }
 
-void GameObject::AddComponent(BaseComponent* component)
+BaseComponent* GameObject::AddComponent(BaseComponent* component)
 {
 	if (typeid(*component) == typeid(TransformComponent) && HasComponent<TransformComponent>())
 	{
 		CORE_ERROR("GameObject::AddComponent > GameObject can contain only one TransformComponent!");
-		return;
+		return nullptr;
 	}
 
 	auto it = find(m_Components.begin(), m_Components.end(), component);
@@ -68,11 +66,13 @@ void GameObject::AddComponent(BaseComponent* component)
 	if (it != m_Components.end())
 	{
 		CORE_ERROR("GameObject::AddComponent > Component is already attached to this GameObject!");
-		return;
+		return nullptr;
 	}
 
 	m_Components.push_back(component);
 	component->m_pGameObject = this;
+
+	return component;
 }
 
 void GameObject::RemoveComponent(BaseComponent* component)
