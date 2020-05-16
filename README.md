@@ -1,4 +1,4 @@
-# Pengo Engine
+# SDL Engine
 
 A 2D Game Engine made for an assignment at DAE (howest) Kortrijk.
 
@@ -13,4 +13,4 @@ I started the engine from scratch following TheCherno on youtube! Big thanks to 
  - [FMOD](https://www.fmod.com/download)
  
 ## ScreenShots
-![](ScreenShots/Pengo.PNG) ![](ScreenShots/Pengo2.PNG)
+..
