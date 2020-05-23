@@ -35,7 +35,7 @@ public:
 protected:
 	void Render() override;
 	void Update() override;
-	virtual void Initialize() override {}
+	void Initialize() override;
 
 private:
 	TransformComponent* m_pTransformComponent;

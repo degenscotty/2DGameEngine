@@ -232,12 +232,13 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
   <ItemGroup>
     <ClCompile Include="PopUpManager.cpp" />
     <ClCompile Include="SandboxApplication.cpp" />
-    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="TestPlayer.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PlayerCommands.h" />
     <ClInclude Include="PopUpManager.h" />
-    <ClInclude Include="utils.h" />
+    <ClInclude Include="TestPlayer.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

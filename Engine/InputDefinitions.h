@@ -14,7 +14,7 @@
 /// the following table came from this reference:
 /// http://wiki.libsdl.org/SDLScancodeLookup
 ///
-enum KeyboardKey
+enum KeyBoardButton
 {
 	KEY_UNKNOWN = SDL_SCANCODE_UNKNOWN,
 	KEY_A = SDL_SCANCODE_A,
@@ -260,14 +260,15 @@ enum KeyboardKey
 	KEY_KBDILLUMDOWN = SDL_SCANCODE_KBDILLUMDOWN,
 	KEY_KBDILLUMUP = SDL_SCANCODE_KBDILLUMUP,
 	KEY_EJECT = SDL_SCANCODE_EJECT,
-	KEY_SLEEP = SDL_SCANCODE_SLEEP
+	KEY_SLEEP = SDL_SCANCODE_SLEEP,
 };
 
 /// All mouse buttons (except for the middle one).
 enum MouseButton
 {
-	MOUSE_LEFT, 
-	MOUSE_RIGHT,
+	MOUSE_UNKNOWN = -1,
+	MOUSE_LEFT = 0, 
+	MOUSE_RIGHT = 1,
 
 	MOUSE_MAX   // No button, just to define max
 				// array size.

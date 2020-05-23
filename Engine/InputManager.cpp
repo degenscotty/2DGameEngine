@@ -1,6 +1,78 @@
 #include "pch.h"
 #include "InputManager.h"
 
+InputManager::InputManager()
+{
+
+}
+
+InputManager::~InputManager()
+{
+	for (auto inputAction : m_InputActions)
+	{
+		delete inputAction;
+	}
+
+	m_InputActions.clear();
+}
+
+void InputManager::ProcessInputActions()
+{
+	for (auto inputAction : m_InputActions)
+	{
+		if (inputAction->m_IsTriggered)
+		{
+			inputAction->m_pCommand->Execute();
+			inputAction->m_IsTriggered = false;
+		}
+	}
+}
+
+void InputManager::IsInputActionTriggered()
+{
+	for (auto inputAction : m_InputActions)
+	{
+		if (inputAction->m_Key > KEY_UNKNOWN && inputAction->m_Key < KEYBOARD_SIZE + 1)
+		{
+			if (inputAction->m_ButtonState == BUTTON_STATE::PRESSED || inputAction->m_ButtonState == BUTTON_STATE::DOWN)
+			{
+				if (m_KeyDown[inputAction->m_Key])
+				{
+					inputAction->m_IsTriggered = true;
+				}
+			}
+			else
+			{
+				if (m_KeyUp[inputAction->m_Key])
+				{
+					inputAction->m_IsTriggered = true;
+				}
+			}
+		}
+		else if (inputAction->m_MouseButton > -1 && inputAction->m_MouseButton < MOUSE_MAX)
+		{
+			if (inputAction->m_ButtonState == BUTTON_STATE::PRESSED || inputAction->m_ButtonState == BUTTON_STATE::DOWN)
+			{
+				if (m_MouseDown[inputAction->m_MouseButton])
+				{
+					inputAction->m_IsTriggered = true;
+				}
+			}
+			else
+			{
+				if (m_MouseUp[inputAction->m_MouseButton])
+				{
+					inputAction->m_IsTriggered = true;
+				}
+			}
+		}
+		else
+		{
+			CORE_INFO("InputManager::IsInputActionTriggered() > INVALID INPUT :: INPUTACTION -> {0}", inputAction->m_ActionName);
+		}
+	}
+}
+
 void InputManager::Update()
 {
 	for (int i{ 0 }; i < KEYBOARD_SIZE; i++)
@@ -82,6 +154,14 @@ void InputManager::Update()
 		break;
 		}
 	}
+
+	IsInputActionTriggered();
+	ProcessInputActions();
+}
+
+void InputManager::AddInputActions(InputAction* inputAction)
+{
+	m_InputActions.push_back(inputAction);
 }
 
 bool InputManager::IsKeyPressed(int keycode)

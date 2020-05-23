@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "TestPlayer.h"
 
 class TestScene final : public Scene
 {
@@ -18,7 +19,7 @@ protected:
 	void Render() override;
 
 private:
-	GameObject* m_pTestObject;
+	TestPlayer m_TestPlayer;
 	GameObject* m_pFPSCounter;
 };
 

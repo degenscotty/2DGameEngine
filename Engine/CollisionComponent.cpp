@@ -11,39 +11,27 @@ CollisionComponent::CollisionComponent(float width, float height)
 {
 }
 
+void CollisionComponent::Initialize()
+{
+	if (m_pGameObject != nullptr)
+		m_pTransformComponent = GetTransform();
+	else
+		CORE_ERROR("CollisionComponent::Initialize() > Cannot Initialize CollisionComponent, it is not attached to a GameObject");
+}
+
 CollisionComponent::~CollisionComponent()
 {
 	m_pTransformComponent = nullptr;
 }
 
 void CollisionComponent::Update()
-{
-	if (m_pGameObject != nullptr)
-	{
-		m_pTransformComponent = GetTransform();
-	}
-	else
-	{
-		CORE_ERROR("CollisionComponent::Update() > This CollisionComponent has not been added to a gameObject!");
-	}
-
+{	
 	m_CollisionBox.x = m_pTransformComponent->GetPosition().x;
 	m_CollisionBox.y = m_pTransformComponent->GetPosition().y;
 }
 
-bool CollisionComponent::IsColliding(const Rectf& rect)
+const Rectf& CollisionComponent::MinowskiDifference(const Rectf& rect)
 {
-	if ((rect.x + rect.w) < m_CollisionBox.x || (m_CollisionBox.x + m_CollisionBox.w) < rect.x)
-	{
-		return false;
-	}
-
-	if ((rect.y + rect.h) < m_CollisionBox.y || (m_CollisionBox.y + m_CollisionBox.h) < rect.y)
-	{
-		return false;
-	}
-
-	return true;
 }
 
 void CollisionComponent::Render()

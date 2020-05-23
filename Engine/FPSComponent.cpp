@@ -21,8 +21,13 @@ FPSComponent::~FPSComponent()
 
 void FPSComponent::Initialize()
 {
-	m_pTransformComponent = GetTransform();
+	if (m_pGameObject != nullptr)
+		m_pTransformComponent = GetTransform();
+	else
+		CORE_ERROR("FPSComponent::Initialize() > Cannot Initialize FPSComponent, it is not attached to a GameObject");
+	
 	m_pTextComponent = static_cast<TextComponent*>(GetGameObject()->AddComponent(new TextComponent(std::to_string(m_FPS), 20)));
+	m_pTextComponent->SetTransform(m_pTransformComponent);
 	m_pTextComponent->SetColor({ 0, 255, 0 });
 }
 

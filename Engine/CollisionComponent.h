@@ -24,14 +24,14 @@ public:
 	CollisionComponent& operator=(const CollisionComponent& other) = delete;
 	CollisionComponent& operator=(CollisionComponent&& other) noexcept = delete;
 	
-	bool IsColliding(const Rectf& rect);
+	const Rectf& MinowskiDifference(const Rectf& rect);
 
 	const Rectf& GetRect() { return m_CollisionBox; }
 	
 protected:
+	void Initialize() override;
 	void Update() override;
 	void Render() override;
-	virtual void Initialize() override {}
 
 private:
 	TransformComponent* m_pTransformComponent;

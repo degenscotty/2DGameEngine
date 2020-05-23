@@ -7,11 +7,11 @@
     <ClCompile Include="PopUpManager.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="utils.cpp">
-      <Filter>Helpers</Filter>
-    </ClCompile>
     <ClCompile Include="SandboxApplication.cpp">
       <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="TestPlayer.cpp">
+      <Filter>Prefabs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -21,8 +21,11 @@
     <ClInclude Include="PopUpManager.h">
       <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="utils.h">
-      <Filter>Helpers</Filter>
+    <ClInclude Include="TestPlayer.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCommands.h">
+      <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +43,9 @@
     </Filter>
     <Filter Include="Application">
       <UniqueIdentifier>{6c2d4d68-ca24-4167-a4c4-2d1434efc93a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{3e3afb9f-caac-43eb-8582-22d8bb7b560a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

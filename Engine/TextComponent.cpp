@@ -2,12 +2,12 @@
 #include "TextComponent.h"
 
 #include "Renderer.h"
-#include "TransformComponent.h"
 #include "ResourceManager.h"
 #include "GameObject.h"
 
 TextComponent::TextComponent(const std::string& text, unsigned int size, const std::string& file)
-	: m_pFont(nullptr)
+	: m_pTransformComponent(nullptr)
+	, m_pFont(nullptr)
 	, m_pTexture(nullptr)
 	, m_UpdateText(true)
 	, m_Text( text )
@@ -17,9 +17,22 @@ TextComponent::TextComponent(const std::string& text, unsigned int size, const s
 	SetFont(std::make_pair(file, size));
 }
 
+void TextComponent::Initialize()
+{
+	if (m_pGameObject != nullptr)
+		m_pTransformComponent = GetTransform();
+	else
+		CORE_ERROR("TextComponent::Initialize() > Cannot Initialize TextComponent, it is not attached to a GameObject");
+}
+
 TextComponent::~TextComponent()
 {
 	SafeDelete(m_pTexture);
+}
+
+void TextComponent::SetTransform(TransformComponent* pTransformComponent)
+{
+	m_pTransformComponent = pTransformComponent;
 }
 
 void TextComponent::SetText(const std::string& text)
@@ -83,7 +96,6 @@ void TextComponent::Render()
 {
 	if (m_pTexture)
 	{
-		TransformComponent* transformComponent = GetTransform();
-		Renderer::GetInstance()->RenderTextComponent(this, transformComponent);
+		Renderer::GetInstance()->RenderTextComponent(this, m_pTransformComponent);
 	}
 }

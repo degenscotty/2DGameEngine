@@ -27,6 +27,14 @@ SpriteComponent::SpriteComponent(const std::string& file, int rows, int cols, in
 	SetTexture(file);
 }
 
+void SpriteComponent::Initialize()
+{
+	if (m_pGameObject != nullptr)
+		m_pTransformComponent = GetTransform();
+	else
+		CORE_ERROR("SpriteComponent::Initialize() > Cannot Initialize SpriteComponent, it is not attached to a GameObject");
+}
+
 void SpriteComponent::SetTexture(const std::string& file)
 {
 	if (file == m_File)
@@ -122,15 +130,6 @@ void SpriteComponent::Render()
 	src.y = (int)((m_AnimFrame / m_Cols) * m_ClipHeight);
 	src.w = (int)m_ClipWidth;
 	src.h = (int)m_ClipHeight;
-
-	if (m_pGameObject != nullptr)
-	{
-		m_pTransformComponent = GetTransform();
-	}
-	else
-	{
-		CORE_ERROR("SpriteComponent::Render() > Cannot Render SpriteComponent, it is not attached to a GameObject");
-	}
 
 	m_Renderer->RenderSpriteComponent(this, m_pTransformComponent, src, m_Flip);
 }

@@ -14,10 +14,12 @@ public:
 	FPSComponent(FPSComponent&& other) noexcept = delete;
 	FPSComponent& operator=(const FPSComponent& other) = delete;
 	FPSComponent& operator=(FPSComponent&& other) noexcept = delete;
+	
 protected:
 	void Initialize() override;
 	void Update() override;
 	void Render() override;
+	
 private:
 	GameTime* m_pGameTime;
 

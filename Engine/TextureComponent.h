@@ -26,10 +26,12 @@ public:
 	
 protected:
 	void Render() override;
-	virtual void Initialize() {}
-	virtual void Update() {}
+	void Initialize() override;
+	void Update() override {}
 
 private:
+	TransformComponent* m_pTransformComponent;
+	
 	std::string m_File;
 	Texture2D* m_pTexture;
 	glm::vec2 m_Pivot;

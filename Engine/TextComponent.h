@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
 #include "TextureComponent.h"
+#include "TransformComponent.h"
 #include <glm.hpp>
 #include <SDL.h>
 
@@ -24,13 +25,17 @@ public:
 
 	const glm::vec3& GetPivot() { return m_Pivot; };
 	Texture2D* GetTexture() const { return m_pTexture; }
+
+	void SetTransform(TransformComponent* pTransformComponent);
 	
 protected:
-	void Initialize() override {};
+	void Initialize() override;
 	void Update() override;
 	void Render() override;
 
 private:
+	TransformComponent* m_pTransformComponent;
+	
 	std::pair<std::string, unsigned int> m_FontData{};
 
 	std::string m_Text;

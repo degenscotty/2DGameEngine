@@ -14,6 +14,14 @@ TextureComponent::TextureComponent(const std::string& file)
 	SetTexture(file);
 }
 
+void TextureComponent::Initialize()
+{
+	if (m_pGameObject != nullptr)
+		m_pTransformComponent = GetTransform();
+	else
+		CORE_ERROR("TextureComponent::Initialize() > Cannot Initialize TextureComponent, it is not attached to a GameObject");
+}
+
 void TextureComponent::SetTexture(const std::string& file)
 {
 	if (file == m_File)
@@ -37,6 +45,5 @@ void TextureComponent::Render()
 		CORE_ERROR("TextureComponent::Render > Failed to render Texture!");
 	}
 
-	TransformComponent* transformComponent = GetGameObject()->GetComponent<TransformComponent>();
-	m_Renderer->RenderTextureComponent(this, transformComponent);
+	m_Renderer->RenderTextureComponent(this, m_pTransformComponent);
 }
