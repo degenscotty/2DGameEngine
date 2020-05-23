@@ -1,14 +1,16 @@
 #include "pch.h"
 #include "PhysicsSystem.h"
+#include "utils.h"
+#include "CollisionComponent.h"
 
 PhysicsSystem::PhysicsSystem()
 {
 	
 }
 
-PhysicsSystem::~PhysicsSystem()
+void PhysicsSystem::AddCollisionComponent(CollisionComponent* collisionComponent)
 {
-	
+	m_CollisionComponents.push_back(collisionComponent);
 }
 
 void PhysicsSystem::Update()
@@ -19,16 +21,24 @@ void PhysicsSystem::Update()
 		{
 			for (size_t j{ i + 1 }; j < m_CollisionComponents.size(); ++j)
 			{
-				if (m_CollisionComponents[i]->MinowskiDifference(m_CollisionComponents[j]->GetRect()))
+				if (CheckCollision(m_CollisionComponents[i]->GetRect(), m_CollisionComponents[j]->GetRect()))
 				{
-					// Are Colliding;
+					CORE_INFO("FIRST OFFICIAL COLLISION!");
 				}
 			}
 		}
 	}
 }
 
-void PhysicsSystem::Render()
+bool PhysicsSystem::CheckCollision(const Rectf& rect1, const Rectf& rect2)
 {
-	
+	m_CurrentMinowski.x = rect1.x - (rect2.x + rect2.w);
+	m_CurrentMinowski.y = rect1.y - (rect2.y + rect2.h);
+	m_CurrentMinowski.w = rect1.w + rect2.w;
+	m_CurrentMinowski.h = rect1.h + rect2.h;
+
+	if (utils::IsPointInRect({ 0.0f, 0.0f }, { m_CurrentMinowski.x, m_CurrentMinowski.y , m_CurrentMinowski.w , m_CurrentMinowski.h }))
+		return true;
+	return false;
 }
+

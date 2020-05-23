@@ -6,7 +6,8 @@
 
 CollisionComponent::CollisionComponent(float width, float height)
 	: m_pTransformComponent{ nullptr }
-	, m_CollisionBox{0, 0, width, height}
+	, m_pPhysicsSystem(PhysicsSystem::GetInstance())
+	, m_CollisionBox{ 0, 0, width, height }
 	, m_IsActive{ true }
 {
 }
@@ -17,6 +18,11 @@ void CollisionComponent::Initialize()
 		m_pTransformComponent = GetTransform();
 	else
 		CORE_ERROR("CollisionComponent::Initialize() > Cannot Initialize CollisionComponent, it is not attached to a GameObject");
+
+	m_pPhysicsSystem->AddCollisionComponent(this);
+
+	m_CollisionBox.x = m_pTransformComponent->GetPosition().x;
+	m_CollisionBox.y = m_pTransformComponent->GetPosition().y;
 }
 
 CollisionComponent::~CollisionComponent()
@@ -25,13 +31,9 @@ CollisionComponent::~CollisionComponent()
 }
 
 void CollisionComponent::Update()
-{	
+{
 	m_CollisionBox.x = m_pTransformComponent->GetPosition().x;
 	m_CollisionBox.y = m_pTransformComponent->GetPosition().y;
-}
-
-const Rectf& CollisionComponent::MinowskiDifference(const Rectf& rect)
-{
 }
 
 void CollisionComponent::Render()

@@ -15,6 +15,7 @@ void TestPlayer::Initialize()
 {
 	m_pTestPlayer = new GameObject();
 	m_pTestPlayer->AddComponent(new TextureComponent("TestPlayer.png"));
+	m_pTestPlayer->AddComponent(new CollisionComponent(32, 32));
 
 	auto* pControllerComponent = new ControllerComponent();
 	m_pTestPlayer->AddComponent(pControllerComponent);

@@ -31,6 +31,7 @@ Application::~Application()
 	ResourceManager::DestroyInstance();
 	GarbageCollector::DestroyInstance();
 	SoundManager::DestroyInstance();
+	PhysicsSystem::DestroyInstance();
 
 	delete m_pWindow;
 	m_pWindow = nullptr;
@@ -43,6 +44,7 @@ void Application::Initialize()
 	Renderer::GetInstance()->Initialize();
 	SceneManager::GetInstance()->Initialize();
 	SoundManager::GetInstance();
+	PhysicsSystem::GetInstance();
 }
 
 void Application::Run()
@@ -51,6 +53,7 @@ void Application::Run()
 	SceneManager* sceneManager = SceneManager::GetInstance();
 	Renderer* renderer = Renderer::GetInstance();
 	InputManager* input = InputManager::GetInstance();
+	PhysicsSystem* physics = PhysicsSystem::GetInstance();
 
 	gameTime->SetPreviousTime(std::chrono::high_resolution_clock::now());
 
@@ -61,6 +64,8 @@ void Application::Run()
 
 		m_pWindow->OnUpdate();
 		sceneManager->Update();
+
+		physics->Update();
 
 		renderer->ClearBuffer();
 		sceneManager->Render();
