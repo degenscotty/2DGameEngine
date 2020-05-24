@@ -27,9 +27,9 @@ void GameObject::RootInitialize()
 {
 	Initialize();
 
-	for (BaseComponent* component : m_Components)
+	for (size_t i{}; i < m_Components.size(); ++i)
 	{
-		component->Initialize();
+		m_Components[i]->Initialize();
 	}
 }
 

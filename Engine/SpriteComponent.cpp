@@ -82,7 +82,8 @@ void SpriteComponent::AddClip(int clipSize, bool repeat)
 
 void SpriteComponent::SetFlip(const SDL_RendererFlip& flip)
 {
-	m_Flip = flip;
+	if (flip != m_Flip)
+		m_Flip = flip;
 }
 
 void SpriteComponent::Update()

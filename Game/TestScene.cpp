@@ -1,6 +1,6 @@
 #include "TestScene.h"
 #include "FPSComponent.h"
-#include "TestPlayer.h"
+#include "BobblePlayer.h"
 
 TestScene::TestScene()
 	: Scene(L"TestScene")
@@ -20,8 +20,6 @@ void TestScene::Initialize()
 	m_pFPSCounter->AddComponent(new FPSComponent());
 	m_pFPSCounter->GetTransform()->Translate(16, 16);
 
-	m_TestPlayer.Initialize();
-
 	auto* pWall = new GameObject();
 	pWall->AddComponent(new TextureComponent("TestWall.png"));
 	pWall->AddComponent(new CollisionComponent(32, 32));
@@ -32,15 +30,17 @@ void TestScene::Initialize()
 	pGround->AddComponent(new CollisionComponent(512, 32));
 	pGround->GetTransform()->Translate(0, 416);
 	
-	Add(m_TestPlayer.GetGameObject());
+	m_BobblePlayer.Initialize();
+	Add(m_BobblePlayer.GetGameObject());
 	Add(m_pFPSCounter);
 	Add(pWall);
 	Add(pGround);
+
 }
 
 void TestScene::Update()
 {
-
+	m_BobblePlayer.Update();
 }
 
 void TestScene::Render()

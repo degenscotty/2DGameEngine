@@ -28,7 +28,7 @@ void ControllerComponent::Initialize()
 	if (m_pGameObject != nullptr)
 		m_pRigidbodyComponent = static_cast<RigidbodyComponent*>(GetGameObject()->AddComponent(new RigidbodyComponent()));
 	else
-		CORE_ERROR("ControllerComponent::Initialize() > Cannot Initialize RigidbodyComponent, it is not attached to a GameObject");
+		CORE_ERROR("ControllerComponent::Initialize() > Cannot Initialize ControllerComponent, it is not attached to a GameObject");
 
 	m_pRigidbodyComponent->SetTransform(m_pTransformComponent);
 }

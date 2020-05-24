@@ -230,15 +230,20 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BobbleIdle.cpp" />
+    <ClCompile Include="BobbleWalking.cpp" />
     <ClCompile Include="PopUpManager.cpp" />
     <ClCompile Include="SandboxApplication.cpp" />
-    <ClCompile Include="TestPlayer.cpp" />
+    <ClCompile Include="BobblePlayer.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BobbleIdle.h" />
+    <ClInclude Include="BobbleState.h" />
+    <ClInclude Include="BobbleWalking.h" />
     <ClInclude Include="PlayerCommands.h" />
     <ClInclude Include="PopUpManager.h" />
-    <ClInclude Include="TestPlayer.h" />
+    <ClInclude Include="BobblePlayer.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -23,6 +23,9 @@
     <Filter Include="Sound">
       <UniqueIdentifier>{b31a9c94-1ddd-4984-8c0c-f4a6dda7bf18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{ff63c86c-ce1e-4b05-a71d-cfe9a9616bcd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -197,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="RigidbodyComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,8 +10,14 @@
     <ClCompile Include="SandboxApplication.cpp">
       <Filter>Application</Filter>
     </ClCompile>
-    <ClCompile Include="TestPlayer.cpp">
+    <ClCompile Include="BobblePlayer.cpp">
       <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="BobbleIdle.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="BobbleWalking.cpp">
+      <Filter>States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -21,11 +27,20 @@
     <ClInclude Include="PopUpManager.h">
       <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="TestPlayer.h">
-      <Filter>Prefabs</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerCommands.h">
       <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="BobbleState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="BobblePlayer.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="BobbleIdle.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="BobbleWalking.h">
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +61,9 @@
     </Filter>
     <Filter Include="Commands">
       <UniqueIdentifier>{3e3afb9f-caac-43eb-8582-22d8bb7b560a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{689c639a-c455-43d9-9146-b3a7b4492793}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
