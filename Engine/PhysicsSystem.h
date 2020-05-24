@@ -31,6 +31,7 @@ public:
 	void Render() {}
 
 	bool CheckCollision(const Rectf& rect1, const Rectf& rect2);
+	const glm::vec2 CalculatePenVector() const;
 
 private:
 	std::vector<CollisionComponent*> m_CollisionComponents;

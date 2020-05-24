@@ -97,6 +97,9 @@
     <ClCompile Include="PhysicsSystem.cpp">
       <Filter>Core Files</Filter>
     </ClCompile>
+    <ClCompile Include="RigidbodyComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -191,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="PhysicsSystem.h">
       <Filter>Core Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidbodyComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

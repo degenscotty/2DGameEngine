@@ -17,6 +17,8 @@ public:
 	void Jump();
 	void MoveLeft();
 	void MoveRight();
+	void MoveUp();
+	void MoveDown();
 
 protected:
 	void Update() override;

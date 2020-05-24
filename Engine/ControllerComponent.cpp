@@ -37,6 +37,16 @@ void ControllerComponent::MoveRight()
 	m_pTransformComponent->Move(m_MoveSpeed * m_pGameTime->GetElapsedSec(), 0);
 }
 
+void ControllerComponent::MoveUp()
+{
+	m_pTransformComponent->Move(0, -(m_MoveSpeed * m_pGameTime->GetElapsedSec()));
+}
+
+void ControllerComponent::MoveDown()
+{
+	m_pTransformComponent->Move(0, m_MoveSpeed * m_pGameTime->GetElapsedSec());
+}
+
 void ControllerComponent::Update()
 {
 }
