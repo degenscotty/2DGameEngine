@@ -36,38 +36,56 @@ private:
 	ControllerComponent* m_pControllerComponent;
 };
 
-class MoveUpCommand : public Command
+class JumpCommand : public Command
 {
 public:
-	explicit MoveUpCommand(ControllerComponent* pControllerComponent)
+	explicit JumpCommand(ControllerComponent* pControllerComponent)
 		: m_pControllerComponent(pControllerComponent)
 	{
 	}
 
 	void Execute() override
 	{
-		m_pControllerComponent->MoveUp();
+		m_pControllerComponent->Jump();
 	}
 
 private:
 	ControllerComponent* m_pControllerComponent;
 };
 
-class MoveDownCommand : public Command
+class StopMoveRightCommand : public Command
 {
 public:
-	explicit MoveDownCommand(ControllerComponent* pControllerComponent)
+	explicit StopMoveRightCommand(ControllerComponent* pControllerComponent)
 		: m_pControllerComponent(pControllerComponent)
 	{
 	}
 
 	void Execute() override
 	{
-		m_pControllerComponent->MoveDown();
+		m_pControllerComponent->StopMove();
 	}
 
 private:
 	ControllerComponent* m_pControllerComponent;
 };
+
+class StopMoveLeftCommand : public Command
+{
+public:
+	explicit StopMoveLeftCommand(ControllerComponent* pControllerComponent)
+		: m_pControllerComponent(pControllerComponent)
+	{
+	}
+
+	void Execute() override
+	{
+		m_pControllerComponent->StopMove();
+	}
+
+private:
+	ControllerComponent* m_pControllerComponent;
+};
+
 
 

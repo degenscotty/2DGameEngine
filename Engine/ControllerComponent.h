@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
 #include "GameTime.h"
+#include "RigidbodyComponent.h"
 #include "TransformComponent.h"
 
 class ControllerComponent : public BaseComponent
@@ -15,10 +16,9 @@ public:
 	ControllerComponent& operator=(ControllerComponent&& other) noexcept = delete;
 
 	void Jump();
-	void MoveLeft();
-	void MoveRight();
-	void MoveUp();
-	void MoveDown();
+	void MoveLeft() const;
+	void MoveRight() const;
+	void StopMove() const;
 
 protected:
 	void Update() override;
@@ -27,8 +27,12 @@ protected:
 	
 private:
 	TransformComponent* m_pTransformComponent;
+	RigidbodyComponent* m_pRigidbodyComponent;
 	GameTime* m_pGameTime;
 	
 	float m_MoveSpeed;
+	float m_JumpSpeed;
+
+	bool m_Jumping;
 };
 

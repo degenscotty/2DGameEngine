@@ -2,7 +2,9 @@
 #include "PhysicsSystem.h"
 #include "utils.h"
 #include "CollisionComponent.h"
+#include "RigidbodyComponent.h"
 #include "TransformComponent.h"
+#include "GameObject.h"
 
 /// Amazing easy way of implementation basic collisions with axis-alligned bounding boxes
 /// https://blog.hamaluik.ca/posts/simple-aabb-collision-using-minkowski-difference/
@@ -28,6 +30,14 @@ void PhysicsSystem::Update()
 				if (CheckCollision(m_CollisionComponents[i]->GetRect(), m_CollisionComponents[j]->GetRect()))
 				{
 					const glm::vec2 penetrationVector = CalculatePenVector();
+					
+					if (penetrationVector.y < 0)
+					{
+						RigidbodyComponent* rigidbody = m_CollisionComponents[i]->GetGameObject()->GetComponent<RigidbodyComponent>();
+						if (rigidbody->GetVelocity().y < 0)
+							continue;
+						rigidbody->SetVelocityY(0);
+					}
 					m_CollisionComponents[i]->GetTransform()->Move(penetrationVector.x, penetrationVector.y);
 				}
 			}
@@ -51,9 +61,9 @@ const glm::vec2 PhysicsSystem::CalculatePenVector() const
 {
 	glm::vec2 max{ m_CurrentMinowski.x + m_CurrentMinowski.w, m_CurrentMinowski.y + m_CurrentMinowski.h };
 	glm::vec2 min{ m_CurrentMinowski.x, m_CurrentMinowski.y };
-	
+
 	glm::vec2 origin{ 0, 0, };
-	
+
 	float minDist = abs(origin.x - min.x);
 	glm::vec2 boundsPoint{ min.x, origin.y };
 
@@ -72,7 +82,7 @@ const glm::vec2 PhysicsSystem::CalculatePenVector() const
 		minDist = abs(min.y - origin.y);
 		boundsPoint = { origin.x, min.y };
 	}
-	
+
 	return boundsPoint;
 }
 
