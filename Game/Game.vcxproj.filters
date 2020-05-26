@@ -28,11 +28,11 @@
     <ClCompile Include="PurpleWall.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="EnemySnail.cpp">
+    <ClCompile Include="EnemyMaita.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="SnailIdle.cpp">
-      <Filter>SnailStates</Filter>
+    <ClCompile Include="MaitaIdle.cpp">
+      <Filter>MaitaStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,14 +66,14 @@
     <ClInclude Include="PurpleWall.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="EnemySnail.h">
+    <ClInclude Include="EnemyMaita.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="SnailIdle.h">
-      <Filter>SnailStates</Filter>
+    <ClInclude Include="MaitaIdle.h">
+      <Filter>MaitaStates</Filter>
     </ClInclude>
-    <ClInclude Include="SnailState.h">
-      <Filter>SnailStates</Filter>
+    <ClInclude Include="MaitaState.h">
+      <Filter>MaitaStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -98,7 +98,7 @@
     <Filter Include="BobbleStates">
       <UniqueIdentifier>{689c639a-c455-43d9-9146-b3a7b4492793}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SnailStates">
+    <Filter Include="MaitaStates">
       <UniqueIdentifier>{17efe9f7-5607-46ec-bc52-d5880b91de05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -1,10 +1,8 @@
 #pragma once
-#include <map>
-
-#include "BobbleState.h"
 #include "GameObject.h"
 #include "InputManager.h"
 #include "SpriteComponent.h"
+#include "StateComponent.h"
 
 class BobblePlayer
 {
@@ -31,8 +29,6 @@ private:
 	InputManager* m_pInputManager;
 	GameObject* m_pBobblePlayer;
 	SpriteComponent* m_pSpriteComponent;
-
-	std::map<std::string, BobbleState*> m_pStateMap;
-	BobbleState* m_pState;
+	StateComponent* m_pStateComponent;
 };
 

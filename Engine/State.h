@@ -1,10 +1,10 @@
 #pragma once
 
-class State abstract
+class State
 {
 public:
 	State() = default;
-	~State() = default;
+	virtual ~State() = default;
 
 	State(const State& other) = delete;
 	State(State&& other) noexcept = delete;

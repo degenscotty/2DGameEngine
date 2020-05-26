@@ -90,12 +90,12 @@ void LevelManager::InitializeLevel()
 			break;
 			case L'X':
 			{
-				auto* enemySnail = new EnemySnail();
+				auto* enemyMaita = new EnemyMaita();
 				++m_EnemyCount;
-				enemySnail->Initialize();
-				enemySnail->SetPosition({ x * 16.0f, y * 16.0f });
-				m_EnemySnails.push_back(enemySnail);
-				m_pSceneManager->GetActiveScene()->Add(enemySnail->GetGameObject());
+				enemyMaita->Initialize();
+				enemyMaita->SetPosition({ x * 16.0f, y * 16.0f });
+				m_EnemySnails.push_back(enemyMaita);
+				m_pSceneManager->GetActiveScene()->Add(enemyMaita->GetGameObject());
 			}
 			break;
 			default:

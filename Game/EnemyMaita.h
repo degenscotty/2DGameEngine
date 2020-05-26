@@ -2,18 +2,19 @@
 #include <map>
 
 #include "GameObject.h"
-#include "SnailState.h"
+#include "MaitaState.h"
+#include "StateComponent.h"
 
-class EnemySnail
+class EnemyMaita
 {
 public:
-	EnemySnail();
-	~EnemySnail();
+	EnemyMaita();
+	~EnemyMaita();
 
-	EnemySnail(const EnemySnail& other) = delete;
-	EnemySnail(EnemySnail&& other) = delete;
-	EnemySnail& operator=(const EnemySnail& other) = delete;
-	EnemySnail& operator=(EnemySnail&& other) = delete;
+	EnemyMaita(const EnemyMaita& other) = delete;
+	EnemyMaita(EnemyMaita&& other) = delete;
+	EnemyMaita& operator=(const EnemyMaita& other) = delete;
+	EnemyMaita& operator=(EnemyMaita&& other) = delete;
 
 	void Initialize();
 	void Update() const;
@@ -26,10 +27,8 @@ public:
 
 	GameObject* GetGameObject() const;
 private:
-	GameObject* m_pEnemySnail;
+	GameObject* m_pEnemyMaita;
 	SpriteComponent* m_pSpriteComponent;
-
-	std::map<std::string, SnailState*> m_pStateMap;
-	SnailState* m_pState;
+	StateComponent* m_pStateComponent;
 };
 

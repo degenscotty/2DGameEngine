@@ -5,7 +5,7 @@ RigidbodyComponent::RigidbodyComponent()
 	: m_pTransformComponent(nullptr)
 	, m_pGameTime(GameTime::GetInstance())
 	, m_Velocity(0, 0)
-	, m_Gravity(400)
+	, m_Gravity(800)
 {
 
 }

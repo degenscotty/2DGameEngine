@@ -37,32 +37,26 @@ void PhysicsSystem::Update()
 					if (rigidbodyI)
 					{
 						m_CurrentPenVector = CalculatePenVector();
+						if (m_CurrentPenVector.y > 0)
+							continue;
 						if (m_CurrentPenVector.y < 0)
 						{
 							if (rigidbodyI->GetVelocity().y < 0)
 								continue;
 							rigidbodyI->SetVelocityY(0);
 						}
-						else
-						{
-							if (m_CurrentPenVector.y > 0)
-								continue;
-						}
 						m_CollisionComponents[i]->GetTransform()->Move(m_CurrentPenVector.x, m_CurrentPenVector.y);
 					}
 					else if (rigidbodyJ)
 					{
 						m_CurrentPenVector = CalculatePenVector();
+						if (m_CurrentPenVector.y < 0)
+							continue;
 						if (m_CurrentPenVector.y > 0)
 						{
 							if (rigidbodyJ->GetVelocity().y < 0)
 								continue;
 							rigidbodyJ->SetVelocityY(0);
-						}
-						else
-						{
-							if (m_CurrentPenVector.y < 0)
-								continue;
 						}
 						m_CollisionComponents[j]->GetTransform()->Move(-m_CurrentPenVector.x, -m_CurrentPenVector.y);
 					}

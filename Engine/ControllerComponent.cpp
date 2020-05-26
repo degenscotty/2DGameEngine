@@ -38,7 +38,7 @@ void ControllerComponent::Jump()
 	if (!m_Jumping)
 	{
 		m_Jumping = true;
-		m_pRigidbodyComponent->AddVelocity({ 0, -275 });
+		m_pRigidbodyComponent->AddVelocity({ 0, -375 });
 	}
 }
 

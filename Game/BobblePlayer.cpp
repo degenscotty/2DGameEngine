@@ -9,22 +9,12 @@ BobblePlayer::BobblePlayer()
 	: m_pInputManager(InputManager::GetInstance())
 	, m_pBobblePlayer(nullptr)
 	, m_pSpriteComponent(nullptr)
-	, m_pState()
+	, m_pStateComponent(nullptr)
 {
-	m_pStateMap.insert(std::make_pair<std::string, BobbleState*>("idle", new BobbleIdle(this)));
-	m_pStateMap.insert(std::make_pair<std::string, BobbleState*>("walking", new BobbleWalking(this)));
-	m_pStateMap.insert(std::make_pair<std::string, BobbleState*>("jumping", new BobbleJump(this)));
-
-	m_pState = m_pStateMap.at("idle");
 }
 
 BobblePlayer::~BobblePlayer()
 {
-	for (auto state : m_pStateMap)
-	{
-		delete state.second;
-	}
-	m_pStateMap.clear();
 }
 
 void BobblePlayer::Initialize()
@@ -33,19 +23,19 @@ void BobblePlayer::Initialize()
 	m_pBobblePlayer->AddComponent(new CollisionComponent(32, 32));
 	auto* pControllerComponent = new ControllerComponent();
 	m_pBobblePlayer->AddComponent(pControllerComponent);
-
-	// ---------------------------------------------------------------------------------------------------- //
-
 	m_pSpriteComponent = new SpriteComponent("Player.png", 4, 2, 32);
 	m_pSpriteComponent->AddClip(2, true);
 	m_pSpriteComponent->AddClip(2, true);
 	m_pSpriteComponent->AddClip(2, false);
 	m_pSpriteComponent->AddClip(2, false);
 	m_pSpriteComponent->SetClipIndex(0);
-
 	m_pBobblePlayer->AddComponent(m_pSpriteComponent);
-
-	// ---------------------------------------------------------------------------------------------------- //
+	m_pStateComponent = new StateComponent();
+	m_pStateComponent->AddState(std::make_pair("idle", new BobbleIdle(this)));
+	m_pStateComponent->AddState(std::make_pair("walking", new BobbleWalking(this)));
+	m_pStateComponent->AddState(std::make_pair("jumping", new BobbleJump(this)));
+	m_pStateComponent->SetState("idle");
+	m_pBobblePlayer->AddComponent(m_pStateComponent);
 
 	InputAction* pMoveLeft = new InputAction("PlayerMoveLeft", new MoveLeftCommand(pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
 	InputAction* pMoveRight = new InputAction("PlayerMoveRight", new MoveRightCommand(pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
@@ -72,24 +62,18 @@ void BobblePlayer::SetAnimationClip(int index) const
 	m_pSpriteComponent->SetClipIndex(index);
 }
 
-void BobblePlayer::ChangeState(const std::string& newState)
-{
-	if (m_pState == m_pStateMap[newState])
-		return;
-
-	m_pState->OnExit();
-	m_pState = m_pStateMap.at(newState);
-	m_pState->OnEnter();
-}
-
 void BobblePlayer::SetFlipState(const SDL_RendererFlip& flip) const
 {
 	m_pSpriteComponent->SetFlip(flip);
 }
 
+void BobblePlayer::ChangeState(const std::string& newState)
+{
+	m_pStateComponent->ChangeState(newState);
+}
+
 void BobblePlayer::Update() const
 {
-	m_pState->Update();
 }
 
 void BobblePlayer::Render() const
