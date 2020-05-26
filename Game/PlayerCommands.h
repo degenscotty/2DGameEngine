@@ -1,107 +1,110 @@
 #pragma once
 #include "Commands.h"
 #include "ControllerComponent.h"
-#include "SpriteComponent.h"
+#include "BobblePlayer.h"
 
 class MoveLeftCommand : public Command
 {
 public:
-	explicit MoveLeftCommand(ControllerComponent* pControllerComponent, SpriteComponent* pSpriteComponent)
+	explicit MoveLeftCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
-		, m_pSpriteComponent(pSpriteComponent)
+		, m_pBobblePlayer(pBobblePlayer)
 	{
 	}
 
 	void Execute() override
 	{
 		m_pControllerComponent->MoveLeft();
-		m_pSpriteComponent->SetClipIndex(1);
-		m_pSpriteComponent->SetFlip(SDL_FLIP_HORIZONTAL);
+		m_pBobblePlayer->ChangeState("walking");
+		m_pBobblePlayer->SetFlipState(SDL_FLIP_HORIZONTAL);
 	}
 
 private:
 	ControllerComponent* m_pControllerComponent;
-	SpriteComponent* m_pSpriteComponent;
+	BobblePlayer* m_pBobblePlayer;
 };
 
 class MoveRightCommand : public Command
 {
 public:
-	explicit MoveRightCommand(ControllerComponent* pControllerComponent, SpriteComponent* pSpriteComponent)
+	explicit MoveRightCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
-		, m_pSpriteComponent(pSpriteComponent)
+		, m_pBobblePlayer(pBobblePlayer)
 	{
 	}
 
 	void Execute() override
 	{
 		m_pControllerComponent->MoveRight();
-		m_pSpriteComponent->SetClipIndex(1);
-		m_pSpriteComponent->SetFlip(SDL_FLIP_NONE);
+		m_pBobblePlayer->ChangeState("walking");
+		m_pBobblePlayer->SetFlipState(SDL_FLIP_NONE);
 	}
 
 private:
 	ControllerComponent* m_pControllerComponent;
-	SpriteComponent* m_pSpriteComponent;
+	BobblePlayer* m_pBobblePlayer;
 };
 
 class JumpCommand : public Command
 {
 public:
-	explicit JumpCommand(ControllerComponent* pControllerComponent, SpriteComponent* pSpriteComponent)
+	explicit JumpCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
-		, m_pSpriteComponent(pSpriteComponent)
+		, m_pBobblePlayer(pBobblePlayer)
 	{
 	}
 
 	void Execute() override
 	{
 		m_pControllerComponent->Jump();
+		m_pBobblePlayer->ChangeState("jumping");
 	}
 
 private:
 	ControllerComponent* m_pControllerComponent;
-	SpriteComponent* m_pSpriteComponent;
+	BobblePlayer* m_pBobblePlayer;
 };
 
 class StopMoveRightCommand : public Command
 {
 public:
-	explicit StopMoveRightCommand(ControllerComponent* pControllerComponent, SpriteComponent* pSpriteComponent)
+	explicit StopMoveRightCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
-		, m_pSpriteComponent(pSpriteComponent)
+		, m_pBobblePlayer(pBobblePlayer)
 	{
 	}
 
 	void Execute() override
 	{
 		m_pControllerComponent->StopMove();
-		m_pSpriteComponent->SetClipIndex(0);
+		m_pBobblePlayer->ChangeState("idle");
+		m_pBobblePlayer->SetFlipState(SDL_FLIP_NONE);
 	}
 
 private:
 	ControllerComponent* m_pControllerComponent;
-	SpriteComponent* m_pSpriteComponent;
+	BobblePlayer* m_pBobblePlayer;
 };
 
 class StopMoveLeftCommand : public Command
 {
 public:
-	explicit StopMoveLeftCommand(ControllerComponent* pControllerComponent, SpriteComponent* pSpriteComponent)
+	explicit StopMoveLeftCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
-		, m_pSpriteComponent(pSpriteComponent)
+		, m_pBobblePlayer(pBobblePlayer)
 	{
 	}
 
 	void Execute() override
 	{
 		m_pControllerComponent->StopMove();
-		m_pSpriteComponent->SetClipIndex(0);
+		m_pBobblePlayer->ChangeState("idle");
+		m_pBobblePlayer->SetFlipState(SDL_FLIP_HORIZONTAL);
 	}
 
 private:
 	ControllerComponent* m_pControllerComponent;
-	SpriteComponent* m_pSpriteComponent;
+	BobblePlayer* m_pBobblePlayer;
 };
 
 

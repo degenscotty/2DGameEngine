@@ -3,8 +3,8 @@
 
 bool utils::IsPointInRect(const glm::vec2& point, const glm::vec4& rect)
 {
-	return (point.x >= rect.x && point.x <= rect.x + rect.z &&
-		point.y >= rect.y && point.y <= rect.y + rect.w);
+	return (point.x > rect.x && point.x < rect.x + rect.z &&
+		point.y > rect.y && point.y < rect.y + rect.w);
 }
 
 bool utils::IsOverlapping(const glm::vec4& r1, const glm::vec4& r2)

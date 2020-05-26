@@ -29,7 +29,7 @@ void RigidbodyComponent::SetTransform(TransformComponent* pTransformComponent)
 }
 
 void RigidbodyComponent::Update()
-{
+{	
 	m_Velocity.y += m_Gravity * m_pGameTime->GetElapsedSec();
 
 	m_pTransformComponent->Move(m_Velocity.x * m_pGameTime->GetElapsedSec(), m_Velocity.y * m_pGameTime->GetElapsedSec());

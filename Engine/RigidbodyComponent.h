@@ -22,6 +22,7 @@ public:
 	void AddVelocity(const glm::vec2& velocity);
 
 	void SetMoveSpeed();
+	void SetGrounded(bool grounded);
 	
 	void SetTransform(TransformComponent* pTransformComponent);
 	

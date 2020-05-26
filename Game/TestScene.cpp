@@ -4,14 +4,16 @@
 
 TestScene::TestScene()
 	: Scene(L"TestScene")
+	, m_pBobblePlayer(nullptr)
 	, m_pFPSCounter(nullptr)
+	, m_pLevelManager(LevelManager::GetInstance())
 {
 
 }
 
 TestScene::~TestScene()
 {
-
+	LevelManager::DestroyInstance();
 }
 
 void TestScene::Initialize()
@@ -20,27 +22,17 @@ void TestScene::Initialize()
 	m_pFPSCounter->AddComponent(new FPSComponent());
 	m_pFPSCounter->GetTransform()->Translate(16, 16);
 
-	auto* pWall = new GameObject();
-	pWall->AddComponent(new TextureComponent("TestWall.png"));
-	pWall->AddComponent(new CollisionComponent(32, 32));
-	pWall->GetTransform()->Translate(200, 384);
+	m_pLevelManager->Initialize();
+	m_pLevelManager->InitializeLevel();
 
-	auto* pGround = new GameObject();
-	pGround->AddComponent(new TextureComponent("TestGround.png"));
-	pGround->AddComponent(new CollisionComponent(512, 32));
-	pGround->GetTransform()->Translate(0, 416);
-	
-	m_BobblePlayer.Initialize();
-	Add(m_BobblePlayer.GetGameObject());
+	m_pBobblePlayer = m_pLevelManager->GetBobblePlayer();
+
 	Add(m_pFPSCounter);
-	Add(pWall);
-	Add(pGround);
-
 }
 
 void TestScene::Update()
 {
-	m_BobblePlayer.Update();
+	m_pBobblePlayer->Update();
 }
 
 void TestScene::Render()

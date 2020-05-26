@@ -2,6 +2,7 @@
 #include "Singleton.h"
 #include <vector>
 
+class RigidbodyComponent;
 class CollisionComponent;
 
 struct Rectf
@@ -30,12 +31,13 @@ public:
 	void Update();
 	void Render() {}
 
+private:
 	bool CheckCollision(const Rectf& rect1, const Rectf& rect2);
 	const glm::vec2 CalculatePenVector() const;
-
-private:
+	
 	std::vector<CollisionComponent*> m_CollisionComponents;
 
 	Rectf m_CurrentMinowski;
+	glm::vec2 m_CurrentPenVector;
 };
 

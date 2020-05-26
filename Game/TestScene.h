@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "BobblePlayer.h"
+#include "LevelManager.h"
 
 class TestScene final : public Scene
 {
@@ -19,7 +20,8 @@ protected:
 	void Render() override;
 
 private:
-	BobblePlayer m_BobblePlayer;
+	BobblePlayer* m_pBobblePlayer;
 	GameObject* m_pFPSCounter;
+	LevelManager* m_pLevelManager;
 };
 

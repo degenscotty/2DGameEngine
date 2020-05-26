@@ -10,6 +10,8 @@
 /// https://blog.hamaluik.ca/posts/simple-aabb-collision-using-minkowski-difference/
 
 PhysicsSystem::PhysicsSystem()
+	: m_CurrentMinowski()
+	, m_CurrentPenVector()
 {
 
 }
@@ -29,16 +31,41 @@ void PhysicsSystem::Update()
 			{
 				if (CheckCollision(m_CollisionComponents[i]->GetRect(), m_CollisionComponents[j]->GetRect()))
 				{
-					const glm::vec2 penetrationVector = CalculatePenVector();
-					
-					if (penetrationVector.y < 0)
+					RigidbodyComponent* rigidbodyI = m_CollisionComponents[i]->GetGameObject()->GetComponent<RigidbodyComponent>();
+					RigidbodyComponent* rigidbodyJ = m_CollisionComponents[j]->GetGameObject()->GetComponent<RigidbodyComponent>();
+
+					if (rigidbodyI)
 					{
-						RigidbodyComponent* rigidbody = m_CollisionComponents[i]->GetGameObject()->GetComponent<RigidbodyComponent>();
-						if (rigidbody->GetVelocity().y < 0)
-							continue;
-						rigidbody->SetVelocityY(0);
+						m_CurrentPenVector = CalculatePenVector();
+						if (m_CurrentPenVector.y < 0)
+						{
+							if (rigidbodyI->GetVelocity().y < 0)
+								continue;
+							rigidbodyI->SetVelocityY(0);
+						}
+						else
+						{
+							if (m_CurrentPenVector.y > 0)
+								continue;
+						}
+						m_CollisionComponents[i]->GetTransform()->Move(m_CurrentPenVector.x, m_CurrentPenVector.y);
 					}
-					m_CollisionComponents[i]->GetTransform()->Move(penetrationVector.x, penetrationVector.y);
+					else if (rigidbodyJ)
+					{
+						m_CurrentPenVector = CalculatePenVector();
+						if (m_CurrentPenVector.y > 0)
+						{
+							if (rigidbodyJ->GetVelocity().y < 0)
+								continue;
+							rigidbodyJ->SetVelocityY(0);
+						}
+						else
+						{
+							if (m_CurrentPenVector.y < 0)
+								continue;
+						}
+						m_CollisionComponents[j]->GetTransform()->Move(-m_CurrentPenVector.x, -m_CurrentPenVector.y);
+					}
 				}
 			}
 		}
