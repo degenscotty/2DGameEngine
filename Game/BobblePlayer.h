@@ -25,6 +25,8 @@ public:
 	void SetPosition(const glm::vec2& position);
 
 	GameObject* GetGameObject() const;
+
+	void OnTrigger(GameObject* other);
 private:
 	InputManager* m_pInputManager;
 	GameObject* m_pBobblePlayer;

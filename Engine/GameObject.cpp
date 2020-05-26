@@ -4,6 +4,7 @@
 #include "BaseComponent.h"
 #include "TransformComponent.h"
 #include "CollisionComponent.h"
+#include "utils.h"
 
 GameObject::GameObject()
 	: m_pTransform(nullptr)

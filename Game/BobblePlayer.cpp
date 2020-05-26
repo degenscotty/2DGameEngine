@@ -4,6 +4,7 @@
 #include "BobbleJump.h"
 #include "BobbleWalking.h"
 #include "PlayerCommands.h"
+#include "utils.h"
 
 BobblePlayer::BobblePlayer()
 	: m_pInputManager(InputManager::GetInstance())
@@ -20,7 +21,7 @@ BobblePlayer::~BobblePlayer()
 void BobblePlayer::Initialize()
 {
 	m_pBobblePlayer = new GameObject();
-	m_pBobblePlayer->AddComponent(new CollisionComponent(32, 32));
+	m_pBobblePlayer->AddComponent(new CollisionComponent(32, 32, false));
 	auto* pControllerComponent = new ControllerComponent();
 	m_pBobblePlayer->AddComponent(pControllerComponent);
 	m_pSpriteComponent = new SpriteComponent("Player.png", 4, 2, 32);
@@ -36,6 +37,7 @@ void BobblePlayer::Initialize()
 	m_pStateComponent->AddState(std::make_pair("jumping", new BobbleJump(this)));
 	m_pStateComponent->SetState("idle");
 	m_pBobblePlayer->AddComponent(m_pStateComponent);
+	m_pBobblePlayer->SetCollisionCallBack(BIND_FN(BobblePlayer::OnTrigger));
 
 	InputAction* pMoveLeft = new InputAction("PlayerMoveLeft", new MoveLeftCommand(pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
 	InputAction* pMoveRight = new InputAction("PlayerMoveRight", new MoveRightCommand(pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
@@ -84,5 +86,9 @@ void BobblePlayer::Render() const
 GameObject* BobblePlayer::GetGameObject() const
 {
 	return m_pBobblePlayer;
+}
+
+void BobblePlayer::OnTrigger(GameObject* other)
+{
 }
 

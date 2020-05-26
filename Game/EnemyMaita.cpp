@@ -17,7 +17,7 @@ EnemyMaita::~EnemyMaita()
 void EnemyMaita::Initialize()
 {
 	m_pEnemyMaita = new GameObject();
-	m_pEnemyMaita->AddComponent(new CollisionComponent(32, 32));
+	m_pEnemyMaita->AddComponent(new CollisionComponent(32, 32, false));
 	m_pSpriteComponent = new SpriteComponent("Maita.png", 3, 2, 32);
 	m_pSpriteComponent->AddClip(2, true);
 	m_pSpriteComponent->AddClip(2, true);
@@ -29,6 +29,8 @@ void EnemyMaita::Initialize()
 	m_pStateComponent->AddState(std::make_pair("idle", new MaitaIdle(this)));
 	m_pStateComponent->SetState("idle");
 	m_pEnemyMaita->AddComponent(m_pStateComponent);
+
+	m_pEnemyMaita->SetTag("EnemyMaita");
 }
 
 void EnemyMaita::SetPosition(const glm::vec2& position)

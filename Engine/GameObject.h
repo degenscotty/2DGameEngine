@@ -63,6 +63,7 @@ protected:
 	void Render() {}
 
 private:
+	friend class PhysicsSystem;
 	friend class Scene;
 
 	void RootInitialize();

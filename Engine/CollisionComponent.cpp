@@ -4,11 +4,12 @@
 #include "TransformComponent.h"
 #include "Renderer.h"
 
-CollisionComponent::CollisionComponent(float width, float height)
-	: m_pTransformComponent{ nullptr }
+CollisionComponent::CollisionComponent(float width, float height, bool trigger)
+	: m_pTransformComponent(nullptr)
 	, m_pPhysicsSystem(PhysicsSystem::GetInstance())
-	, m_CollisionBox{ 0, 0, width, height }
-	, m_IsActive{ true }
+	, m_CollisionBox(0, 0, width, height)
+	, m_IsActive(true)
+	, m_Trigger(trigger)
 {
 }
 

@@ -149,7 +149,7 @@ void LevelManager::CheckVerticalMatch(const glm::vec2& startPosition, int horizo
 					{
 						if (purpleWall->GetGameObject()->GetTransform()->GetPosition() == glm::vec2{ startPosition.x * 16, startPosition.y * 16 })
 						{
-							purpleWall->GetGameObject()->AddComponent(new CollisionComponent(float(horizontalCount * 16), float(verticalMatchCount * 16)));
+							purpleWall->GetGameObject()->AddComponent(new CollisionComponent(float(horizontalCount * 16), float(verticalMatchCount * 16), false));
 							ClearWalls(startPosition, horizontalCount, verticalMatchCount);
 							return;
 						}
@@ -167,7 +167,7 @@ void LevelManager::CheckVerticalMatch(const glm::vec2& startPosition, int horizo
 		{
 			if (purpleWall->GetGameObject()->GetTransform()->GetPosition() == glm::vec2{ startPosition.x * 16, startPosition.y * 16 })
 			{
-				purpleWall->GetGameObject()->AddComponent(new CollisionComponent(float(horizontalCount * 16), float(16)));
+				purpleWall->GetGameObject()->AddComponent(new CollisionComponent(float(horizontalCount * 16), float(16), false));
 				ClearWalls(startPosition, horizontalCount, verticalMatchCount);
 				return;
 			}

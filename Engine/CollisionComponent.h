@@ -7,7 +7,7 @@ class TransformComponent;
 class CollisionComponent : public BaseComponent
 {
 public:
-	CollisionComponent(float width, float height);
+	CollisionComponent(float width, float height, bool trigger);
 	~CollisionComponent();
 
 	CollisionComponent(const CollisionComponent& other) = delete;
@@ -16,6 +16,8 @@ public:
 	CollisionComponent& operator=(CollisionComponent&& other) noexcept = delete;
 
 	const Rectf& GetRect() const { return m_CollisionBox; }
+
+	bool IsTrigger() const { return m_Trigger; } 
 
 protected:
 	void Initialize() override;
@@ -28,5 +30,6 @@ private:
 
 	Rectf m_CollisionBox;
 	bool m_IsActive;
+	bool m_Trigger;
 };
 

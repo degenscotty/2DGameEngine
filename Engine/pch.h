@@ -29,5 +29,3 @@ inline void SafeDelete(T &pObjectToDelete)
 		pObjectToDelete = nullptr;
 	}
 }
-
-#define BIND_FN(x) std::bind(&x, this, std::placeholders::_1)

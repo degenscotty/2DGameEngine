@@ -31,8 +31,18 @@ void PhysicsSystem::Update()
 			{
 				if (CheckCollision(m_CollisionComponents[i]->GetRect(), m_CollisionComponents[j]->GetRect()))
 				{
-					RigidbodyComponent* rigidbodyI = m_CollisionComponents[i]->GetGameObject()->GetComponent<RigidbodyComponent>();
-					RigidbodyComponent* rigidbodyJ = m_CollisionComponents[j]->GetGameObject()->GetComponent<RigidbodyComponent>();
+					GameObject* gameObjectI = m_CollisionComponents[i]->GetGameObject();
+					GameObject* gameObjectJ = m_CollisionComponents[j]->GetGameObject();
+
+					if (m_CollisionComponents[i]->IsTrigger() || m_CollisionComponents[j]->IsTrigger())
+					{
+						gameObjectI->m_CollisionCallBack(gameObjectJ);
+						gameObjectJ->m_CollisionCallBack(gameObjectI);
+						continue;
+					}
+
+					RigidbodyComponent* rigidbodyI = gameObjectI->GetComponent<RigidbodyComponent>();
+					RigidbodyComponent* rigidbodyJ = gameObjectJ->GetComponent<RigidbodyComponent>();
 
 					if (rigidbodyI)
 					{
@@ -46,6 +56,8 @@ void PhysicsSystem::Update()
 							rigidbodyI->SetVelocityY(0);
 						}
 						m_CollisionComponents[i]->GetTransform()->Move(m_CurrentPenVector.x, m_CurrentPenVector.y);
+						gameObjectI->m_CollisionCallBack(gameObjectJ);
+						gameObjectJ->m_CollisionCallBack(gameObjectI);
 					}
 					else if (rigidbodyJ)
 					{
@@ -59,6 +71,8 @@ void PhysicsSystem::Update()
 							rigidbodyJ->SetVelocityY(0);
 						}
 						m_CollisionComponents[j]->GetTransform()->Move(-m_CurrentPenVector.x, -m_CurrentPenVector.y);
+						gameObjectJ->m_CollisionCallBack(gameObjectI);
+						gameObjectI->m_CollisionCallBack(gameObjectJ);
 					}
 				}
 			}
