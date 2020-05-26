@@ -11,13 +11,13 @@
       <Filter>Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="BobbleIdle.cpp">
-      <Filter>States</Filter>
+      <Filter>BobbleStates</Filter>
     </ClCompile>
     <ClCompile Include="BobbleWalking.cpp">
-      <Filter>States</Filter>
+      <Filter>BobbleStates</Filter>
     </ClCompile>
     <ClCompile Include="BobbleJump.cpp">
-      <Filter>States</Filter>
+      <Filter>BobbleStates</Filter>
     </ClCompile>
     <ClCompile Include="LevelManager.cpp">
       <Filter>Managers</Filter>
@@ -28,6 +28,12 @@
     <ClCompile Include="PurpleWall.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="EnemySnail.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="SnailIdle.cpp">
+      <Filter>SnailStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestScene.h">
@@ -37,19 +43,19 @@
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="BobbleState.h">
-      <Filter>States</Filter>
+      <Filter>BobbleStates</Filter>
     </ClInclude>
     <ClInclude Include="BobblePlayer.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="BobbleIdle.h">
-      <Filter>States</Filter>
+      <Filter>BobbleStates</Filter>
     </ClInclude>
     <ClInclude Include="BobbleWalking.h">
-      <Filter>States</Filter>
+      <Filter>BobbleStates</Filter>
     </ClInclude>
     <ClInclude Include="BobbleJump.h">
-      <Filter>States</Filter>
+      <Filter>BobbleStates</Filter>
     </ClInclude>
     <ClInclude Include="LevelManager.h">
       <Filter>Managers</Filter>
@@ -59,6 +65,15 @@
     </ClInclude>
     <ClInclude Include="PurpleWall.h">
       <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySnail.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="SnailIdle.h">
+      <Filter>SnailStates</Filter>
+    </ClInclude>
+    <ClInclude Include="SnailState.h">
+      <Filter>SnailStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,8 +95,11 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{3e3afb9f-caac-43eb-8582-22d8bb7b560a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States">
+    <Filter Include="BobbleStates">
       <UniqueIdentifier>{689c639a-c455-43d9-9146-b3a7b4492793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SnailStates">
+      <UniqueIdentifier>{17efe9f7-5607-46ec-bc52-d5880b91de05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -18,6 +18,10 @@ LevelManager::~LevelManager()
 	{
 		delete purpleWall;
 	}
+	for (auto enemySnail : m_EnemySnails)
+	{
+		delete enemySnail;
+	}
 
 	delete m_pBobblePlayer;
 }
@@ -37,8 +41,8 @@ void LevelManager::Initialize()
 	m_LevelString += L"##.............O=.............##";
 	m_LevelString += L"##.............==.............##";
 	m_LevelString += L"####...##################...####";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
+	m_LevelString += L"##........X=...X=...X=........##";
+	m_LevelString += L"##........==...==...==........##";
 	m_LevelString += L"##............................##";
 	m_LevelString += L"##............................##";
 	m_LevelString += L"####...##################...####";
@@ -69,16 +73,32 @@ void LevelManager::InitializeLevel()
 			switch (tileID)
 			{
 			case L'O':
+			{
 				m_pBobblePlayer = new BobblePlayer();
 				m_pBobblePlayer->Initialize();
 				m_pBobblePlayer->SetPosition({ x * 16.0f, y * 16.0f });
 				m_pSceneManager->GetActiveScene()->Add(m_pBobblePlayer->GetGameObject());
-				break;
+			}
+			break;
 			case L'#':
-				auto * purpleWall = new PurpleWall({ x * 16.0f, y * 16.0f });
+			{
+				auto* purpleWall = new PurpleWall({ x * 16.0f, y * 16.0f });
 				purpleWall->Initialize();
 				m_PurpleWalls.push_back(purpleWall);
 				m_pSceneManager->GetActiveScene()->Add(purpleWall->GetGameObject());
+			}
+			break;
+			case L'X':
+			{
+				auto* enemySnail = new EnemySnail();
+				++m_EnemyCount;
+				enemySnail->Initialize();
+				enemySnail->SetPosition({ x * 16.0f, y * 16.0f });
+				m_EnemySnails.push_back(enemySnail);
+				m_pSceneManager->GetActiveScene()->Add(enemySnail->GetGameObject());
+			}
+			break;
+			default:
 				break;
 			}
 		}

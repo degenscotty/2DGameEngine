@@ -233,11 +233,13 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="BobbleIdle.cpp" />
     <ClCompile Include="BobbleJump.cpp" />
     <ClCompile Include="BobbleWalking.cpp" />
+    <ClCompile Include="EnemySnail.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="PopUpManager.cpp" />
     <ClCompile Include="PurpleWall.cpp" />
     <ClCompile Include="SandboxApplication.cpp" />
     <ClCompile Include="BobblePlayer.cpp" />
+    <ClCompile Include="SnailIdle.cpp" />
     <ClCompile Include="TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -245,11 +247,14 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="BobbleJump.h" />
     <ClInclude Include="BobbleState.h" />
     <ClInclude Include="BobbleWalking.h" />
+    <ClInclude Include="EnemySnail.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="PlayerCommands.h" />
     <ClInclude Include="PopUpManager.h" />
     <ClInclude Include="BobblePlayer.h" />
     <ClInclude Include="PurpleWall.h" />
+    <ClInclude Include="SnailIdle.h" />
+    <ClInclude Include="SnailState.h" />
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
