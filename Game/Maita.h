@@ -27,6 +27,8 @@ public:
 
 	GameObject* GetGameObject() const;
 	glm::vec2 GetPosition();
+	bool GetCanJump() { return m_CanJump; }
+	void SetJump(bool canJump);
 
 	void OnTrigger(GameObject* other);
 private:
@@ -34,5 +36,7 @@ private:
 	GameObject* m_pEnemyMaita;
 	SpriteComponent* m_pSpriteComponent;
 	StateComponent* m_pStateComponent;
+
+	bool m_CanJump;
 };
 

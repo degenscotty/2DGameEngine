@@ -10,7 +10,7 @@ class Maita;
 class MaitaState : public State
 {
 public:
-	MaitaState(Maita* pMaita) : m_pEnemyMaita(pMaita) {}
+	MaitaState(Maita* pMaita) : m_pMaita(pMaita) {}
 	~MaitaState()
 	{
 		for (auto command : m_CommandMap)
@@ -36,7 +36,7 @@ public:
 	}
 
 protected:
-	Maita* m_pEnemyMaita;
+	Maita* m_pMaita;
 	std::map<std::string, Command*> m_CommandMap;
 };
 

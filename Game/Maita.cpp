@@ -11,6 +11,7 @@ Maita::Maita()
 	, m_pTransformComponent(nullptr)
 	, m_pSpriteComponent(nullptr)
 	, m_pStateComponent(nullptr)
+	, m_CanJump(false)
 {
 }
 
@@ -35,18 +36,19 @@ void Maita::Initialize()
 	ControllerComponent* pControllerComponent = new ControllerComponent();
 	pControllerComponent->SetMoveSpeed(60);
 	m_pEnemyMaita->AddComponent(pControllerComponent);
+	
 	m_pStateComponent = new StateComponent();
 
 	MaitaState* pMatiaIdle = new MaitaIdle(this);
+	pMatiaIdle->AddCommand("stopmove", new MaitaStopMovingC(pControllerComponent, this));
+	m_pStateComponent->AddState("idle", pMatiaIdle);
+
 	MaitaState* pMatiaSeeking = new MaitaSeeking(this);
 	pMatiaSeeking->AddCommand("moveleft", new MaitaMoveLeftC(pControllerComponent, this));
 	pMatiaSeeking->AddCommand("moveright", new MaitaMoveRightC(pControllerComponent, this));
 	pMatiaSeeking->AddCommand("jump", new MaitaJumpC(pControllerComponent, this));
-	pMatiaIdle->AddCommand("stopmove", new MaitaStopMovingC(pControllerComponent, this));
-	
-	m_pStateComponent->AddState("idle", pMatiaIdle);
 	m_pStateComponent->AddState("seeking", pMatiaSeeking);
-	
+
 	m_pStateComponent->SetState("idle");
 	m_pEnemyMaita->AddComponent(m_pStateComponent);
 	m_pEnemyMaita->SetCollisionCallBack(BIND_FN(Maita::OnTrigger));
@@ -79,7 +81,6 @@ void Maita::SetFlipState(const SDL_RendererFlip& flip) const
 	m_pSpriteComponent->SetFlip(flip);
 }
 
-
 void Maita::Update() const
 {
 }
@@ -93,7 +94,13 @@ GameObject* Maita::GetGameObject() const
 	return m_pEnemyMaita;
 }
 
+void Maita::SetJump(bool canJump)
+{
+	m_CanJump = canJump;
+}
+
 void Maita::OnTrigger(GameObject* other)
 {
-	
+	if (other->GetTag() == "Wall" && other->GetTransform()->GetPosition().y < m_pTransformComponent->GetPosition().y)
+		m_CanJump = true;
 }

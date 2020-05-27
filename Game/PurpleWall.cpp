@@ -12,7 +12,7 @@ void PurpleWall::Initialize()
 	m_pPurpleWall = new GameObject();
 	//m_pPurpleWall->AddComponent(new TextureComponent("PurpleWall.png"));
 
-	m_pPurpleWall->SetTag("PurpleWall");
+	m_pPurpleWall->SetTag("Wall");
 	m_pPurpleWall->GetTransform()->Translate(m_Position);
 }
 

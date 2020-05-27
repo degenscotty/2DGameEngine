@@ -31,12 +31,14 @@ void BobblePlayer::Initialize()
 	m_pSpriteComponent->AddClip(2, false);
 	m_pSpriteComponent->SetClipIndex(0);
 	m_pBobblePlayer->AddComponent(m_pSpriteComponent);
+	
 	m_pStateComponent = new StateComponent();
 	m_pStateComponent->AddState("idle", new BobbleIdle(this));
 	m_pStateComponent->AddState("walking", new BobbleWalking(this));
 	m_pStateComponent->AddState("jumping", new BobbleJump(this));
 	m_pStateComponent->SetState("idle");
 	m_pBobblePlayer->AddComponent(m_pStateComponent);
+	
 	m_pBobblePlayer->SetCollisionCallBack(BIND_FN(BobblePlayer::OnTrigger));
 
 	InputAction* pMoveLeft = new InputAction("PlayerMoveLeft", new BobbleMoveLeftC(pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
