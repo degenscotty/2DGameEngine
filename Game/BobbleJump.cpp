@@ -21,7 +21,6 @@ void BobbleJump::Swap()
 void BobbleJump::OnEnter()
 {
 	m_pBobblePlayer->SetAnimationClip(2);
-	m_pBobblePlayer->ChangeState("jumping");
 }
 
 void BobbleJump::OnExit()

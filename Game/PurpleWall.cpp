@@ -10,7 +10,7 @@ PurpleWall::PurpleWall(const glm::vec2& position)
 void PurpleWall::Initialize()
 {
 	m_pPurpleWall = new GameObject();
-	m_pPurpleWall->AddComponent(new TextureComponent("PurpleWall.png"));
+	//m_pPurpleWall->AddComponent(new TextureComponent("PurpleWall.png"));
 
 	m_pPurpleWall->SetTag("PurpleWall");
 	m_pPurpleWall->GetTransform()->Translate(m_Position);

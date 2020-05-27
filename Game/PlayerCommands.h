@@ -3,10 +3,10 @@
 #include "ControllerComponent.h"
 #include "BobblePlayer.h"
 
-class MoveLeftCommand : public Command
+class BobbleMoveLeftC : public Command
 {
 public:
-	explicit MoveLeftCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
+	explicit BobbleMoveLeftC(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
 		, m_pBobblePlayer(pBobblePlayer)
 	{
@@ -24,10 +24,10 @@ private:
 	BobblePlayer* m_pBobblePlayer;
 };
 
-class MoveRightCommand : public Command
+class BobbleMoveRightC : public Command
 {
 public:
-	explicit MoveRightCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
+	explicit BobbleMoveRightC(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
 		, m_pBobblePlayer(pBobblePlayer)
 	{
@@ -45,10 +45,10 @@ private:
 	BobblePlayer* m_pBobblePlayer;
 };
 
-class JumpCommand : public Command
+class BobbleJumpC : public Command
 {
 public:
-	explicit JumpCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
+	explicit BobbleJumpC(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
 		, m_pBobblePlayer(pBobblePlayer)
 	{
@@ -65,10 +65,10 @@ private:
 	BobblePlayer* m_pBobblePlayer;
 };
 
-class StopMoveRightCommand : public Command
+class BobbleStopMoveRightC : public Command
 {
 public:
-	explicit StopMoveRightCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
+	explicit BobbleStopMoveRightC(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
 		, m_pBobblePlayer(pBobblePlayer)
 	{
@@ -86,10 +86,10 @@ private:
 	BobblePlayer* m_pBobblePlayer;
 };
 
-class StopMoveLeftCommand : public Command
+class BobbleStopMoveLeftC : public Command
 {
 public:
-	explicit StopMoveLeftCommand(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
+	explicit BobbleStopMoveLeftC(ControllerComponent* pControllerComponent, BobblePlayer* pBobblePlayer)
 		: m_pControllerComponent(pControllerComponent)
 		, m_pBobblePlayer(pBobblePlayer)
 	{

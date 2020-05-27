@@ -23,3 +23,13 @@ bool utils::IsOverlapping(const glm::vec4& r1, const glm::vec4& r2)
 
 	return true;
 }
+
+float utils::Distance(const glm::vec2& position1, const glm::vec2& position2)
+{
+	return sqrt(pow(position1.x - position2.x, 2) + pow(position1.y - position2.y, 2));
+}
+
+float utils::Distance(float position1, float position2)
+{
+	return abs(position2 - position1);
+}

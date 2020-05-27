@@ -20,9 +20,9 @@ void StateComponent::Initialize()
 
 }
 
-void StateComponent::AddState(const std::pair<std::string, State*>& statePair)
+void StateComponent::AddState(const std::string& stateName, State* pState)
 {
-	m_StateMap.insert(statePair);
+	m_StateMap.insert(std::make_pair(stateName, pState));
 }
 
 void StateComponent::SetState(const std::string& stateName)

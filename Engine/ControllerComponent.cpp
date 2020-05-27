@@ -7,7 +7,7 @@ ControllerComponent::ControllerComponent()
 	, m_pRigidbodyComponent(nullptr)
 	, m_pGameTime(GameTime::GetInstance())
 	, m_MoveSpeed(150)
-	, m_JumpSpeed(10)
+	, m_JumpSpeed(375)
 	, m_Jumping(false)
 {
 
@@ -33,23 +33,28 @@ void ControllerComponent::Initialize()
 	m_pRigidbodyComponent->SetTransform(m_pTransformComponent);
 }
 
+void ControllerComponent::SetMoveSpeed(float moveSpeed)
+{
+	m_MoveSpeed = moveSpeed;
+}
+
 void ControllerComponent::Jump()
 {	
 	if (!m_Jumping)
 	{
 		m_Jumping = true;
-		m_pRigidbodyComponent->AddVelocity({ 0, -375 });
+		m_pRigidbodyComponent->AddVelocity({ 0, -m_JumpSpeed });
 	}
 }
 
 void ControllerComponent::MoveLeft() const
 {
-	m_pRigidbodyComponent->SetVelocityX(-150);
+	m_pRigidbodyComponent->SetVelocityX(-m_MoveSpeed);
 }
 
 void ControllerComponent::MoveRight() const
 {
-	m_pRigidbodyComponent->SetVelocityX(150);
+	m_pRigidbodyComponent->SetVelocityX(m_MoveSpeed);
 }
 
 void ControllerComponent::StopMove() const

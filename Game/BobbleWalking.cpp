@@ -20,7 +20,6 @@ void BobbleWalking::Swap()
 void BobbleWalking::OnEnter()
 {
 	m_pBobblePlayer->SetAnimationClip(1);
-	m_pBobblePlayer->ChangeState("walking");
 }
 
 void BobbleWalking::OnExit()

@@ -90,7 +90,7 @@ void LevelManager::InitializeLevel()
 			break;
 			case L'X':
 			{
-				auto* enemyMaita = new EnemyMaita();
+				auto* enemyMaita = new Maita();
 				++m_EnemyCount;
 				enemyMaita->Initialize();
 				enemyMaita->SetPosition({ x * 16.0f, y * 16.0f });

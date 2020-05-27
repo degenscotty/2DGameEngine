@@ -20,7 +20,6 @@ void BobbleIdle::Swap()
 void BobbleIdle::OnEnter()
 {
 	m_pBobblePlayer->SetAnimationClip(0);
-	m_pBobblePlayer->ChangeState("idle");
 }
 
 void BobbleIdle::OnExit()

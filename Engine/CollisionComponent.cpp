@@ -10,6 +10,7 @@ CollisionComponent::CollisionComponent(float width, float height, bool trigger)
 	, m_CollisionBox(0, 0, width, height)
 	, m_IsActive(true)
 	, m_Trigger(trigger)
+	, m_Offset({0, 0})
 {
 }
 
@@ -26,6 +27,11 @@ void CollisionComponent::Initialize()
 	m_CollisionBox.y = m_pTransformComponent->GetPosition().y;
 }
 
+void CollisionComponent::SetOffset(const glm::vec2& offset)
+{
+	m_Offset = offset;
+}
+
 CollisionComponent::~CollisionComponent()
 {
 	m_pTransformComponent = nullptr;
@@ -33,12 +39,20 @@ CollisionComponent::~CollisionComponent()
 
 void CollisionComponent::Update()
 {
-	m_CollisionBox.x = m_pTransformComponent->GetPosition().x;
-	m_CollisionBox.y = m_pTransformComponent->GetPosition().y;
+	m_CollisionBox.x = m_pTransformComponent->GetPosition().x + m_Offset.x;
+	m_CollisionBox.y = m_pTransformComponent->GetPosition().y + m_Offset.y;
 }
 
 void CollisionComponent::Render()
 {
-	//SDL_SetRenderDrawColor(Renderer::GetInstance()->GetSDLRenderer(), 255, 0, 0, 255);
-	//SDL_RenderDrawRect(Renderer::GetInstance()->GetSDLRenderer(), &SDL_Rect({ (int)m_CollisionBox.x, (int)m_CollisionBox.y, (int)m_CollisionBox.w, (int)m_CollisionBox.h }));
+	if (!m_Trigger)
+	{
+		SDL_SetRenderDrawColor(Renderer::GetInstance()->GetSDLRenderer(), 255, 0, 0, 255);
+		SDL_RenderDrawRect(Renderer::GetInstance()->GetSDLRenderer(), &SDL_Rect({ (int)m_CollisionBox.x, (int)m_CollisionBox.y, (int)m_CollisionBox.w, (int)m_CollisionBox.h }));
+	}
+	else
+	{
+		SDL_SetRenderDrawColor(Renderer::GetInstance()->GetSDLRenderer(), 0, 0, 255, 255);
+		SDL_RenderDrawRect(Renderer::GetInstance()->GetSDLRenderer(), &SDL_Rect({ (int)m_CollisionBox.x, (int)m_CollisionBox.y, (int)m_CollisionBox.w, (int)m_CollisionBox.h }));
+	}
 }

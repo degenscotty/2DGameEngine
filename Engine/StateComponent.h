@@ -15,7 +15,7 @@ public:
 	StateComponent& operator=(const StateComponent& other) = delete;
 	StateComponent& operator=(StateComponent&& other) noexcept = delete;
 
-	void AddState(const std::pair<std::string, State*>& statePair);
+	void AddState(const std::string& stateName, State* pState);
 	void ChangeState(const std::string& stateName);
 	void SetState(const std::string& stateName);
 

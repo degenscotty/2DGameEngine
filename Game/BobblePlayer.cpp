@@ -32,18 +32,18 @@ void BobblePlayer::Initialize()
 	m_pSpriteComponent->SetClipIndex(0);
 	m_pBobblePlayer->AddComponent(m_pSpriteComponent);
 	m_pStateComponent = new StateComponent();
-	m_pStateComponent->AddState(std::make_pair("idle", new BobbleIdle(this)));
-	m_pStateComponent->AddState(std::make_pair("walking", new BobbleWalking(this)));
-	m_pStateComponent->AddState(std::make_pair("jumping", new BobbleJump(this)));
+	m_pStateComponent->AddState("idle", new BobbleIdle(this));
+	m_pStateComponent->AddState("walking", new BobbleWalking(this));
+	m_pStateComponent->AddState("jumping", new BobbleJump(this));
 	m_pStateComponent->SetState("idle");
 	m_pBobblePlayer->AddComponent(m_pStateComponent);
 	m_pBobblePlayer->SetCollisionCallBack(BIND_FN(BobblePlayer::OnTrigger));
 
-	InputAction* pMoveLeft = new InputAction("PlayerMoveLeft", new MoveLeftCommand(pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pMoveRight = new InputAction("PlayerMoveRight", new MoveRightCommand(pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pStopMoveLeft = new InputAction("PlayerStopMoveLeft", new StopMoveLeftCommand(pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
-	InputAction* pStopMoveRight = new InputAction("PlayerStopMoveRight", new StopMoveRightCommand(pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
-	InputAction* pJump = new InputAction("PlayerJump", new JumpCommand(pControllerComponent, this), KEY_SPACE, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pMoveLeft = new InputAction("PlayerMoveLeft", new BobbleMoveLeftC(pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pMoveRight = new InputAction("PlayerMoveRight", new BobbleMoveRightC(pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pStopMoveLeft = new InputAction("PlayerStopMoveLeft", new BobbleStopMoveLeftC(pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pStopMoveRight = new InputAction("PlayerStopMoveRight", new BobbleStopMoveRightC(pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pJump = new InputAction("PlayerJump", new BobbleJumpC(pControllerComponent, this), KEY_SPACE, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
 
 	m_pInputManager->AddInputActions(pMoveLeft);
 	m_pInputManager->AddInputActions(pMoveRight);

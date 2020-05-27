@@ -233,8 +233,9 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="BobbleIdle.cpp" />
     <ClCompile Include="BobbleJump.cpp" />
     <ClCompile Include="BobbleWalking.cpp" />
-    <ClCompile Include="EnemyMaita.cpp" />
+    <ClCompile Include="Maita.cpp" />
     <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="MaitaSeeking.cpp" />
     <ClCompile Include="PopUpManager.cpp" />
     <ClCompile Include="PurpleWall.cpp" />
     <ClCompile Include="SandboxApplication.cpp" />
@@ -247,8 +248,10 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="BobbleJump.h" />
     <ClInclude Include="BobbleState.h" />
     <ClInclude Include="BobbleWalking.h" />
-    <ClInclude Include="EnemyMaita.h" />
+    <ClInclude Include="Maita.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="MaitaCommands.h" />
+    <ClInclude Include="MaitaSeeking.h" />
     <ClInclude Include="PlayerCommands.h" />
     <ClInclude Include="PopUpManager.h" />
     <ClInclude Include="BobblePlayer.h" />

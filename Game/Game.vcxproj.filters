@@ -28,11 +28,14 @@
     <ClCompile Include="PurpleWall.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyMaita.cpp">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
     <ClCompile Include="MaitaIdle.cpp">
       <Filter>MaitaStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MaitaSeeking.cpp">
+      <Filter>MaitaStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Maita.cpp">
+      <Filter>Prefabs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,14 +69,20 @@
     <ClInclude Include="PurpleWall.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyMaita.h">
-      <Filter>Prefabs</Filter>
-    </ClInclude>
     <ClInclude Include="MaitaIdle.h">
       <Filter>MaitaStates</Filter>
     </ClInclude>
     <ClInclude Include="MaitaState.h">
       <Filter>MaitaStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MaitaCommands.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MaitaSeeking.h">
+      <Filter>MaitaStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Maita.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

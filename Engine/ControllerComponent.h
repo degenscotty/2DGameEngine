@@ -20,6 +20,8 @@ public:
 	void MoveRight() const;
 	void StopMove() const;
 
+	void SetMoveSpeed(float moveSpeed);
+
 protected:
 	void Update() override;
 	void Render() override;

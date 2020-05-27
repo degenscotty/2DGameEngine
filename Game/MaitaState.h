@@ -1,13 +1,24 @@
 #pragma once
 #include "State.h"
+#include "Commands.h"
 
-class EnemyMaita;
+#include <map>
+#include <string>
+
+class Maita;
 
 class MaitaState : public State
 {
 public:
-	MaitaState(EnemyMaita* snail) : m_pEnemyMaita(snail) {}
-	~MaitaState() = default;
+	MaitaState(Maita* pMaita) : m_pEnemyMaita(pMaita) {}
+	~MaitaState()
+	{
+		for (auto command : m_CommandMap)
+		{
+			delete command.second;
+		}
+		m_CommandMap.clear();
+	}
 
 	MaitaState(const MaitaState& other) = delete;
 	MaitaState(MaitaState&& other) noexcept = delete;
@@ -19,7 +30,13 @@ public:
 	virtual void OnEnter() = 0;
 	virtual void OnExit() = 0;
 
+	virtual void AddCommand(const std::string& commandName, Command* pCommand)
+	{
+		m_CommandMap.insert(std::make_pair(commandName, pCommand));
+	}
+
 protected:
-	EnemyMaita* m_pEnemyMaita;
+	Maita* m_pEnemyMaita;
+	std::map<std::string, Command*> m_CommandMap;
 };
 

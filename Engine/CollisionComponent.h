@@ -17,6 +17,8 @@ public:
 
 	const Rectf& GetRect() const { return m_CollisionBox; }
 
+	void SetOffset(const glm::vec2& offset);
+
 	bool IsTrigger() const { return m_Trigger; } 
 
 protected:
@@ -31,5 +33,6 @@ private:
 	Rectf m_CollisionBox;
 	bool m_IsActive;
 	bool m_Trigger;
+	glm::vec2 m_Offset;
 };
 

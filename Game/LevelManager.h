@@ -5,7 +5,7 @@
 
 #include "BobblePlayer.h"
 #include "PurpleWall.h"
-#include "EnemyMaita.h"
+#include "Maita.h"
 
 class LevelManager : public Singleton<LevelManager>
 {
@@ -41,7 +41,7 @@ private:
 	SceneManager* m_pSceneManager;
 	BobblePlayer* m_pBobblePlayer;
 	std::vector<PurpleWall*> m_PurpleWalls;
-	std::vector<EnemyMaita*> m_EnemySnails;
+	std::vector<Maita*> m_EnemySnails;
 
 	int m_LevelWidth;
 	int m_LevelHeight;

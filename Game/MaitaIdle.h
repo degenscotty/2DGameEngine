@@ -1,12 +1,13 @@
 #pragma once
+#include "GameTime.h"
 #include "MaitaState.h"
 
-class EnemyMaita;
+class Maita;
 
 class MaitaIdle : public MaitaState
 {
 public:
-	MaitaIdle(EnemyMaita* snail);
+	MaitaIdle(Maita* pMaita);
 	~MaitaIdle() = default;
 
 	MaitaIdle(const MaitaIdle& other) = delete;
@@ -18,7 +19,11 @@ public:
 	void Swap() override;
 	void OnEnter() override;
 	void OnExit() override;
-private:
 	
+private:
+	GameTime* m_pGameTime;
+
+	float m_SpawnTimer;
+	float m_TimeToSeek;
 };
 

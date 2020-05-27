@@ -5,16 +5,16 @@
 #include "MaitaState.h"
 #include "StateComponent.h"
 
-class EnemyMaita
+class Maita
 {
 public:
-	EnemyMaita();
-	~EnemyMaita();
+	Maita();
+	~Maita();
 
-	EnemyMaita(const EnemyMaita& other) = delete;
-	EnemyMaita(EnemyMaita&& other) = delete;
-	EnemyMaita& operator=(const EnemyMaita& other) = delete;
-	EnemyMaita& operator=(EnemyMaita&& other) = delete;
+	Maita(const Maita& other) = delete;
+	Maita(Maita&& other) = delete;
+	Maita& operator=(const Maita& other) = delete;
+	Maita& operator=(Maita&& other) = delete;
 
 	void Initialize();
 	void Update() const;
@@ -26,7 +26,11 @@ public:
 	void SetPosition(const glm::vec2& position);
 
 	GameObject* GetGameObject() const;
+	glm::vec2 GetPosition();
+
+	void OnTrigger(GameObject* other);
 private:
+	TransformComponent* m_pTransformComponent;
 	GameObject* m_pEnemyMaita;
 	SpriteComponent* m_pSpriteComponent;
 	StateComponent* m_pStateComponent;
