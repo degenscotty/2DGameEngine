@@ -1,4 +1,5 @@
 #pragma once
+#include "BubbleComponent.h"
 #include "GameObject.h"
 #include "InputManager.h"
 #include "SpriteComponent.h"
@@ -22,7 +23,9 @@ public:
 	void SetAnimationClip(int index) const;
 	void ChangeState(const std::string& newState);
 	void SetFlipState(const SDL_RendererFlip& flip) const;
+	const SDL_RendererFlip& GetFlipState();
 	void SetPosition(const glm::vec2& position);
+	const glm::vec2& GetPosition();
 
 	GameObject* GetGameObject() const;
 

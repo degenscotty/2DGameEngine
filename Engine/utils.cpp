@@ -33,3 +33,8 @@ float utils::Distance(float position1, float position2)
 {
 	return abs(position2 - position1);
 }
+
+float utils::lerp(float a, float b, float f)
+{
+	return a + f * (b - a);
+}

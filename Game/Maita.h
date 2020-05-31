@@ -1,8 +1,5 @@
 #pragma once
-#include <map>
-
 #include "GameObject.h"
-#include "MaitaState.h"
 #include "StateComponent.h"
 
 class Maita

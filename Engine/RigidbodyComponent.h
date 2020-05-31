@@ -25,6 +25,8 @@ public:
 	void SetGrounded(bool grounded);
 	
 	void SetTransform(TransformComponent* pTransformComponent);
+
+	void SetActive(bool active) { m_Active = active; }
 	
 protected:
 	void Initialize() override;
@@ -38,5 +40,7 @@ private:
 	glm::vec2 m_Velocity;
 	float m_Gravity;
 	float m_MoveSpeed;
+
+	bool m_Active;
 };
 

@@ -40,6 +40,9 @@
     <ClCompile Include="Level1Scene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerCommands.h">
@@ -89,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="Level1Scene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

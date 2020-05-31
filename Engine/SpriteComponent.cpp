@@ -68,6 +68,11 @@ void SpriteComponent::SetClipIndex(int index)
 	}
 }
 
+int SpriteComponent::GetClipIndex()
+{
+	return m_ClipIndex;
+}
+
 void SpriteComponent::AddClip(int clipSize, bool repeat)
 {
 	if (clipSize > m_Cols)
@@ -84,6 +89,11 @@ void SpriteComponent::SetFlip(const SDL_RendererFlip& flip)
 {
 	if (flip != m_Flip)
 		m_Flip = flip;
+}
+
+const SDL_RendererFlip& SpriteComponent::GetFlip()
+{
+	return m_Flip;
 }
 
 void SpriteComponent::Update()

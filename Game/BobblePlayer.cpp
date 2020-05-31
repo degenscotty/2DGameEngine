@@ -46,12 +46,14 @@ void BobblePlayer::Initialize()
 	InputAction* pStopMoveLeft = new InputAction("PlayerStopMoveLeft", new BobbleStopMoveLeftC(pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
 	InputAction* pStopMoveRight = new InputAction("PlayerStopMoveRight", new BobbleStopMoveRightC(pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
 	InputAction* pJump = new InputAction("PlayerJump", new BobbleJumpC(pControllerComponent, this), KEY_SPACE, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-
+	InputAction* pShootBubble = new InputAction("ShootBubble", new ShootBubbleC( this), KEY_RIGHT_CTRL, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	
 	m_pInputManager->AddInputActions(pMoveLeft);
 	m_pInputManager->AddInputActions(pMoveRight);
 	m_pInputManager->AddInputActions(pJump);
 	m_pInputManager->AddInputActions(pStopMoveLeft);
 	m_pInputManager->AddInputActions(pStopMoveRight);
+	m_pInputManager->AddInputActions(pShootBubble);
 
 	m_pBobblePlayer->SetTag("BobblePlayer");
 }
@@ -59,6 +61,11 @@ void BobblePlayer::Initialize()
 void BobblePlayer::SetPosition(const glm::vec2& position)
 {
 	m_pBobblePlayer->GetTransform()->Translate(position.x, position.y);
+}
+
+const glm::vec2& BobblePlayer::GetPosition()
+{
+	return m_pBobblePlayer->GetTransform()->GetPosition();
 }
 
 void BobblePlayer::SetAnimationClip(int index) const
@@ -69,6 +76,11 @@ void BobblePlayer::SetAnimationClip(int index) const
 void BobblePlayer::SetFlipState(const SDL_RendererFlip& flip) const
 {
 	m_pSpriteComponent->SetFlip(flip);
+}
+
+const SDL_RendererFlip& BobblePlayer::GetFlipState()
+{
+	return m_pSpriteComponent->GetFlip();
 }
 
 void BobblePlayer::ChangeState(const std::string& newState)

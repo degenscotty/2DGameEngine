@@ -24,8 +24,10 @@ public:
 	void SetPivot(const glm::vec2& pivot);
 	void SetTexture(const std::string& file);
 	void SetClipIndex(int index);
+	int GetClipIndex();
 	void AddClip(int clipSize, bool repeat);
 	void SetFlip(const SDL_RendererFlip& flip);
+	const SDL_RendererFlip& GetFlip();
 
 	Texture2D* GetTexture() { return m_pTexture; };
 	const glm::vec2& GetPivot() { return m_Pivot; };

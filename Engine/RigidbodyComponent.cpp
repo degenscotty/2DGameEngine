@@ -6,6 +6,7 @@ RigidbodyComponent::RigidbodyComponent()
 	, m_pGameTime(GameTime::GetInstance())
 	, m_Velocity(0, 0)
 	, m_Gravity(800)
+	, m_Active(true)
 {
 
 }

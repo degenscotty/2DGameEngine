@@ -2,8 +2,6 @@
 #include "BaseComponent.h"
 #include "PhysicsSystem.h"
 
-class TransformComponent;
-
 class CollisionComponent : public BaseComponent
 {
 public:

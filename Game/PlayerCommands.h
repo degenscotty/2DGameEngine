@@ -2,6 +2,8 @@
 #include "Commands.h"
 #include "ControllerComponent.h"
 #include "BobblePlayer.h"
+#include "Bubble.h"
+#include "SceneManager.h"
 
 class BobbleMoveLeftC : public Command
 {
@@ -105,6 +107,38 @@ public:
 private:
 	ControllerComponent* m_pControllerComponent;
 	BobblePlayer* m_pBobblePlayer;
+};
+
+class ShootBubbleC : public Command
+{
+public:
+	explicit ShootBubbleC(BobblePlayer* pBobblePlayer)
+		: m_pBobblePlayer(pBobblePlayer)
+		, m_pSceneManager(SceneManager::GetInstance())
+	{
+	}
+
+	void Execute() override
+	{
+		Bubble* pBubble = new Bubble();
+
+		pBubble->Initialize();
+		pBubble->SetPosition(m_pBobblePlayer->GetPosition());
+		
+		if (m_pBobblePlayer->GetFlipState() == SDL_FLIP_NONE)
+			pBubble->ShootBubble(true);
+		else
+			pBubble->ShootBubble(false);
+		
+		m_pSceneManager->GetActiveScene()->Add(pBubble->GetGameObject());
+
+		delete pBubble;
+		pBubble = nullptr;
+	}
+
+private:
+	BobblePlayer* m_pBobblePlayer;
+	SceneManager* m_pSceneManager;
 };
 
 

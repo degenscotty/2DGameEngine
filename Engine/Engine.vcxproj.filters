@@ -112,6 +112,9 @@
     <ClCompile Include="Button.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="BubbleComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -218,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
