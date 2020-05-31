@@ -21,6 +21,7 @@ public:
 	Scene& operator=(Scene&& other) = delete;
 
 	const std::wstring& GetSceneName();
+	bool IsInitialized() { return m_IsInitialized; }
 
 protected:
 	virtual void Initialize() = 0;

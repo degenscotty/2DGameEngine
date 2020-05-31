@@ -38,9 +38,9 @@ void GameObject::RootUpdate()
 {
 	Update();
 
-	for (BaseComponent* component : m_Components)
+	for (size_t i{}; i < m_Components.size(); ++i)
 	{
-		component->Update();
+		m_Components[i]->Update();
 	}
 }
 
@@ -48,9 +48,9 @@ void GameObject::RootRender()
 {
 	Render();
 
-	for (BaseComponent* component : m_Components)
+	for (size_t i{}; i < m_Components.size(); ++i)
 	{
-		component->Render();
+		m_Components[i]->Render();
 	}
 }
 
@@ -72,6 +72,9 @@ BaseComponent* GameObject::AddComponent(BaseComponent* component)
 
 	m_Components.push_back(component);
 	component->m_pGameObject = this;
+
+	if (this->GetScene())
+		component->CheckInitialized();
 
 	return component;
 }

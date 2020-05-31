@@ -18,11 +18,17 @@ public:
 
 	GameObject* GetGameObject() const { return m_pGameObject; }
 	TransformComponent* GetTransform() const;
+
+	void CheckInitialized();
+
 protected:
 	virtual void Initialize() = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 
 	GameObject* m_pGameObject;
+
+private:
+	bool m_Initlialized;
 };
 

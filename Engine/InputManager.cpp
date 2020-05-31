@@ -184,7 +184,7 @@ float InputManager::GetMouseY()
 	return (float)m_MouseY;
 }
 
-std::pair<float, float> InputManager::GetMousePos()
+const glm::vec2& InputManager::GetMousePos()
 {
 	return { (float)m_MouseX, (float)m_MouseY };
 }

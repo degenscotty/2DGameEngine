@@ -28,7 +28,7 @@ public:
 
 private:
 	bool m_IsInitialized;
-	std::vector<Scene*> m_pScenes;
+	std::vector<Scene*> m_Scenes;
 	Scene* m_ActiveScene;
 	Scene* m_NewActiveScene;
 };

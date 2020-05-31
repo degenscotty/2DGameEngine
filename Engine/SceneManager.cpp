@@ -4,7 +4,7 @@
 #include "GarbageCollector.h"
 
 SceneManager::SceneManager()
-	: m_pScenes()
+	: m_Scenes()
 	, m_ActiveScene(nullptr)
 	, m_NewActiveScene(nullptr)
 	, m_IsInitialized(false)
@@ -13,15 +13,17 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
-	for (Scene* scene : m_pScenes)
-		SafeDelete(scene);
+	for (int i{ 0 }; i < m_Scenes.size(); ++i)
+	{
+		SafeDelete(m_Scenes[i]);
+	}
 }
 
 void SceneManager::Initialize()
 {
-	for (Scene* scene : m_pScenes)
+	for (int i{0}; i < m_Scenes.size(); ++i)
 	{
-		scene->RootInitialize();
+		m_Scenes[i]->RootInitialize();
 	}
 
 	m_IsInitialized = true;
@@ -53,11 +55,11 @@ void SceneManager::Render()
 
 void SceneManager::AddScene(Scene* pScene)
 {
-	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);
+	const auto it = find(m_Scenes.begin(), m_Scenes.end(), pScene);
 
-	if (it == m_pScenes.end())
+	if (it == m_Scenes.end())
 	{
-		m_pScenes.push_back(pScene);
+		m_Scenes.push_back(pScene);
 
 		if (m_ActiveScene == nullptr && m_NewActiveScene == nullptr)
 			m_ActiveScene = pScene;
@@ -69,22 +71,22 @@ void SceneManager::AddScene(Scene* pScene)
 
 void SceneManager::RemoveScene(Scene* pScene)
 {
-	const auto it = find(m_pScenes.begin(), m_pScenes.end(), pScene);
+	const auto it = find(m_Scenes.begin(), m_Scenes.end(), pScene);
 
-	if (it != m_pScenes.end())
+	if (it != m_Scenes.end())
 	{
-		m_pScenes.erase(it);
+		m_Scenes.erase(it);
 	}
 }
 
 void SceneManager::SetActiveScene(const std::wstring sceneName)
 {
-	const auto it = find_if(m_pScenes.begin(), m_pScenes.end(), [sceneName](Scene* scene)
+	const auto it = find_if(m_Scenes.begin(), m_Scenes.end(), [sceneName](Scene* scene)
 	{
 		return wcscmp(scene->m_SceneName.c_str(), sceneName.c_str()) == 0;
 	});
 
-	if (it != m_pScenes.end())
+	if (it != m_Scenes.end())
 	{
 		m_NewActiveScene = *it;
 	}

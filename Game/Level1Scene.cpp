@@ -1,9 +1,9 @@
-#include "TestScene.h"
+#include "Level1Scene.h"
 #include "FPSComponent.h"
 #include "BobblePlayer.h"
 
-TestScene::TestScene()
-	: Scene(L"TestScene")
+Level1Scene::Level1Scene()
+	: Scene(L"Level1Scene")
 	, m_pBobblePlayer(nullptr)
 	, m_pFPSCounter(nullptr)
 	, m_pLevelManager(LevelManager::GetInstance())
@@ -11,31 +11,34 @@ TestScene::TestScene()
 
 }
 
-TestScene::~TestScene()
+Level1Scene::~Level1Scene()
 {
 	LevelManager::DestroyInstance();
 }
 
-void TestScene::Initialize()
+void Level1Scene::Initialize()
 {
 	m_pFPSCounter = new GameObject();
 	m_pFPSCounter->AddComponent(new FPSComponent());
 	m_pFPSCounter->GetTransform()->Translate(16, 16);
 
 	m_pLevelManager->Initialize();
-	m_pLevelManager->InitializeLevel();
-
-	m_pBobblePlayer = m_pLevelManager->GetBobblePlayer();
 
 	Add(m_pFPSCounter);
 }
 
-void TestScene::Update()
+void Level1Scene::Update()
 {
+	if (!m_pLevelManager->CheckLevel())
+	{
+		m_pLevelManager->InitializeLevel();
+		m_pBobblePlayer = m_pLevelManager->GetBobblePlayer();
+	}
+
 	m_pBobblePlayer->Update();
 }
 
-void TestScene::Render()
+void Level1Scene::Render()
 {
 
 }

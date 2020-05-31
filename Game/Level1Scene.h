@@ -3,16 +3,16 @@
 #include "BobblePlayer.h"
 #include "LevelManager.h"
 
-class TestScene final : public Scene
+class Level1Scene final : public Scene
 {
 public:
-	TestScene();
-	~TestScene();
+	Level1Scene();
+	~Level1Scene();
 
-	TestScene(const TestScene& other) = delete;
-	TestScene(TestScene&& other) = delete;
-	TestScene& operator=(const TestScene& other) = delete;
-	TestScene& operator=(TestScene&& other) = delete;
+	Level1Scene(const Level1Scene& other) = delete;
+	Level1Scene(Level1Scene&& other) = delete;
+	Level1Scene& operator=(const Level1Scene& other) = delete;
+	Level1Scene& operator=(Level1Scene&& other) = delete;
 
 protected:
 	void Initialize() override;

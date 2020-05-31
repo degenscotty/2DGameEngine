@@ -58,7 +58,7 @@ public:
 	float GetMouseX();
 	float GetMouseY();
 
-	std::pair<float, float> GetMousePos();
+	const glm::vec2& GetMousePos();
 
 	bool Quit();
 

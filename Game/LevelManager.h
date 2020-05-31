@@ -23,21 +23,21 @@ public:
 	void Update();
 	void Render();
 
-	BobblePlayer* GetBobblePlayer() { return m_pBobblePlayer; }
+	BobblePlayer* GetBobblePlayer() { if (m_pBobblePlayer) return m_pBobblePlayer; return nullptr; }
 
 	bool CheckLevel();
 
 private:
 	wchar_t GetTile(int x, int y);
 	void SetTile(int x, int y, wchar_t c);
-	
+
 	void MergeWallColliders();
 
 	void CountHorizontalColliders();
 	void CheckVerticalMatch(const glm::vec2& startPosition, int horizontalCount);
 
 	void ClearWalls(const glm::vec2& startPosition, int horizontalCount, int verticalCount);
-	
+
 	SceneManager* m_pSceneManager;
 	BobblePlayer* m_pBobblePlayer;
 	std::vector<PurpleWall*> m_PurpleWalls;

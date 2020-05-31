@@ -10,7 +10,7 @@ CollisionComponent::CollisionComponent(float width, float height, bool trigger)
 	, m_CollisionBox(0, 0, width, height)
 	, m_IsActive(true)
 	, m_Trigger(trigger)
-	, m_Offset({0, 0})
+	, m_Offset({ 0, 0 })
 {
 }
 

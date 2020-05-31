@@ -1,12 +1,12 @@
 #include "Application.h"
-#include "TestScene.h"
+#include "MainMenuScene.h"
 
 class SandboxApplication : public Application
 {
 public:
 	SandboxApplication()
 	{
-		SceneManager::GetInstance()->AddScene(new TestScene());
+		SceneManager::GetInstance()->AddScene(new MainMenuScene());
 	}
 
 	~SandboxApplication()
