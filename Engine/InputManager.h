@@ -58,7 +58,7 @@ public:
 	float GetMouseX();
 	float GetMouseY();
 
-	const glm::vec2& GetMousePos();
+	const glm::vec2 GetMousePos();
 
 	bool Quit();
 

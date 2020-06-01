@@ -234,6 +234,9 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="BobbleJump.cpp" />
     <ClCompile Include="BobbleWalking.cpp" />
     <ClCompile Include="Bubble.cpp" />
+    <ClCompile Include="BubbleIdle.cpp" />
+    <ClCompile Include="BubbleMaita.cpp" />
+    <ClCompile Include="BubbleZenChan.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Maita.cpp" />
     <ClCompile Include="LevelManager.cpp" />
@@ -251,6 +254,11 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="BobbleState.h" />
     <ClInclude Include="BobbleWalking.h" />
     <ClInclude Include="Bubble.h" />
+    <ClInclude Include="BubbleCommands.h" />
+    <ClInclude Include="BubbleIdle.h" />
+    <ClInclude Include="BubbleMaita.h" />
+    <ClInclude Include="BubbleState.h" />
+    <ClInclude Include="BubbleZenChan.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="Maita.h" />
     <ClInclude Include="LevelManager.h" />

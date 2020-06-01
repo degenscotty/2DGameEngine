@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
 #include "PhysicsSystem.h"
+#include "CollisionGroups.h"
 
 class CollisionComponent : public BaseComponent
 {
@@ -17,6 +18,11 @@ public:
 
 	void SetOffset(const glm::vec2& offset);
 
+	void SetCollisionGroup(CollisionGroup group);
+	void SetCollisionIgnoreGroups(CollisionGroup group);
+	CollisionGroup GetCollisionGroup();
+	CollisionGroup GetCollisionIgnoreGroups();
+
 	bool IsTrigger() const { return m_Trigger; } 
 
 protected:
@@ -27,6 +33,9 @@ protected:
 private:
 	TransformComponent* m_pTransformComponent;
 	PhysicsSystem* m_pPhysicsSystem;
+
+	CollisionGroup m_Group;
+	CollisionGroup m_IgnoreGroups;
 
 	Rectf m_CollisionBox;
 	bool m_IsActive;

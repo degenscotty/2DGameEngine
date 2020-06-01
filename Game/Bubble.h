@@ -1,6 +1,9 @@
 #pragma once
-#include "BubbleComponent.h"
 #include "GameObject.h"
+#include "StateComponent.h"
+#include "BubbleComponent.h"
+#include "SpriteComponent.h"
+#include "GarbageCollector.h"
 
 class Bubble
 {
@@ -21,12 +24,21 @@ public:
 	void ShootBubble(bool right);
 
 	void SetAnimationClip(int index) const;
+	void ChangeState(const std::string& newState);
+
+	void SetActive(bool active) { m_Active = active; }
 
 	GameObject* GetGameObject() const;
+
+	void OnTrigger(GameObject* pGameObject, bool trigger);
 
 private:
 	GameObject* m_pBubble;
 	BubbleComponent* m_pBubbleComponent;
 	SpriteComponent* m_pSpriteComponent;
+	StateComponent* m_pStateComponent;
+	GarbageCollector* m_pGarbageCollector;
+
+	bool m_Active;
 };
 

@@ -1,9 +1,11 @@
 #include "Maita.h"
 
-#include "ControllerComponent.h"
 #include "MaitaCommands.h"
+
 #include "MaitaIdle.h"
 #include "MaitaSeeking.h"
+
+#include "CollisionGroups.h"
 #include "utils.h"
 
 Maita::Maita()
@@ -23,10 +25,16 @@ void Maita::Initialize()
 {
 	m_pEnemyMaita = new GameObject();
 	m_pTransformComponent = m_pEnemyMaita->GetTransform();
-	m_pEnemyMaita->AddComponent(new CollisionComponent(32, 32, false));
+
+	CollisionComponent* pCollisionComponent = new CollisionComponent(32, 32, false);
+	pCollisionComponent->SetCollisionGroup(static_cast<CollisionGroup>(Group2));
+	pCollisionComponent->SetCollisionIgnoreGroups(static_cast<CollisionGroup>(Group1 | Group2));
+	m_pEnemyMaita->AddComponent(pCollisionComponent);
+	
 	auto pCollisionComponentTrigger(new CollisionComponent(32, 32, true));
 	pCollisionComponentTrigger->SetOffset({ 0, -56 });
 	m_pEnemyMaita->AddComponent(pCollisionComponentTrigger);
+	
 	m_pSpriteComponent = new SpriteComponent("Maita.png", 3, 2, 32);
 	m_pSpriteComponent->AddClip(2, true);
 	m_pSpriteComponent->AddClip(2, true);
@@ -99,7 +107,7 @@ void Maita::SetJump(bool canJump)
 	m_CanJump = canJump;
 }
 
-void Maita::OnTrigger(GameObject* other)
+void Maita::OnTrigger(GameObject* other, bool trigger)
 {
 	if (other->GetTag() == "Wall" && other->GetTransform()->GetPosition().y < m_pTransformComponent->GetPosition().y)
 		m_CanJump = true;

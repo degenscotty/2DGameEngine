@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 #include "MaitaState.h"
-#include "utils.h"
 
 class Maita;
 

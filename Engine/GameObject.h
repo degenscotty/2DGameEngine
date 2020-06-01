@@ -23,7 +23,7 @@ public:
 	BaseComponent* AddComponent(BaseComponent* component);
 	void RemoveComponent(BaseComponent* component);
 
-	void SetCollisionCallBack(std::function<void(GameObject*)> collisionCallBack) { m_CollisionCallBack = collisionCallBack; }
+	void SetCollisionCallBack(std::function<void(GameObject*, bool)> collisionCallBack) { m_CollisionCallBack = collisionCallBack; }
 
 	TransformComponent* GetTransform() const { return m_pTransform; }
 
@@ -32,7 +32,7 @@ public:
 
 	Scene* GetScene() { if (m_pScene) return m_pScene; else return nullptr; }
 
-	void OnTrigger(GameObject* gameObject) {}
+	void OnTrigger(GameObject* pGameObject, bool trigger) {}
 
 #pragma region 
 	///This code is completely based on Overlord engine(GP2)
@@ -75,6 +75,6 @@ private:
 	Scene* m_pScene;
 	std::vector<BaseComponent*> m_Components{};
 	TransformComponent* m_pTransform;
-	std::function<void(GameObject*)> m_CollisionCallBack;
+	std::function<void(GameObject*, bool)> m_CollisionCallBack;
 };
 

@@ -53,8 +53,8 @@ void LevelManager::Initialize()
 	m_LevelString += L"####...##################...####";
 	m_LevelString += L"##............................##";
 	m_LevelString += L"##............................##";
-	m_LevelString += L"##.......X=...................##";
-	m_LevelString += L"##.......==...................##";
+	m_LevelString += L"##.......X=...X=.......X=.....##";
+	m_LevelString += L"##.......==...==.......==.....##";
 	m_LevelString += L"################################";
 }
 
@@ -167,7 +167,8 @@ void LevelManager::CheckVerticalMatch(const glm::vec2& startPosition, int horizo
 		{
 			if (purpleWall->GetGameObject()->GetTransform()->GetPosition() == glm::vec2{ startPosition.x * 16, startPosition.y * 16 })
 			{
-				purpleWall->GetGameObject()->AddComponent(new CollisionComponent(float(horizontalCount * 16), float(16), false));
+				CollisionComponent* pCollisionComponent = new CollisionComponent(float(horizontalCount * 16), float(16), false);
+				purpleWall->GetGameObject()->AddComponent(pCollisionComponent);
 				ClearWalls(startPosition, horizontalCount, verticalMatchCount);
 				return;
 			}

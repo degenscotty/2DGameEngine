@@ -1,10 +1,10 @@
 #pragma once
 #include "SceneManager.h"
-#include "GameObject.h"
 #include "Components.h"
 
 #include <vector>
 #include <string>
+#include "GameObject.h"
 
 class Scene
 {

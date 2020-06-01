@@ -1,9 +1,9 @@
 #pragma once
 #include "Commands.h"
 #include "ControllerComponent.h"
+#include "SceneManager.h"
 #include "BobblePlayer.h"
 #include "Bubble.h"
-#include "SceneManager.h"
 
 class BobbleMoveLeftC : public Command
 {
@@ -132,8 +132,7 @@ public:
 		
 		m_pSceneManager->GetActiveScene()->Add(pBubble->GetGameObject());
 
-		delete pBubble;
-		pBubble = nullptr;
+		m_pBobblePlayer->AddBubble(pBubble);
 	}
 
 private:

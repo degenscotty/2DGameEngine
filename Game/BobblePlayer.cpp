@@ -1,9 +1,11 @@
 #include "BobblePlayer.h"
 
+#include "PlayerCommands.h"
+
 #include "BobbleIdle.h"
 #include "BobbleJump.h"
 #include "BobbleWalking.h"
-#include "PlayerCommands.h"
+
 #include "utils.h"
 
 BobblePlayer::BobblePlayer()
@@ -16,12 +18,21 @@ BobblePlayer::BobblePlayer()
 
 BobblePlayer::~BobblePlayer()
 {
+	for (auto* bubble : m_Bubbles)
+	{
+		delete bubble;
+	}
 }
 
 void BobblePlayer::Initialize()
 {
 	m_pBobblePlayer = new GameObject();
-	m_pBobblePlayer->AddComponent(new CollisionComponent(32, 32, false));
+	
+	CollisionComponent* pCollisionComponent = new CollisionComponent(32, 32, false);
+	pCollisionComponent->SetCollisionGroup(static_cast<CollisionGroup>(Group1));
+	pCollisionComponent->SetCollisionIgnoreGroups(static_cast<CollisionGroup>(Group1 | Group2));
+	m_pBobblePlayer->AddComponent(pCollisionComponent);
+
 	auto* pControllerComponent = new ControllerComponent();
 	m_pBobblePlayer->AddComponent(pControllerComponent);
 	m_pSpriteComponent = new SpriteComponent("Player.png", 4, 2, 32);
@@ -88,6 +99,11 @@ void BobblePlayer::ChangeState(const std::string& newState)
 	m_pStateComponent->ChangeState(newState);
 }
 
+void BobblePlayer::AddBubble(Bubble* pBubble)
+{
+	m_Bubbles.push_back(pBubble);
+}
+
 void BobblePlayer::Update() const
 {
 }
@@ -102,7 +118,7 @@ GameObject* BobblePlayer::GetGameObject() const
 	return m_pBobblePlayer;
 }
 
-void BobblePlayer::OnTrigger(GameObject* other)
+void BobblePlayer::OnTrigger(GameObject* other, bool trigger)
 {
 }
 

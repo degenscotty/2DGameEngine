@@ -1,6 +1,6 @@
 #pragma once
 
-#define BIND_FN(x) std::bind(&x, this, std::placeholders::_1)
+#define BIND_FN(x) std::bind(&x, this, std::placeholders::_1, std::placeholders::_2)
 
 namespace utils
 {

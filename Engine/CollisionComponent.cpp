@@ -11,6 +11,8 @@ CollisionComponent::CollisionComponent(float width, float height, bool trigger)
 	, m_IsActive(true)
 	, m_Trigger(trigger)
 	, m_Offset({ 0, 0 })
+	, m_Group(CollisionGroup::Group0)
+	, m_IgnoreGroups(CollisionGroup::Group9)
 {
 }
 
@@ -41,6 +43,26 @@ void CollisionComponent::Update()
 {
 	m_CollisionBox.x = m_pTransformComponent->GetPosition().x + m_Offset.x;
 	m_CollisionBox.y = m_pTransformComponent->GetPosition().y + m_Offset.y;
+}
+
+void CollisionComponent::SetCollisionGroup(CollisionGroup group)
+{
+	m_Group = group;
+}
+
+CollisionGroup CollisionComponent::GetCollisionGroup()
+{
+	return m_Group;
+}
+
+void CollisionComponent::SetCollisionIgnoreGroups(CollisionGroup group)
+{
+	m_IgnoreGroups = group;
+}
+
+CollisionGroup CollisionComponent::GetCollisionIgnoreGroups()
+{
+	return m_IgnoreGroups;
 }
 
 void CollisionComponent::Render()

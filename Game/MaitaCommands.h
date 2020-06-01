@@ -8,19 +8,19 @@ class MaitaMoveLeftC : public Command
 public:
 	explicit MaitaMoveLeftC(ControllerComponent* pControllerComponent, Maita* pMaita)
 		: m_pControllerComponent(pControllerComponent)
-		, m_pEnemyMaita(pMaita)
+		, m_pMaita(pMaita)
 	{
 	}
 
 	void Execute() override
 	{
 		m_pControllerComponent->MoveLeft();
-		m_pEnemyMaita->SetFlipState(SDL_FLIP_NONE);
+		m_pMaita->SetFlipState(SDL_FLIP_NONE);
 	}
 
 private:
 	ControllerComponent* m_pControllerComponent;
-	Maita* m_pEnemyMaita;
+	Maita* m_pMaita;
 };
 
 class MaitaMoveRightC : public Command
@@ -28,19 +28,19 @@ class MaitaMoveRightC : public Command
 public:
 	explicit MaitaMoveRightC(ControllerComponent* pControllerComponent, Maita* pMaita)
 		: m_pControllerComponent(pControllerComponent)
-		, m_pEnemyMaita(pMaita)
+		, m_pMaita(pMaita)
 	{
 	}
 
 	void Execute() override
 	{
 		m_pControllerComponent->MoveRight();
-		m_pEnemyMaita->SetFlipState(SDL_FLIP_HORIZONTAL);
+		m_pMaita->SetFlipState(SDL_FLIP_HORIZONTAL);
 	}
 
 private:
 	ControllerComponent* m_pControllerComponent;
-	Maita* m_pEnemyMaita;
+	Maita* m_pMaita;
 };
 
 class MaitaJumpC : public Command
@@ -48,7 +48,7 @@ class MaitaJumpC : public Command
 public:
 	explicit MaitaJumpC(ControllerComponent* pControllerComponent, Maita* pMaita)
 		: m_pControllerComponent(pControllerComponent)
-		, m_pEnemyMaita(pMaita)
+		, m_pMaita(pMaita)
 	{
 	}
 
@@ -59,7 +59,7 @@ public:
 
 private:
 	ControllerComponent* m_pControllerComponent;
-	Maita* m_pEnemyMaita;
+	Maita* m_pMaita;
 };
 
 class MaitaStopMovingC : public Command
@@ -67,7 +67,7 @@ class MaitaStopMovingC : public Command
 public:
 	explicit MaitaStopMovingC(ControllerComponent* pControllerComponent, Maita* pMaita)
 		: m_pControllerComponent(pControllerComponent)
-		, m_pEnemyMaita(pMaita)
+		, m_pMaita(pMaita)
 	{
 	}
 
@@ -78,5 +78,5 @@ public:
 
 private:
 	ControllerComponent* m_pControllerComponent;
-	Maita* m_pEnemyMaita;
+	Maita* m_pMaita;
 };

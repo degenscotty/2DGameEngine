@@ -225,5 +225,8 @@
     <ClInclude Include="BubbleComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionGroups.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

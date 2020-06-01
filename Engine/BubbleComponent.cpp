@@ -9,7 +9,7 @@ BubbleComponent::BubbleComponent()
 	, m_pGameTime(GameTime::GetInstance())
 	, m_BubbleUpForce(-10)
 	, m_BubbleVelocity({ 0, 0 })
-	, m_BubbleSideForce(25)
+	, m_BubbleSideForce(15)
 	, m_Active(true)
 {
 
@@ -40,10 +40,14 @@ void BubbleComponent::Update()
 {
 	if (m_Active)
 	{
-		if (m_pTransformComponent->GetPosition().x < 250)
-			m_BubbleSideForce = utils::lerp(m_BubbleVelocity.x, 25, 0.1f);
-		else if (m_pTransformComponent->GetPosition().x > 259)
-			m_BubbleSideForce = utils::lerp(m_BubbleVelocity.x, -25, 0.1f);
+		if (m_pTransformComponent->GetPosition().x < 206)
+			m_BubbleSideForce = utils::lerp(m_BubbleVelocity.x, 5, 0.1f);
+		else if (m_pTransformComponent->GetPosition().x >= 306)
+			m_BubbleSideForce = utils::lerp(m_BubbleVelocity.x, -5, 0.1f);
+		else
+		{
+			m_BubbleSideForce = utils::lerp(m_BubbleVelocity.x, -(float(rand() % 5 + 1)), 0.1f);
+		}
 
 		m_BubbleVelocity = { m_BubbleSideForce, m_BubbleUpForce };
 

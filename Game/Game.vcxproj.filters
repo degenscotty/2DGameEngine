@@ -43,6 +43,15 @@
     <ClCompile Include="Bubble.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="BubbleIdle.cpp">
+      <Filter>BubbleStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleMaita.cpp">
+      <Filter>BubbleStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleZenChan.cpp">
+      <Filter>BubbleStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerCommands.h">
@@ -96,6 +105,21 @@
     <ClInclude Include="Bubble.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
+    <ClInclude Include="BubbleState.h">
+      <Filter>BubbleStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleIdle.h">
+      <Filter>BubbleStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleMaita.h">
+      <Filter>BubbleStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleZenChan.h">
+      <Filter>BubbleStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleCommands.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scenes">
@@ -121,6 +145,9 @@
     </Filter>
     <Filter Include="MaitaStates">
       <UniqueIdentifier>{17efe9f7-5607-46ec-bc52-d5880b91de05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BubbleStates">
+      <UniqueIdentifier>{1ad1d485-b717-4e4b-b064-6dc78c79687c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
