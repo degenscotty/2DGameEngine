@@ -4,6 +4,7 @@
 #include "BubbleComponent.h"
 #include "SpriteComponent.h"
 #include "GarbageCollector.h"
+#include "LevelManager.h"
 
 class Bubble
 {
@@ -21,16 +22,18 @@ public:
 	void Render() const;
 
 	void SetPosition(const glm::vec2& position);
+	const glm::vec2& GetPosition();
 	void ShootBubble(bool right);
 
 	void SetAnimationClip(int index) const;
 	void ChangeState(const std::string& newState);
+	void PopBubble();
 
 	void SetActive(bool active) { m_Active = active; }
 
 	GameObject* GetGameObject() const;
 
-	void OnTrigger(GameObject* pGameObject, bool trigger);
+	void OnTrigger(GameObject* other, bool trigger);
 
 private:
 	GameObject* m_pBubble;
@@ -38,7 +41,9 @@ private:
 	SpriteComponent* m_pSpriteComponent;
 	StateComponent* m_pStateComponent;
 	GarbageCollector* m_pGarbageCollector;
+	LevelManager* m_pLevelManager;
 
 	bool m_Active;
+	bool m_BubblePopped;
 };
 

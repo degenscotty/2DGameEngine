@@ -11,6 +11,12 @@ void BubbleIdle::Update()
 {
 	
 }
+
+void BubbleIdle::PopBubble()
+{
+	m_pBubble->ChangeState("bubblePop");
+}
+
 void BubbleIdle::Swap()
 {
 	

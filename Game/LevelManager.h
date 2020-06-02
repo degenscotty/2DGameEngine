@@ -1,11 +1,15 @@
 #pragma once
+#include <glm.hpp>
+
 #include "Singleton.h"
 #include "SceneManager.h"
 #include <string>
 
-#include "BobblePlayer.h"
-#include "PurpleWall.h"
-#include "Maita.h"
+class BobblePlayer;
+class PurpleWall;
+class Maita;
+class Bubble;
+class GameObject;
 
 class LevelManager : public Singleton<LevelManager>
 {
@@ -25,6 +29,12 @@ public:
 
 	BobblePlayer* GetBobblePlayer() { if (m_pBobblePlayer) return m_pBobblePlayer; return nullptr; }
 
+	void AddMaita(Maita* pMaita);
+	void DestroyMaita(GameObject* pGameObject);
+
+	void AddBubble(Bubble* pBubble);
+	void DestroyBubble(GameObject* pGameObject);
+
 	bool CheckLevel();
 
 private:
@@ -41,7 +51,8 @@ private:
 	SceneManager* m_pSceneManager;
 	BobblePlayer* m_pBobblePlayer;
 	std::vector<PurpleWall*> m_PurpleWalls;
-	std::vector<Maita*> m_EnemySnails;
+	std::vector<Maita*> m_EnemyMaita;
+	std::vector<Bubble*> m_Bubbles;
 
 	int m_LevelWidth;
 	int m_LevelHeight;

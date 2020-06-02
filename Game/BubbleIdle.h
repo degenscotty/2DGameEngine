@@ -19,6 +19,8 @@ public:
 	void OnEnter() override;
 	void OnExit() override;
 
+	void PopBubble() override;
+
 public:
 	
 };

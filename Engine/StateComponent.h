@@ -19,6 +19,8 @@ public:
 	void ChangeState(const std::string& stateName);
 	void SetState(const std::string& stateName);
 
+	State* GetCurrentState();
+	
 protected:
 	void Initialize() override;
 	void Update() override;

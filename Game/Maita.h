@@ -25,7 +25,7 @@ public:
 	void SetFlipState(const SDL_RendererFlip& flip) const;
 	void SetPosition(const glm::vec2& position);
 
-	GameObject* GetGameObject() const;
+	GameObject* GetGameObject();
 	glm::vec2 GetPosition();
 	bool GetCanJump() { return m_CanJump; }
 	void SetJump(bool canJump);

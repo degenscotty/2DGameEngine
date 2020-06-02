@@ -236,6 +236,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="BubbleIdle.cpp" />
     <ClCompile Include="BubbleMaita.cpp" />
+    <ClCompile Include="BubblePop.cpp" />
     <ClCompile Include="BubbleZenChan.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Maita.cpp" />
@@ -247,6 +248,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="BobblePlayer.cpp" />
     <ClCompile Include="MaitaIdle.cpp" />
     <ClCompile Include="Level1Scene.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BobbleIdle.h" />
@@ -257,6 +259,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="BubbleCommands.h" />
     <ClInclude Include="BubbleIdle.h" />
     <ClInclude Include="BubbleMaita.h" />
+    <ClInclude Include="BubblePop.h" />
     <ClInclude Include="BubbleState.h" />
     <ClInclude Include="BubbleZenChan.h" />
     <ClInclude Include="MainMenuScene.h" />
@@ -271,6 +274,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="MaitaIdle.h" />
     <ClInclude Include="MaitaState.h" />
     <ClInclude Include="Level1Scene.h" />
+    <ClInclude Include="ScoreManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

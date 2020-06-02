@@ -34,6 +34,9 @@ public:
 
 	void OnTrigger(GameObject* pGameObject, bool trigger) {}
 
+	void SetDestroy() { m_Destroy = true; }
+	bool CheckDestroy() { return m_Destroy; }
+
 #pragma region 
 	///This code is completely based on Overlord engine(GP2)
 	template <class T>
@@ -76,5 +79,7 @@ private:
 	std::vector<BaseComponent*> m_Components{};
 	TransformComponent* m_pTransform;
 	std::function<void(GameObject*, bool)> m_CollisionCallBack;
+
+	bool m_Destroy = false;
 };
 

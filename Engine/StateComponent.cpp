@@ -31,6 +31,11 @@ void StateComponent::SetState(const std::string& stateName)
 		m_pState = m_StateMap.at(stateName);
 }
 
+State* StateComponent::GetCurrentState()
+{
+	return m_pState;
+}
+
 void StateComponent::ChangeState(const std::string& stateName)
 {
 	if (m_pState && m_pState != m_StateMap[stateName])

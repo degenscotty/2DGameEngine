@@ -7,6 +7,8 @@ Level1Scene::Level1Scene()
 	, m_pBobblePlayer(nullptr)
 	, m_pFPSCounter(nullptr)
 	, m_pLevelManager(LevelManager::GetInstance())
+	, m_pScoreManager(ScoreManager::GetInstance())
+	, m_pPopUpManager(PopUpManager::GetInstance())
 {
 
 }
@@ -14,6 +16,8 @@ Level1Scene::Level1Scene()
 Level1Scene::~Level1Scene()
 {
 	LevelManager::DestroyInstance();
+	ScoreManager::DestroyInstance();
+	PopUpManager::DestroyInstance();
 }
 
 void Level1Scene::Initialize()
@@ -34,13 +38,16 @@ void Level1Scene::Update()
 		m_pLevelManager->InitializeLevel();
 		m_pBobblePlayer = m_pLevelManager->GetBobblePlayer();
 	}
-
-	m_pBobblePlayer->Update();
+	m_pPopUpManager->Update();
+	m_pLevelManager->Update();
+	
+	//m_pBobblePlayer->Update();
 }
 
 void Level1Scene::Render()
 {
-
+	m_pScoreManager->Render();
+	m_pPopUpManager->Render();
 }
 
 

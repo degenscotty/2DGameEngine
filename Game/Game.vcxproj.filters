@@ -52,6 +52,12 @@
     <ClCompile Include="BubbleZenChan.cpp">
       <Filter>BubbleStates</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="BubblePop.cpp">
+      <Filter>BubbleStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerCommands.h">
@@ -119,6 +125,12 @@
     </ClInclude>
     <ClInclude Include="BubbleCommands.h">
       <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="BubblePop.h">
+      <Filter>BubbleStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

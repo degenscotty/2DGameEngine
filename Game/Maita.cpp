@@ -97,7 +97,7 @@ void Maita::Render() const
 {
 }
 
-GameObject* Maita::GetGameObject() const
+GameObject* Maita::GetGameObject()
 {
 	return m_pEnemyMaita;
 }

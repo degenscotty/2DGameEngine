@@ -2,6 +2,8 @@
 #include "Scene.h"
 #include "BobblePlayer.h"
 #include "LevelManager.h"
+#include "PopUpManager.h"
+#include "ScoreManager.h"
 
 class Level1Scene final : public Scene
 {
@@ -23,5 +25,7 @@ private:
 	BobblePlayer* m_pBobblePlayer;
 	GameObject* m_pFPSCounter;
 	LevelManager* m_pLevelManager;
+	ScoreManager* m_pScoreManager;
+	PopUpManager* m_pPopUpManager;
 };
 

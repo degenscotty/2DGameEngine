@@ -17,6 +17,8 @@ void PopUpManager::Update()
 	{
 		m_PopUps[i].timer += m_pGameTime->GetElapsedSec();
 
+		m_PopUps[i].position.y += -25 * m_pGameTime->GetElapsedSec();
+
 		if (m_PopUps[i].timer > 1.5f)
 		{
 			m_PopUps.erase(m_PopUps.begin() + i);

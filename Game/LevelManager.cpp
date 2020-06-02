@@ -1,5 +1,10 @@
 #include "LevelManager.h"
 
+#include "GameObject.h"
+#include "BobblePlayer.h"
+#include "Maita.h"
+#include "Bubble.h"
+#include "PurpleWall.h"
 #include "Scene.h"
 
 LevelManager::LevelManager()
@@ -14,13 +19,17 @@ LevelManager::LevelManager()
 
 LevelManager::~LevelManager()
 {
-	for (auto purpleWall : m_PurpleWalls)
+	for (auto wall : m_PurpleWalls)
 	{
-		delete purpleWall;
+		delete wall;
 	}
-	for (auto enemySnail : m_EnemySnails)
+	for (auto maita : m_EnemyMaita)
 	{
-		delete enemySnail;
+		delete maita;
+	}
+	for (auto bubble : m_Bubbles)
+	{
+		delete bubble;
 	}
 
 	delete m_pBobblePlayer;
@@ -53,14 +62,53 @@ void LevelManager::Initialize()
 	m_LevelString += L"####...##################...####";
 	m_LevelString += L"##............................##";
 	m_LevelString += L"##............................##";
-	m_LevelString += L"##.......X=...X=.......X=.....##";
-	m_LevelString += L"##.......==...==.......==.....##";
+	m_LevelString += L"##.......X=...................##";
+	m_LevelString += L"##.......==...................##";
 	m_LevelString += L"################################";
 }
 
 bool LevelManager::CheckLevel()
 {
 	return m_LevelInitialized;
+}
+
+void LevelManager::AddMaita(Maita* pMaita)
+{
+	m_EnemyMaita.push_back(pMaita);
+}
+
+void LevelManager::DestroyMaita(GameObject* pGameObject)
+{
+	auto it = std::find_if(m_EnemyMaita.begin(), m_EnemyMaita.end(), [pGameObject](Maita* pMaita)
+		{
+			if (reinterpret_cast<GameObject*>(pMaita->GetGameObject()) == pGameObject)
+				return true;
+			else
+				return false;
+		});
+
+
+	delete* it;
+	m_EnemyMaita.erase(it);
+}
+
+void LevelManager::AddBubble(Bubble* pBubble)
+{
+	m_Bubbles.push_back(pBubble);
+}
+
+void LevelManager::DestroyBubble(GameObject* pGameObject)
+{
+	auto it = std::find_if(m_Bubbles.begin(), m_Bubbles.end(), [pGameObject](Bubble* pBubble)
+		{
+			if (reinterpret_cast<GameObject*>(pBubble->GetGameObject()) == pGameObject)
+				return true;
+			else
+				return false;
+		});
+
+	delete* it;
+	m_Bubbles.erase(it);
 }
 
 void LevelManager::InitializeLevel()
@@ -94,7 +142,7 @@ void LevelManager::InitializeLevel()
 				++m_EnemyCount;
 				enemyMaita->Initialize();
 				enemyMaita->SetPosition({ x * 16.0f, y * 16.0f });
-				m_EnemySnails.push_back(enemyMaita);
+				m_EnemyMaita.push_back(enemyMaita);
 				m_pSceneManager->GetActiveScene()->Add(enemyMaita->GetGameObject());
 			}
 			break;
@@ -228,6 +276,10 @@ void LevelManager::ClearWalls(const glm::vec2& startPosition, int horizontalCoun
 
 void LevelManager::Update()
 {
+	for (int i{}; i < m_Bubbles.size(); ++i)
+	{
+		m_Bubbles[i]->Update();
+	}
 }
 
 wchar_t LevelManager::GetTile(int x, int y)

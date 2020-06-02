@@ -30,6 +30,8 @@ public:
 	virtual void OnEnter() = 0;
 	virtual void OnExit() = 0;
 
+	virtual void PopBubble() = 0;
+
 	virtual void AddCommand(const std::string& commandName, Command* pCommand)
 	{
 		m_CommandMap.insert(std::make_pair(commandName, pCommand));

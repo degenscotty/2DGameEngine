@@ -3,7 +3,8 @@
 #include "InputManager.h"
 #include "SpriteComponent.h"
 #include "StateComponent.h"
-#include "Bubble.h"
+
+class Bubble;
 
 class BobblePlayer
 {
@@ -27,8 +28,6 @@ public:
 	void SetPosition(const glm::vec2& position);
 	const glm::vec2& GetPosition();
 
-	void AddBubble(Bubble* pBubble);
-
 	GameObject* GetGameObject() const;
 
 	void OnTrigger(GameObject* other, bool trigger);
@@ -37,7 +36,5 @@ private:
 	GameObject* m_pBobblePlayer;
 	SpriteComponent* m_pSpriteComponent;
 	StateComponent* m_pStateComponent;
-
-	std::vector<Bubble*> m_Bubbles;
 };
 

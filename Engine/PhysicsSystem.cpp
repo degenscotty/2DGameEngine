@@ -35,6 +35,9 @@ void PhysicsSystem::Update()
 					GameObject* gameObjectI = m_CollisionComponents[i]->GetGameObject();
 					GameObject* gameObjectJ = m_CollisionComponents[j]->GetGameObject();
 
+					if (gameObjectI->CheckDestroy() || gameObjectJ->CheckDestroy())
+						continue;
+
 					CollisionGroup flagI = m_CollisionComponents[i]->GetCollisionGroup();
 					CollisionGroup flagJ = m_CollisionComponents[j]->GetCollisionGroup();
 

@@ -115,6 +115,7 @@ public:
 	explicit ShootBubbleC(BobblePlayer* pBobblePlayer)
 		: m_pBobblePlayer(pBobblePlayer)
 		, m_pSceneManager(SceneManager::GetInstance())
+		, m_pLevelManager(LevelManager::GetInstance())
 	{
 	}
 
@@ -132,12 +133,13 @@ public:
 		
 		m_pSceneManager->GetActiveScene()->Add(pBubble->GetGameObject());
 
-		m_pBobblePlayer->AddBubble(pBubble);
+		m_pLevelManager->AddBubble(pBubble);
 	}
 
 private:
 	BobblePlayer* m_pBobblePlayer;
 	SceneManager* m_pSceneManager;
+	LevelManager* m_pLevelManager;
 };
 
 

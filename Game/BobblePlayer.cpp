@@ -5,6 +5,7 @@
 #include "BobbleIdle.h"
 #include "BobbleJump.h"
 #include "BobbleWalking.h"
+#include "Bubble.h"
 
 #include "utils.h"
 
@@ -18,10 +19,6 @@ BobblePlayer::BobblePlayer()
 
 BobblePlayer::~BobblePlayer()
 {
-	for (auto* bubble : m_Bubbles)
-	{
-		delete bubble;
-	}
 }
 
 void BobblePlayer::Initialize()
@@ -97,11 +94,6 @@ const SDL_RendererFlip& BobblePlayer::GetFlipState()
 void BobblePlayer::ChangeState(const std::string& newState)
 {
 	m_pStateComponent->ChangeState(newState);
-}
-
-void BobblePlayer::AddBubble(Bubble* pBubble)
-{
-	m_Bubbles.push_back(pBubble);
 }
 
 void BobblePlayer::Update() const

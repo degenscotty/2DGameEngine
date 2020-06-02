@@ -35,6 +35,8 @@ void GarbageCollector::RootSceneDestroy()
 
 void GarbageCollector::Destroy(GameObject* pObject)
 {
+	pObject->SetDestroy();
+	
 	auto it = std::find(m_pGameObjects.begin(), m_pGameObjects.end(), pObject);
 	if (it == m_pGameObjects.end())
 	{

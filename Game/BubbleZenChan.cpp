@@ -12,6 +12,11 @@ void BubbleZenChan::Update()
 	
 }
 
+void BubbleZenChan::PopBubble()
+{
+	
+}
+
 void BubbleZenChan::Swap()
 {
 	

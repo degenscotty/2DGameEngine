@@ -46,7 +46,7 @@ void BubbleComponent::Update()
 			m_BubbleSideForce = utils::lerp(m_BubbleVelocity.x, -5, 0.1f);
 		else
 		{
-			m_BubbleSideForce = utils::lerp(m_BubbleVelocity.x, -(float(rand() % 5 + 1)), 0.1f);
+			m_BubbleSideForce = utils::lerp(m_BubbleVelocity.x, -(float(rand() % 5 + 1)), 0.05f);
 		}
 
 		m_BubbleVelocity = { m_BubbleSideForce, m_BubbleUpForce };
