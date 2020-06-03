@@ -4,6 +4,7 @@
 
 #include "BubbleIdle.h"
 #include "BubbleMaita.h"
+#include "BubbleMaitaDead.h"
 #include "BubblePop.h"
 
 #include "utils.h"
@@ -34,11 +35,14 @@ void Bubble::Initialize()
 	m_pBubbleComponent = new BubbleComponent();
 	m_pBubble->AddComponent(m_pBubbleComponent);
 
-	m_pSpriteComponent = new SpriteComponent("Bubble.png", 4, 4, 32);
+	m_pSpriteComponent = new SpriteComponent("Bubble.png", 7, 4, 32);
 	m_pSpriteComponent->AddClip(4, false);
+	m_pSpriteComponent->AddClip(1, false);
 	m_pSpriteComponent->AddClip(2, false);
 	m_pSpriteComponent->AddClip(2, true);
 	m_pSpriteComponent->AddClip(2, true);
+	m_pSpriteComponent->AddClip(4, true);
+	m_pSpriteComponent->AddClip(4, true);
 	m_pSpriteComponent->SetClipIndex(0);
 	m_pBubble->AddComponent(m_pSpriteComponent);
 
@@ -48,9 +52,14 @@ void Bubble::Initialize()
 	m_pStateComponent->AddState("idle", pBubbleIdle);
 
 	BubbleState* pBubbleMaita = new BubbleMaita(this);
-	pBubbleMaita->AddCommand("bubbleMaita", new BubbleRMaitaC(this));
+	pBubbleMaita->AddCommand("releaseMaita", new BubbleRMaitaC(this));
 	m_pStateComponent->AddState("bubbleMaita", pBubbleMaita);
 
+	BubbleState* pBubbleMaitaDead = new BubbleMaitaDead(this);
+	pBubbleMaitaDead->AddCommand("shootRandom", new BubbleRandomDirectionC(m_pBubbleComponent));
+	pBubbleMaitaDead->AddCommand("spawnFries", new BubbleSpawnFriesC(this));
+	m_pStateComponent->AddState("bubbleMaitaDead", pBubbleMaitaDead);
+	
 	BubbleState* pBubblePop = new BubblePop(this);
 	m_pStateComponent->AddState("bubblePop", pBubblePop);
 
@@ -70,6 +79,9 @@ void Bubble::SetAnimationClip(int index) const
 
 void Bubble::ChangeState(const std::string& newState)
 {
+	if (newState == "bubblePop")
+		m_BubblePopped = true;
+	
 	m_pStateComponent->ChangeState(newState);
 }
 
@@ -90,19 +102,29 @@ void Bubble::ShootBubble(bool right)
 
 void Bubble::Update() const
 {
-	if (m_pSpriteComponent->GetClipIndex() == 1 && m_pSpriteComponent->CheckEndOfCurrentClip())
+	if (m_pSpriteComponent->GetClipIndex() == 0 && m_pSpriteComponent->CheckEndOfCurrentClip())
+	{
+		m_pSpriteComponent->SetClipIndex(1);
+	}
+	
+	if (m_pSpriteComponent->GetClipIndex() == 2 && m_pSpriteComponent->CheckEndOfCurrentClip())
 	{
 		m_pGarbageCollector->Destroy(m_pBubble);
 		m_pLevelManager->DestroyBubble(GetGameObject());
 	}
 }
 
+void Bubble::MoveToPopPosition(const glm::vec2& position)
+{
+	m_pBubbleComponent->MoveToPopPosition(position);
+}
+
 void Bubble::PopBubble()
 {
+	m_BubblePopped = true;
 	auto state = reinterpret_cast<BubbleState*>(m_pStateComponent->GetCurrentState());
 
 	state->PopBubble();
-	m_BubblePopped = true;
 }
 
 void Bubble::Render() const
@@ -116,7 +138,7 @@ GameObject* Bubble::GetGameObject() const
 }
 
 void Bubble::OnTrigger(GameObject* other, bool trigger)
-{
+{	
 	if (other->GetTag() == "Maita" && m_Active && !trigger && !m_BubblePopped)
 	{
 		this->ChangeState("bubbleMaita");
@@ -125,7 +147,7 @@ void Bubble::OnTrigger(GameObject* other, bool trigger)
 		m_Active = false;
 	}
 
-	if (other->GetTag() == "BobblePlayer" && !m_Active && !trigger && !m_BubblePopped && m_pSpriteComponent->GetClipIndex() != 1 && m_pSpriteComponent->GetClipIndex() != 0)
+	if (other->GetTag() == "BobblePlayer" && !trigger && !m_BubblePopped && m_pSpriteComponent->GetClipIndex() != 0)
 	{
 		PopBubble();
 	}

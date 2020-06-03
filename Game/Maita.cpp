@@ -109,6 +109,6 @@ void Maita::SetJump(bool canJump)
 
 void Maita::OnTrigger(GameObject* other, bool trigger)
 {
-	if (other->GetTag() == "Wall" && other->GetTransform()->GetPosition().y < m_pTransformComponent->GetPosition().y)
+	if (!trigger && other->GetTag() == "Wall" && other->GetTransform()->GetPosition().y < m_pTransformComponent->GetPosition().y)
 		m_CanJump = true;
 }

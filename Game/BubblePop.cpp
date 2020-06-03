@@ -12,14 +12,9 @@ void BubblePop::Update()
 	
 }
 
-void BubblePop::Swap()
-{
-	
-}
-
 void BubblePop::OnEnter()
 {
-	m_pBubble->SetAnimationClip(1);
+	m_pBubble->SetAnimationClip(2);
 }
 
 void BubblePop::OnExit()

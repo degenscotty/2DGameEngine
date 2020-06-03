@@ -29,6 +29,10 @@ public:
 	void ChangeState(const std::string& newState);
 	void PopBubble();
 
+	void MoveToPopPosition(const glm::vec2& position);
+
+	void SetBubblePopped() { m_BubblePopped = true; }
+
 	void SetActive(bool active) { m_Active = active; }
 
 	GameObject* GetGameObject() const;

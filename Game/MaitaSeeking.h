@@ -16,7 +16,6 @@ public:
 	MaitaSeeking& operator=(MaitaSeeking&& other) noexcept = delete;
 
 	void Update() override;
-	void Swap() override;
 	void OnEnter() override;
 	void OnExit() override;
 

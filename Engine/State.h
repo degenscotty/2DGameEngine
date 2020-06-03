@@ -12,7 +12,6 @@ public:
 	State& operator=(State&& other) noexcept = delete;
 
 	virtual void Update() = 0;
-	virtual void Swap() = 0;
 	virtual void OnEnter() = 0;
 	virtual void OnExit() = 0;
 };

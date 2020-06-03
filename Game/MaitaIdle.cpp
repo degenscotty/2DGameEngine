@@ -21,11 +21,6 @@ void MaitaIdle::Update()
 	}
 }
 
-void MaitaIdle::Swap()
-{
-	
-}
-
 void MaitaIdle::OnEnter()
 {
 	m_SpawnTimer = 0;

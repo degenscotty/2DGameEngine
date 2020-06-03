@@ -53,11 +53,6 @@ void MaitaSeeking::GetBobblePosition()
 	}
 }
 
-void MaitaSeeking::Swap()
-{
-
-}
-
 void MaitaSeeking::OnEnter()
 {
 	m_pMaita->SetAnimationClip(0);

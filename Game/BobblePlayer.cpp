@@ -6,6 +6,7 @@
 #include "BobbleJump.h"
 #include "BobbleWalking.h"
 #include "Bubble.h"
+#include "PopUpManager.h"
 
 #include "utils.h"
 
@@ -112,5 +113,10 @@ GameObject* BobblePlayer::GetGameObject() const
 
 void BobblePlayer::OnTrigger(GameObject* other, bool trigger)
 {
+	if (other->GetTag() == "Fries")
+	{
+		PopUpManager::GetInstance()->AddPopUp("2000", this->GetPosition(), {69, 224, 50});
+		GarbageCollector::GetInstance()->Destroy(other);
+	}
 }
 

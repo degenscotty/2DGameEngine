@@ -13,11 +13,6 @@ void BobbleJump::Update()
 	
 }
 
-void BobbleJump::Swap()
-{
-	
-}
-
 void BobbleJump::OnEnter()
 {
 	m_pBobblePlayer->SetAnimationClip(2);

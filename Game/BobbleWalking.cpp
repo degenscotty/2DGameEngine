@@ -12,11 +12,6 @@ void BobbleWalking::Update()
 
 }
 
-void BobbleWalking::Swap()
-{
-
-}
-
 void BobbleWalking::OnEnter()
 {
 	m_pBobblePlayer->SetAnimationClip(1);

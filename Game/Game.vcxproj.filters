@@ -25,9 +25,6 @@
     <ClCompile Include="PurpleWall.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="MaitaIdle.cpp">
-      <Filter>MaitaStates</Filter>
-    </ClCompile>
     <ClCompile Include="MaitaSeeking.cpp">
       <Filter>MaitaStates</Filter>
     </ClCompile>
@@ -57,6 +54,15 @@
     </ClCompile>
     <ClCompile Include="BubblePop.cpp">
       <Filter>BubbleStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleMaitaDead.cpp">
+      <Filter>BubbleStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MaitaIdle.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Fries.cpp">
+      <Filter>Prefabs\PickUp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +138,12 @@
     <ClInclude Include="BubblePop.h">
       <Filter>BubbleStates</Filter>
     </ClInclude>
+    <ClInclude Include="BubbleMaitaDead.h">
+      <Filter>BubbleStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Fries.h">
+      <Filter>Prefabs\PickUp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scenes">
@@ -142,9 +154,6 @@
     </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{1f2bc635-aaf5-4241-aba7-96bfff65d2d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Helpers">
-      <UniqueIdentifier>{85e6fdf2-368f-49a3-9f9e-7ae43a3c04a1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application">
       <UniqueIdentifier>{6c2d4d68-ca24-4167-a4c4-2d1434efc93a}</UniqueIdentifier>
@@ -160,6 +169,12 @@
     </Filter>
     <Filter Include="BubbleStates">
       <UniqueIdentifier>{1ad1d485-b717-4e4b-b064-6dc78c79687c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{85e6fdf2-368f-49a3-9f9e-7ae43a3c04a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prefabs\PickUp">
+      <UniqueIdentifier>{db594ad1-23c6-420c-9852-0ee3965592c0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

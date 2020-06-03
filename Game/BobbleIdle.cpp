@@ -12,11 +12,6 @@ void BobbleIdle::Update()
 
 }
 
-void BobbleIdle::Swap()
-{
-
-}
-
 void BobbleIdle::OnEnter()
 {
 	m_pBobblePlayer->SetAnimationClip(0);

@@ -17,14 +17,9 @@ void BubbleZenChan::PopBubble()
 	
 }
 
-void BubbleZenChan::Swap()
-{
-	
-}
-
 void BubbleZenChan::OnEnter()
 {
-	m_pBubble->SetAnimationClip(2);
+	m_pBubble->SetAnimationClip(3);
 }
 
 void BubbleZenChan::OnExit()

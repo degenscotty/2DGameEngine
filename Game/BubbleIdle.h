@@ -1,5 +1,6 @@
 #pragma once
 #include "BubbleState.h"
+#include "GameTime.h"
 
 class Bubble;
 
@@ -15,13 +16,15 @@ public:
 	BubbleIdle& operator=(BubbleIdle&& other) noexcept = delete;
 
 	void Update() override;
-	void Swap() override;
 	void OnEnter() override;
 	void OnExit() override;
 
 	void PopBubble() override;
 
 public:
+	GameTime* m_pGameTime;
 	
+	float m_BubbleTimer;
+	float m_PopTime;
 };
 

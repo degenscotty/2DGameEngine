@@ -19,6 +19,10 @@ public:
 
 	void ShootBubble(bool right);
 
+	void ShootBubbleRandom();
+
+	void MoveToPopPosition(const glm::vec2& position);
+
 protected:
 	void Initialize() override;
 	void Update() override;

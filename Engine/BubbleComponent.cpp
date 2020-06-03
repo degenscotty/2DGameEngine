@@ -36,6 +36,25 @@ void BubbleComponent::ShootBubble(bool right)
 		m_BubbleVelocity.x -= 1000;
 }
 
+void BubbleComponent::ShootBubbleRandom()
+{
+	m_BubbleVelocity.x += rand() % 2000 + 1 - 1000;
+	m_BubbleVelocity.y += rand() % 2000 + 1 - 1000;
+}
+
+void BubbleComponent::MoveToPopPosition(const glm::vec2& position)
+{
+	m_Active = false;
+
+	auto bubblePosition = m_pTransformComponent->GetPosition();
+	glm::vec2 positionToMove;
+
+	positionToMove.x = utils::lerp(bubblePosition.x, position.x, 0.1f);
+	positionToMove.y = utils::lerp(bubblePosition.y, position.y, 0.1f);
+
+	m_pTransformComponent->Translate(positionToMove.x, positionToMove.y);
+}
+
 void BubbleComponent::Update()
 {
 	if (m_Active)
@@ -48,6 +67,8 @@ void BubbleComponent::Update()
 		{
 			m_BubbleSideForce = utils::lerp(m_BubbleVelocity.x, -(float(rand() % 5 + 1)), 0.05f);
 		}
+
+		m_BubbleUpForce = utils::lerp(m_BubbleVelocity.y, -10, 0.1f);
 
 		m_BubbleVelocity = { m_BubbleSideForce, m_BubbleUpForce };
 

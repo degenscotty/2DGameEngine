@@ -1,8 +1,8 @@
 #include "PopUpManager.h"
 
 PopUpManager::PopUpManager()
-	: m_pGameTime(GameTime::GetInstance())
-	, m_pRenderer(Renderer::GetInstance())
+	: m_pRenderer(Renderer::GetInstance())
+	, m_pGameTime(GameTime::GetInstance())
 	, m_PopUps()
 {
 }
@@ -26,15 +26,15 @@ void PopUpManager::Update()
 	}
 }
 
-void PopUpManager::AddPopUp(const std::string& string, const glm::vec2& position)
+void PopUpManager::AddPopUp(const std::string& string, const glm::vec2& position, const SDL_Color& color)
 {
-	m_PopUps.push_back({ string, position, 0.0f });
+	m_PopUps.push_back({ string, position, color, 0 });
 }
 
 void PopUpManager::Render()
 {
 	for (size_t i{ 0 }; i < m_PopUps.size(); ++i)
 	{
-		m_pRenderer->RenderText(m_PopUps[i].number, { 255, 255, 255 }, "RetroGaming.ttf", 16, (int)m_PopUps[i].position.x, (int)m_PopUps[i].position.y);
+		m_pRenderer->RenderText(m_PopUps[i].number, m_PopUps[i].color, "RetroGaming.ttf", 16, (int)m_PopUps[i].position.x, (int)m_PopUps[i].position.y);
 	}
 }

@@ -14,6 +14,7 @@ struct PopUp
 {
 	std::string number;
 	glm::vec2 position;
+	SDL_Color color;
 	float timer;
 };
 
@@ -30,7 +31,7 @@ public:
 	PopUpManager& operator=(PopUpManager&& other) = delete;
 
 	void Update();
-	void AddPopUp(const std::string& string, const glm::vec2& position);
+	void AddPopUp(const std::string& string, const glm::vec2& position, const SDL_Color& color);
 	void Render();
 
 private:
