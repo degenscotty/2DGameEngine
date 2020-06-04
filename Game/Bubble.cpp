@@ -5,6 +5,8 @@
 #include "BubbleIdle.h"
 #include "BubbleMaita.h"
 #include "BubbleMaitaDead.h"
+#include "BubbleZenChan.h"
+#include "BubbleZenChanDead.h"
 #include "BubblePop.h"
 
 #include "utils.h"
@@ -59,6 +61,15 @@ void Bubble::Initialize()
 	pBubbleMaitaDead->AddCommand("shootRandom", new BubbleRandomDirectionC(m_pBubbleComponent));
 	pBubbleMaitaDead->AddCommand("spawnFries", new BubbleSpawnFriesC(this));
 	m_pStateComponent->AddState("bubbleMaitaDead", pBubbleMaitaDead);
+
+	BubbleState* pBubbleZenChan = new BubbleZenChan(this);
+	pBubbleZenChan->AddCommand("releaseZenChan", new BubbleRZenChanC(this));
+	m_pStateComponent->AddState("bubbleZenChan", pBubbleZenChan);
+
+	BubbleState* pBubbleZenChanDead = new BubbleZenChanDead(this);
+	pBubbleZenChanDead->AddCommand("shootRandom", new BubbleRandomDirectionC(m_pBubbleComponent));
+	pBubbleZenChanDead->AddCommand("spawnWaterMelon", new BubbleSpawnWaterMelonC(this));
+	m_pStateComponent->AddState("bubbleZenChanDead", pBubbleZenChanDead);
 	
 	BubbleState* pBubblePop = new BubblePop(this);
 	m_pStateComponent->AddState("bubblePop", pBubblePop);
@@ -144,6 +155,14 @@ void Bubble::OnTrigger(GameObject* other, bool trigger)
 		this->ChangeState("bubbleMaita");
 		m_pGarbageCollector->Destroy(other);
 		m_pLevelManager->DestroyMaita(other);
+		m_Active = false;
+	}
+
+	if (other->GetTag() == "ZenChan" && m_Active && !trigger && !m_BubblePopped)
+	{
+		this->ChangeState("bubbleZenChan");
+		m_pGarbageCollector->Destroy(other);
+		m_pLevelManager->DestroyZenChan(other);
 		m_Active = false;
 	}
 

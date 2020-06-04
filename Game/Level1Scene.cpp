@@ -26,7 +26,7 @@ void Level1Scene::Initialize()
 	m_pFPSCounter->AddComponent(new FPSComponent());
 	m_pFPSCounter->GetTransform()->Translate(16, 16);
 
-	m_pLevelManager->Initialize();
+	m_pLevelManager->Initialize(1);
 
 	Add(m_pFPSCounter);
 }
@@ -40,8 +40,6 @@ void Level1Scene::Update()
 	}
 	m_pPopUpManager->Update();
 	m_pLevelManager->Update();
-	
-	//m_pBobblePlayer->Update();
 }
 
 void Level1Scene::Render()

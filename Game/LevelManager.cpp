@@ -4,7 +4,8 @@
 #include "BobblePlayer.h"
 #include "Maita.h"
 #include "Bubble.h"
-#include "PurpleWall.h"
+#include "Wall.h"
+#include "InvisibleWall.h"
 #include "Scene.h"
 
 LevelManager::LevelManager()
@@ -13,13 +14,14 @@ LevelManager::LevelManager()
 	, m_LevelWidth(32)
 	, m_LevelHeight(28)
 	, m_EnemyCount(0)
+	, m_CurrentLevelNumber(0)
 	, m_LevelInitialized(false)
 {
 }
 
 LevelManager::~LevelManager()
 {
-	for (auto wall : m_PurpleWalls)
+	for (auto wall : m_Walls)
 	{
 		delete wall;
 	}
@@ -31,40 +33,124 @@ LevelManager::~LevelManager()
 	{
 		delete bubble;
 	}
+	for (auto zenChan : m_EnemyZenChan)
+	{
+		delete zenChan;
+	}
 
 	delete m_pBobblePlayer;
 }
 
-void LevelManager::Initialize()
+void LevelManager::Initialize(int levelNumber)
 {
-	m_LevelString += L"................................";
-	m_LevelString += L"................................";
-	m_LevelString += L"................................";
-	m_LevelString += L"###############..###############";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##.............O=.............##";
-	m_LevelString += L"##.............==.............##";
-	m_LevelString += L"####...##################...####";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"####...##################...####";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"####...##################...####";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##............................##";
-	m_LevelString += L"##.......X=...................##";
-	m_LevelString += L"##.......==...................##";
-	m_LevelString += L"################################";
+	m_CurrentLevelNumber = levelNumber;
+	
+	switch (levelNumber)
+	{
+	case 1:
+	{
+		m_LevelString = L"";
+		m_LevelString += L"................................";
+		m_LevelString += L"................................";
+		m_LevelString += L"................................";
+		m_LevelString += L"###############..###############";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##.............O=.............##";
+		m_LevelString += L"##.............==.............##";
+		m_LevelString += L"####...##################...####";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"####...##################...####";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##.....................Z=.....##";
+		m_LevelString += L"##.....................==.....##";
+		m_LevelString += L"####...##################...####";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##.......M=...................##";
+		m_LevelString += L"##.......==...................##";
+		m_LevelString += L"################################";
+	}
+	break;
+	case 2:
+	{
+		m_LevelString = L"";
+		m_LevelString += L"................................";
+		m_LevelString += L"................................";
+		m_LevelString += L"................................";
+		m_LevelString += L"###############..###############";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##.............O=.............##";
+		m_LevelString += L"##.............==.............##";
+		m_LevelString += L"##...........######...........##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##........####....####........##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##.....##################.....##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##....M=......................##";
+		m_LevelString += L"##....==......................##";
+		m_LevelString += L"##..######....####....######..##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##......................M=....##";
+		m_LevelString += L"##......................==....##";
+		m_LevelString += L"################################";
+	}
+	break;
+	case 3:
+	{
+		m_LevelString = L"";
+		m_LevelString += L".......|.....|....|.....|.......";
+		m_LevelString += L".......|.....|....|.....|.......";
+		m_LevelString += L".......|.....|....|.....|.......";
+		m_LevelString += L"########.....##..##.....########";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##...########......########...##";
+		m_LevelString += L"##...#....................#...##";
+		m_LevelString += L"##...#..M=............M=..#...##";
+		m_LevelString += L"##...#..==............==..#...##";
+		m_LevelString += L"##...#########....#########...##";
+		m_LevelString += L"##...#....................#...##";
+		m_LevelString += L"##...#....................#...##";
+		m_LevelString += L"##...#....................#...##";
+		m_LevelString += L"##...#....................#...##";
+		m_LevelString += L"##...#########....#########...##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"######...###........###...######";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##............................##";
+		m_LevelString += L"##.............O=.............##";
+		m_LevelString += L"##.............==.............##";
+		m_LevelString += L"#########...########...#########";
+	}
+	break;
+	default:
+		break;
+	}
+
+
 }
 
 bool LevelManager::CheckLevel()
@@ -83,13 +169,31 @@ void LevelManager::DestroyMaita(GameObject* pGameObject)
 		{
 			if (reinterpret_cast<GameObject*>(pMaita->GetGameObject()) == pGameObject)
 				return true;
-			else
-				return false;
+			return false;
 		});
 
 
 	delete* it;
 	m_EnemyMaita.erase(it);
+}
+
+void LevelManager::AddZenChan(ZenChan* pZenChan)
+{
+	m_EnemyZenChan.push_back(pZenChan);
+}
+
+void LevelManager::DestroyZenChan(GameObject* pGameObject)
+{
+	auto it = std::find_if(m_EnemyZenChan.begin(), m_EnemyZenChan.end(), [pGameObject](ZenChan* pZenChan)
+		{
+			if (reinterpret_cast<GameObject*>(pZenChan->GetGameObject()) == pGameObject)
+				return true;
+			return false;
+		});
+
+
+	delete* it;
+	m_EnemyZenChan.erase(it);
 }
 
 void LevelManager::AddBubble(Bubble* pBubble)
@@ -103,8 +207,7 @@ void LevelManager::DestroyBubble(GameObject* pGameObject)
 		{
 			if (reinterpret_cast<GameObject*>(pBubble->GetGameObject()) == pGameObject)
 				return true;
-			else
-				return false;
+			return false;
 		});
 
 	delete* it;
@@ -130,13 +233,21 @@ void LevelManager::InitializeLevel()
 			break;
 			case L'#':
 			{
-				auto* purpleWall = new PurpleWall({ x * 16.0f, y * 16.0f });
-				purpleWall->Initialize();
-				m_PurpleWalls.push_back(purpleWall);
-				m_pSceneManager->GetActiveScene()->Add(purpleWall->GetGameObject());
+				auto* wall = new Wall({ x * 16.0f, y * 16.0f }, m_CurrentLevelNumber);
+				wall->Initialize();
+				m_Walls.push_back(wall);
+				m_pSceneManager->GetActiveScene()->Add(wall->GetGameObject());
 			}
 			break;
-			case L'X':
+			case L'|':
+			{
+				auto* wall = new Wall({ x * 16.0f, y * 16.0f }, 0);
+				wall->Initialize();
+				m_Walls.push_back(wall);
+				m_pSceneManager->GetActiveScene()->Add(wall->GetGameObject());
+			}
+			break;
+			case L'M':
 			{
 				auto* enemyMaita = new Maita();
 				++m_EnemyCount;
@@ -144,6 +255,16 @@ void LevelManager::InitializeLevel()
 				enemyMaita->SetPosition({ x * 16.0f, y * 16.0f });
 				m_EnemyMaita.push_back(enemyMaita);
 				m_pSceneManager->GetActiveScene()->Add(enemyMaita->GetGameObject());
+			}
+			break;
+			case L'Z':
+			{
+				auto* enemyZenChan = new ZenChan();
+				++m_EnemyCount;
+				enemyZenChan->Initialize();
+				enemyZenChan->SetPosition({ x * 16.0f, y * 16.0f });
+				m_EnemyZenChan.push_back(enemyZenChan);
+				m_pSceneManager->GetActiveScene()->Add(enemyZenChan->GetGameObject());
 			}
 			break;
 			default:
@@ -193,7 +314,7 @@ void LevelManager::CheckVerticalMatch(const glm::vec2& startPosition, int horizo
 				}
 				else
 				{
-					for (auto purpleWall : m_PurpleWalls)
+					for (auto purpleWall : m_Walls)
 					{
 						if (purpleWall->GetGameObject()->GetTransform()->GetPosition() == glm::vec2{ startPosition.x * 16, startPosition.y * 16 })
 						{
@@ -211,7 +332,7 @@ void LevelManager::CheckVerticalMatch(const glm::vec2& startPosition, int horizo
 	}
 	else
 	{
-		for (auto purpleWall : m_PurpleWalls)
+		for (auto purpleWall : m_Walls)
 		{
 			if (purpleWall->GetGameObject()->GetTransform()->GetPosition() == glm::vec2{ startPosition.x * 16, startPosition.y * 16 })
 			{

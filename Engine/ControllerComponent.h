@@ -35,6 +35,10 @@ private:
 	float m_MoveSpeed;
 	float m_JumpSpeed;
 
+	float m_FreezeTime;
+	float m_FreezeTimer;
+	
+	bool m_Frozen;
 	bool m_Jumping;
 };
 

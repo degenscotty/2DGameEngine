@@ -8,6 +8,9 @@ ControllerComponent::ControllerComponent()
 	, m_pGameTime(GameTime::GetInstance())
 	, m_MoveSpeed(150)
 	, m_JumpSpeed(375)
+	, m_FreezeTime(0.5f)
+	, m_FreezeTimer(0.0f)
+	, m_Frozen(false)
 	, m_Jumping(false)
 {
 
@@ -39,22 +42,27 @@ void ControllerComponent::SetMoveSpeed(float moveSpeed)
 }
 
 void ControllerComponent::Jump()
-{	
-	if (!m_Jumping)
+{
+	if (!m_Frozen)
 	{
-		m_Jumping = true;
-		m_pRigidbodyComponent->AddVelocity({ 0, -m_JumpSpeed });
+		if (!m_Jumping)
+		{
+			m_Jumping = true;
+			m_pRigidbodyComponent->AddVelocity({ 0, -m_JumpSpeed });
+		}
 	}
 }
 
 void ControllerComponent::MoveLeft() const
 {
-	m_pRigidbodyComponent->SetVelocityX(-m_MoveSpeed);
+	if (!m_Frozen)
+		m_pRigidbodyComponent->SetVelocityX(-m_MoveSpeed);
 }
 
 void ControllerComponent::MoveRight() const
 {
-	m_pRigidbodyComponent->SetVelocityX(m_MoveSpeed);
+	if (!m_Frozen)
+		m_pRigidbodyComponent->SetVelocityX(m_MoveSpeed);
 }
 
 void ControllerComponent::StopMove() const
@@ -64,9 +72,33 @@ void ControllerComponent::StopMove() const
 
 void ControllerComponent::Update()
 {
+	if (m_Frozen == true)
+	{
+		m_FreezeTimer += m_pGameTime->GetElapsedSec();
+
+		if (m_FreezeTimer >= m_FreezeTime)
+		{
+			m_FreezeTimer = 0.0f;
+			m_Frozen = false;
+		}
+	}
+
 	if (m_pRigidbodyComponent->GetVelocity().y == 0)
 	{
 		m_Jumping = false;
+	}
+
+	if (m_pTransformComponent->GetPosition().y > 448)
+	{
+		m_pRigidbodyComponent->SetVelocityY(0);
+		m_pRigidbodyComponent->SetVelocityX(0);
+		m_pTransformComponent->Translate(m_pTransformComponent->GetPosition().x, -32);
+		m_Frozen = true;
+	}
+	if (m_pTransformComponent->GetPosition().y < (4 * 16) && m_pRigidbodyComponent->GetVelocity().y < 0)
+	{
+		m_pRigidbodyComponent->SetVelocityY(0);
+		m_pTransformComponent->Translate(m_pTransformComponent->GetPosition().x, (4 * 16));
 	}
 }
 

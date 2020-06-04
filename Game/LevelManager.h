@@ -5,8 +5,10 @@
 #include "SceneManager.h"
 #include <string>
 
+#include "ZenChan.h"
+
 class BobblePlayer;
-class PurpleWall;
+class Wall;
 class Maita;
 class Bubble;
 class GameObject;
@@ -22,7 +24,7 @@ public:
 	LevelManager& operator=(const LevelManager& other) = delete;
 	LevelManager& operator=(LevelManager&& other) = delete;
 
-	void Initialize();
+	void Initialize(int levelNumber);
 	void InitializeLevel();
 	void Update();
 	void Render();
@@ -31,6 +33,9 @@ public:
 
 	void AddMaita(Maita* pMaita);
 	void DestroyMaita(GameObject* pGameObject);
+
+	void AddZenChan(ZenChan* pBubble);
+	void DestroyZenChan(GameObject* pGameObject);
 
 	void AddBubble(Bubble* pBubble);
 	void DestroyBubble(GameObject* pGameObject);
@@ -50,14 +55,17 @@ private:
 
 	SceneManager* m_pSceneManager;
 	BobblePlayer* m_pBobblePlayer;
-	std::vector<PurpleWall*> m_PurpleWalls;
+	std::vector<Wall*> m_Walls;
 	std::vector<Maita*> m_EnemyMaita;
+	std::vector<ZenChan*> m_EnemyZenChan;
 	std::vector<Bubble*> m_Bubbles;
 
 	int m_LevelWidth;
 	int m_LevelHeight;
 
 	int m_EnemyCount;
+
+	int m_CurrentLevelNumber;
 
 	bool m_LevelInitialized;
 

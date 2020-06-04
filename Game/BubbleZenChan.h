@@ -1,5 +1,6 @@
 #pragma once
 #include "BubbleState.h"
+#include "GameTime.h"
 
 class Bubble;
 
@@ -21,6 +22,9 @@ public:
 	void PopBubble() override;
 
 public:
+	GameTime* m_pGameTime;
 
+	float m_BubbleTimer;
+	float m_PopTime;
 };
 

@@ -3,6 +3,8 @@
 #include "Bubble.h"
 #include "Fries.h"
 #include "Maita.h"
+#include "WaterMelon.h"
+#include "ZenChan.h"
 
 class BubbleRMaitaC : public Command
 {
@@ -21,6 +23,31 @@ public:
 		pMaita->SetPosition(m_pBubble->GetPosition());
 		m_pLevelManager->AddMaita(pMaita);
 		m_pSceneManager->GetActiveScene()->Add(pMaita->GetGameObject());
+	}
+
+private:
+	Bubble* m_pBubble;
+	LevelManager* m_pLevelManager;
+	SceneManager* m_pSceneManager;
+};
+
+class BubbleRZenChanC : public Command
+{
+public:
+	explicit BubbleRZenChanC(Bubble* pBubble)
+		: m_pBubble(pBubble)
+		, m_pLevelManager(LevelManager::GetInstance())
+		, m_pSceneManager(SceneManager::GetInstance())
+	{
+	}
+
+	void Execute() override
+	{
+		auto pZenChan = new ZenChan();
+		pZenChan->Initialize();
+		pZenChan->SetPosition(m_pBubble->GetPosition());
+		m_pLevelManager->AddZenChan(pZenChan);
+		m_pSceneManager->GetActiveScene()->Add(pZenChan->GetGameObject());
 	}
 
 private:
@@ -64,6 +91,31 @@ public:
 
 		delete pFries;
 		pFries = nullptr;
+	}
+
+private:
+	SceneManager* m_pSceneManager;
+	Bubble* m_pBubble;
+};
+
+class BubbleSpawnWaterMelonC : public Command
+{
+public:
+	explicit BubbleSpawnWaterMelonC(Bubble* pBubble)
+		: m_pSceneManager(SceneManager::GetInstance())
+		, m_pBubble(pBubble)
+	{
+	}
+
+	void Execute() override
+	{
+		WaterMelon* pWaterMelon = new WaterMelon();
+		pWaterMelon->Initialize();
+		pWaterMelon->SetPosition(m_pBubble->GetPosition());
+		m_pSceneManager->GetActiveScene()->Add(pWaterMelon->GetGameObject());
+
+		delete pWaterMelon;
+		pWaterMelon = nullptr;
 	}
 
 private:

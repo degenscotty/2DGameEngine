@@ -5,7 +5,7 @@
 MainMenuScene::MainMenuScene()
 	: Scene(L"MainMenuScene")
 	, m_pInputManager(InputManager::GetInstance())
-	, m_Level1Button({ 256, 156 }, "Level1ButtonS.png", "Level1ButtonNS.png")
+	, m_Level1Button({ 256, 156 }, "PlayButtonS.png", "PlayButtonNS.png")
 	, m_ExitButton({ 256, 207 }, "ExitButtonS.png", "ExitButtonNS.png")
 {
 

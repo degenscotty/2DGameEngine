@@ -239,18 +239,23 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="BubbleMaitaDead.cpp" />
     <ClCompile Include="BubblePop.cpp" />
     <ClCompile Include="BubbleZenChan.cpp" />
+    <ClCompile Include="BubbleZenChanDead.cpp" />
     <ClCompile Include="Fries.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Maita.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="MaitaSeeking.cpp" />
     <ClCompile Include="PopUpManager.cpp" />
-    <ClCompile Include="PurpleWall.cpp" />
+    <ClCompile Include="Wall.cpp" />
     <ClCompile Include="SandboxApplication.cpp" />
     <ClCompile Include="BobblePlayer.cpp" />
     <ClCompile Include="MaitaIdle.cpp" />
     <ClCompile Include="Level1Scene.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
+    <ClCompile Include="WaterMelon.cpp" />
+    <ClCompile Include="ZenChan.cpp" />
+    <ClCompile Include="ZenChanIdle.cpp" />
+    <ClCompile Include="ZenChanSeeking.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BobbleIdle.h" />
@@ -265,6 +270,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="BubblePop.h" />
     <ClInclude Include="BubbleState.h" />
     <ClInclude Include="BubbleZenChan.h" />
+    <ClInclude Include="BubbleZenChanDead.h" />
     <ClInclude Include="Fries.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="Maita.h" />
@@ -274,11 +280,17 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="PlayerCommands.h" />
     <ClInclude Include="PopUpManager.h" />
     <ClInclude Include="BobblePlayer.h" />
-    <ClInclude Include="PurpleWall.h" />
+    <ClInclude Include="Wall.h" />
     <ClInclude Include="MaitaIdle.h" />
     <ClInclude Include="MaitaState.h" />
     <ClInclude Include="Level1Scene.h" />
     <ClInclude Include="ScoreManager.h" />
+    <ClInclude Include="WaterMelon.h" />
+    <ClInclude Include="ZenChan.h" />
+    <ClInclude Include="ZenChanCommands.h" />
+    <ClInclude Include="ZenChanIdle.h" />
+    <ClInclude Include="ZenChanSeeking.h" />
+    <ClInclude Include="ZenChanState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
