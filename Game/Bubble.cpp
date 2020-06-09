@@ -17,7 +17,11 @@ Bubble::Bubble()
 	, m_pSpriteComponent(nullptr)
 	, m_pStateComponent(nullptr)
 	, m_pGarbageCollector(GarbageCollector::GetInstance())
+	, m_pGameTime(GameTime::GetInstance())
 	, m_pLevelManager(LevelManager::GetInstance())
+	, m_ActiveTimer(0.0f)
+	, m_ActivationTime(1.0f)
+	, m_Poppable(false)
 	, m_Active(true)
 	, m_BubblePopped(false)
 {
@@ -70,14 +74,14 @@ void Bubble::Initialize()
 	pBubbleZenChanDead->AddCommand("shootRandom", new BubbleRandomDirectionC(m_pBubbleComponent));
 	pBubbleZenChanDead->AddCommand("spawnWaterMelon", new BubbleSpawnWaterMelonC(this));
 	m_pStateComponent->AddState("bubbleZenChanDead", pBubbleZenChanDead);
-	
+
 	BubbleState* pBubblePop = new BubblePop(this);
 	m_pStateComponent->AddState("bubblePop", pBubblePop);
 
 	m_pStateComponent->SetState("idle");
 
 	m_pBubble->AddComponent(m_pStateComponent);
-	
+
 	m_pBubble->SetCollisionCallBack(BIND_FN(Bubble::OnTrigger));
 
 	m_pBubble->SetTag("Bubble");
@@ -92,7 +96,7 @@ void Bubble::ChangeState(const std::string& newState)
 {
 	if (newState == "bubblePop")
 		m_BubblePopped = true;
-	
+
 	m_pStateComponent->ChangeState(newState);
 }
 
@@ -111,13 +115,21 @@ void Bubble::ShootBubble(bool right)
 	m_pBubbleComponent->ShootBubble(right);
 }
 
-void Bubble::Update() const
+void Bubble::Update()
 {
+	m_ActiveTimer += m_pGameTime->GetElapsedSec();
+
+	if (m_ActiveTimer > m_ActivationTime)
+	{
+		m_ActiveTimer = 0.0f;
+		m_Poppable = true;
+	}
+	
 	if (m_pSpriteComponent->GetClipIndex() == 0 && m_pSpriteComponent->CheckEndOfCurrentClip())
 	{
 		m_pSpriteComponent->SetClipIndex(1);
 	}
-	
+
 	if (m_pSpriteComponent->GetClipIndex() == 2 && m_pSpriteComponent->CheckEndOfCurrentClip())
 	{
 		m_pGarbageCollector->Destroy(m_pBubble);
@@ -149,7 +161,7 @@ GameObject* Bubble::GetGameObject() const
 }
 
 void Bubble::OnTrigger(GameObject* other, bool trigger)
-{	
+{
 	if (other->GetTag() == "Maita" && m_Active && !trigger && !m_BubblePopped)
 	{
 		this->ChangeState("bubbleMaita");
@@ -157,16 +169,14 @@ void Bubble::OnTrigger(GameObject* other, bool trigger)
 		m_pLevelManager->DestroyMaita(other);
 		m_Active = false;
 	}
-
-	if (other->GetTag() == "ZenChan" && m_Active && !trigger && !m_BubblePopped)
+	else if (other->GetTag() == "ZenChan" && m_Active && !trigger && !m_BubblePopped)
 	{
 		this->ChangeState("bubbleZenChan");
 		m_pGarbageCollector->Destroy(other);
 		m_pLevelManager->DestroyZenChan(other);
 		m_Active = false;
 	}
-
-	if (other->GetTag() == "BobblePlayer" && !trigger && !m_BubblePopped && m_pSpriteComponent->GetClipIndex() != 0)
+	else if (m_Poppable && other->GetTag() == "BobblePlayer" && !trigger && !m_BubblePopped && m_pSpriteComponent->GetClipIndex() != 0)
 	{
 		PopBubble();
 	}

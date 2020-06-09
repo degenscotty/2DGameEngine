@@ -4,6 +4,7 @@
 #include "BubbleComponent.h"
 #include "SpriteComponent.h"
 #include "GarbageCollector.h"
+#include "GameTime.h"
 #include "LevelManager.h"
 
 class Bubble
@@ -18,7 +19,7 @@ public:
 	Bubble& operator=(Bubble&& other) = delete;
 
 	void Initialize();
-	void Update() const;
+	void Update();
 	void Render() const;
 
 	void SetPosition(const glm::vec2& position);
@@ -45,7 +46,12 @@ private:
 	SpriteComponent* m_pSpriteComponent;
 	StateComponent* m_pStateComponent;
 	GarbageCollector* m_pGarbageCollector;
+	GameTime* m_pGameTime;
 	LevelManager* m_pLevelManager;
+
+	float m_ActiveTimer;
+	float m_ActivationTime;
+	bool m_Poppable;
 
 	bool m_Active;
 	bool m_BubblePopped;

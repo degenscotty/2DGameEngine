@@ -27,6 +27,7 @@ public:
 	PhysicsSystem& operator=(PhysicsSystem&& other) noexcept = delete;
 
 	void AddCollisionComponent(CollisionComponent* collisionComponent);
+	void RemoveCollisionComponent(CollisionComponent* collisionComponent);
 
 	void Update();
 	void Render() {}

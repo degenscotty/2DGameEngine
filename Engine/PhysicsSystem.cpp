@@ -7,7 +7,7 @@
 #include "TransformComponent.h"
 #include "GameObject.h"
 
-/// Amazing easy way of implementation basic collisions with axis-alligned bounding boxes
+/// Amazing easy way of implementing basic collisions with axis-alligned bounding boxes
 /// https://blog.hamaluik.ca/posts/simple-aabb-collision-using-minkowski-difference/
 
 PhysicsSystem::PhysicsSystem()
@@ -20,6 +20,13 @@ PhysicsSystem::PhysicsSystem()
 void PhysicsSystem::AddCollisionComponent(CollisionComponent* collisionComponent)
 {
 	m_CollisionComponents.push_back(collisionComponent);
+}
+
+void PhysicsSystem::RemoveCollisionComponent(CollisionComponent* collisionComponent)
+{
+	auto it = std::find(m_CollisionComponents.begin(), m_CollisionComponents.end(), collisionComponent);
+
+	m_CollisionComponents.erase(it);
 }
 
 void PhysicsSystem::Update()

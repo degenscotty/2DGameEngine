@@ -16,6 +16,13 @@ CollisionComponent::CollisionComponent(float width, float height, bool trigger)
 {
 }
 
+CollisionComponent::~CollisionComponent()
+{
+	m_pTransformComponent = nullptr;
+
+	m_pPhysicsSystem->RemoveCollisionComponent(this);
+}
+
 void CollisionComponent::Initialize()
 {
 	if (m_pGameObject != nullptr)
@@ -32,11 +39,6 @@ void CollisionComponent::Initialize()
 void CollisionComponent::SetOffset(const glm::vec2& offset)
 {
 	m_Offset = offset;
-}
-
-CollisionComponent::~CollisionComponent()
-{
-	m_pTransformComponent = nullptr;
 }
 
 void CollisionComponent::Update()

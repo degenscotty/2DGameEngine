@@ -15,7 +15,7 @@ public:
 	void Execute() override
 	{
 		m_pControllerComponent->MoveLeft();
-		m_pZenChan->SetFlipState(SDL_FLIP_HORIZONTAL);
+		m_pZenChan->SetFlipState(SDL_FLIP_NONE);
 	}
 
 private:
@@ -35,7 +35,7 @@ public:
 	void Execute() override
 	{
 		m_pControllerComponent->MoveRight();
-		m_pZenChan->SetFlipState(SDL_FLIP_NONE);
+		m_pZenChan->SetFlipState(SDL_FLIP_HORIZONTAL);
 	}
 
 private:
