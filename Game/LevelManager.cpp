@@ -5,7 +5,6 @@
 #include "Maita.h"
 #include "Bubble.h"
 #include "Wall.h"
-#include "InvisibleWall.h"
 #include "Scene.h"
 #include <fstream>
 

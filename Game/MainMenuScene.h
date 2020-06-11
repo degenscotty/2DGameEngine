@@ -22,7 +22,10 @@ protected:
 
 private:
 	InputManager* m_pInputManager;
-	Button m_Level1Button;
+	Button m_PlayButton;
+	Button m_VersusButton;
+	Button m_CoopButton;
 	Button m_ExitButton;
+	Texture2D* m_pMainMenuBackGround;
 };
 
