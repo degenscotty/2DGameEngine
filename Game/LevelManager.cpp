@@ -7,6 +7,7 @@
 #include "Wall.h"
 #include "InvisibleWall.h"
 #include "Scene.h"
+#include <fstream>
 
 LevelManager::LevelManager()
 	: m_pSceneManager(SceneManager::GetInstance())
@@ -43,114 +44,74 @@ LevelManager::~LevelManager()
 
 void LevelManager::Initialize(int levelNumber)
 {
+	std::ifstream file;
+
+	file.open("../Resources/Levels.txt");
+
+	bool levelFound{ false };
+	bool LevelRead{ false };
+	std::string currentLine;
 	m_CurrentLevelNumber = levelNumber;
-	
+
 	switch (levelNumber)
 	{
 	case 1:
 	{
-		m_LevelString = L"";
-		m_LevelString += L"................................";
-		m_LevelString += L"................................";
-		m_LevelString += L"................................";
-		m_LevelString += L"###############..###############";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##.............O=.............##";
-		m_LevelString += L"##.............==.............##";
-		m_LevelString += L"####...##################...####";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"####...##################...####";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##.....................Z=.....##";
-		m_LevelString += L"##.....................==.....##";
-		m_LevelString += L"####...##################...####";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##.......M=...................##";
-		m_LevelString += L"##.......==...................##";
-		m_LevelString += L"################################";
+		m_LevelString = "";
+
+		while (!levelFound)
+		{
+			std::getline(file, currentLine);
+			if (currentLine == "-- Level 1 --")
+				levelFound = true;
+		}
 	}
 	break;
 	case 2:
 	{
-		m_LevelString = L"";
-		m_LevelString += L"................................";
-		m_LevelString += L"................................";
-		m_LevelString += L"................................";
-		m_LevelString += L"###############..###############";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##.............O=.............##";
-		m_LevelString += L"##.............==.............##";
-		m_LevelString += L"##...........######...........##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##........####....####........##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##.....##################.....##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##....M=......................##";
-		m_LevelString += L"##....==......................##";
-		m_LevelString += L"##..######....####....######..##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##......................M=....##";
-		m_LevelString += L"##......................==....##";
-		m_LevelString += L"################################";
+		m_LevelString = "";
+			
+		while (!levelFound)
+		{
+			std::getline(file, currentLine);
+			if (currentLine == "-- Level 2 --")
+				levelFound = true;
+		}
 	}
 	break;
 	case 3:
 	{
-		m_LevelString = L"";
-		m_LevelString += L".......|.....|....|.....|.......";
-		m_LevelString += L".......|.....|....|.....|.......";
-		m_LevelString += L".......|.....|....|.....|.......";
-		m_LevelString += L"########.....##..##.....########";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##...########......########...##";
-		m_LevelString += L"##...#....................#...##";
-		m_LevelString += L"##...#..M=............M=..#...##";
-		m_LevelString += L"##...#..==............==..#...##";
-		m_LevelString += L"##...#########....#########...##";
-		m_LevelString += L"##...#....................#...##";
-		m_LevelString += L"##...#....................#...##";
-		m_LevelString += L"##...#....................#...##";
-		m_LevelString += L"##...#....................#...##";
-		m_LevelString += L"##...#########....#########...##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"######...###........###...######";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##............................##";
-		m_LevelString += L"##.............O=.............##";
-		m_LevelString += L"##.............==.............##";
-		m_LevelString += L"#########...########...#########";
+		m_LevelString = "";
+			
+		while (!levelFound)
+		{
+			std::getline(file, currentLine);
+			if (currentLine == "-- Level 3 --")
+				levelFound = true;
+		}
 	}
 	break;
 	default:
 		break;
 	}
 
+	while (!LevelRead)
+	{
+		std::getline(file, currentLine);
 
+		if (currentLine == "-- End --")
+		{
+			LevelRead = true;
+			continue;
+		}
+
+		m_LevelString += currentLine;
+	}
+
+	LevelRead = false;
+	levelFound = false;
+
+	file.close();
 }
 
 bool LevelManager::CheckLevel()
@@ -415,7 +376,7 @@ wchar_t LevelManager::GetTile(int x, int y)
 	}
 }
 
-void LevelManager::SetTile(int x, int y, wchar_t c)
+void LevelManager::SetTile(int x, int y, char c)
 {
 	if (x >= 0 && x < m_LevelWidth && y >= 0 && y < m_LevelHeight)
 	{

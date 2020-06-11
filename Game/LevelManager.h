@@ -44,7 +44,7 @@ public:
 
 private:
 	wchar_t GetTile(int x, int y);
-	void SetTile(int x, int y, wchar_t c);
+	void SetTile(int x, int y, char c);
 
 	void MergeWallColliders();
 
@@ -69,6 +69,6 @@ private:
 
 	bool m_LevelInitialized;
 
-	std::wstring m_LevelString;
+	std::string m_LevelString;
 };
 
