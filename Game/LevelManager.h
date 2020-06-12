@@ -13,6 +13,13 @@ class Maita;
 class Bubble;
 class GameObject;
 
+enum class GameMode
+{
+	Solo = 0,
+	Versus = 1,
+	Coop = 2
+};
+
 class LevelManager : public Singleton<LevelManager>
 {
 public:
@@ -24,7 +31,7 @@ public:
 	LevelManager& operator=(const LevelManager& other) = delete;
 	LevelManager& operator=(LevelManager&& other) = delete;
 
-	void Initialize(int levelNumber);
+	void Initialize(int levelNumber, GameMode gameMode);
 	void InitializeLevel();
 	void Update();
 	void Render();
@@ -52,6 +59,11 @@ private:
 	void CheckVerticalMatch(const glm::vec2& startPosition, int horizontalCount);
 
 	void ClearWalls(const glm::vec2& startPosition, int horizontalCount, int verticalCount);
+
+	void CheckGameMode(GameMode gameMode, std::ifstream& file);
+	void CheckLevelNumber(int levelNumber, std::ifstream& file);
+	void SearchLevelNumber(const std::string& level, std::ifstream& file);
+	void SearchGameMode(const std::string& gameMode, std::ifstream& file);
 
 	SceneManager* m_pSceneManager;
 	BobblePlayer* m_pBobblePlayer;

@@ -41,6 +41,13 @@ void ControllerComponent::SetMoveSpeed(float moveSpeed)
 	m_MoveSpeed = moveSpeed;
 }
 
+void ControllerComponent::SetFreeze(float seconds)
+{
+	m_FreezeTime = seconds;
+	m_Frozen = true;
+	m_pRigidbodyComponent->SetVelocity({ 0, 0 });
+}
+
 void ControllerComponent::Jump()
 {
 	if (!m_Frozen)
@@ -78,6 +85,7 @@ void ControllerComponent::Update()
 
 		if (m_FreezeTimer >= m_FreezeTime)
 		{
+			m_FreezeTime = 0.5f;
 			m_FreezeTimer = 0.0f;
 			m_Frozen = false;
 		}

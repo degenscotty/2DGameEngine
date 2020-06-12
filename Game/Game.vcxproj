@@ -230,6 +230,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BobbleDead.cpp" />
     <ClCompile Include="BobbleIdle.cpp" />
     <ClCompile Include="BobbleJump.cpp" />
     <ClCompile Include="BobbleWalking.cpp" />
@@ -269,6 +270,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="ZenChanSeeking.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BobbleDead.h" />
     <ClInclude Include="BobbleIdle.h" />
     <ClInclude Include="BobbleJump.h" />
     <ClInclude Include="BobbleState.h" />

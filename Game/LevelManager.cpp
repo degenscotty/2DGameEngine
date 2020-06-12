@@ -41,77 +41,107 @@ LevelManager::~LevelManager()
 	delete m_pBobblePlayer;
 }
 
-void LevelManager::Initialize(int levelNumber)
+void LevelManager::Initialize(int levelNumber, GameMode gameMode)
 {
 	std::ifstream file;
 
 	file.open("../Resources/Levels.txt");
 
-	bool levelFound{ false };
-	bool LevelRead{ false };
+	CheckLevelNumber(levelNumber, file);
+	CheckGameMode(gameMode, file);
+
+	bool levelRead{ false };
 	std::string currentLine;
 	m_CurrentLevelNumber = levelNumber;
 
-	switch (levelNumber)
-	{
-	case 1:
-	{
-		m_LevelString = "";
-
-		while (!levelFound)
-		{
-			std::getline(file, currentLine);
-			if (currentLine == "-- Level 1 --")
-				levelFound = true;
-		}
-	}
-	break;
-	case 2:
-	{
-		m_LevelString = "";
-			
-		while (!levelFound)
-		{
-			std::getline(file, currentLine);
-			if (currentLine == "-- Level 2 --")
-				levelFound = true;
-		}
-	}
-	break;
-	case 3:
-	{
-		m_LevelString = "";
-			
-		while (!levelFound)
-		{
-			std::getline(file, currentLine);
-			if (currentLine == "-- Level 3 --")
-				levelFound = true;
-		}
-	}
-	break;
-	default:
-		break;
-	}
-
-	while (!LevelRead)
+	while (!levelRead)
 	{
 		std::getline(file, currentLine);
 
-		if (currentLine == "-- End --")
+		if (currentLine == "[End]")
 		{
-			LevelRead = true;
+			levelRead = true;
 			continue;
 		}
 
 		m_LevelString += currentLine;
 	}
 
-	LevelRead = false;
-	levelFound = false;
+	levelRead = false;
 
 	file.close();
 }
+
+void LevelManager::CheckLevelNumber(int levelNumber, std::ifstream& file)
+{
+	switch (levelNumber)
+	{
+	case 1:
+		SearchLevelNumber("[Level 1]", file);
+		break;
+	case 2:
+		SearchLevelNumber("[Level 2]", file);
+		break;
+	case 3:
+		SearchLevelNumber("[Level 3]", file);
+		break;
+	default:
+		CLIENT_TRACE("Invalid LevelNumber");
+		break;
+	}
+}
+
+void LevelManager::CheckGameMode(GameMode gameMode, std::ifstream& file)
+{
+	switch (gameMode)
+	{
+	case GameMode::Solo:
+		SearchGameMode("[Solo]", file);
+		break;
+	case GameMode::Versus:
+		SearchGameMode("[Versus]", file);
+		break;
+	case GameMode::Coop:
+		SearchGameMode("[Coop]", file);
+		break;
+	default:
+		CLIENT_TRACE("Invalid GameMode");
+		break;
+	}
+}
+
+void LevelManager::SearchLevelNumber(const std::string& level, std::ifstream& file)
+{
+	bool levelFound{ false };
+	std::string currentLine{};
+
+	while (!levelFound)
+	{
+		std::getline(file, currentLine);
+		if (currentLine == level)
+			levelFound = true;
+
+		if (file.eof())
+			CLIENT_TRACE("Invalid Levels.txt");
+	}
+}
+
+void LevelManager::SearchGameMode(const std::string& gameMode, std::ifstream& file)
+{
+	bool gameModeFound{ false };
+	std::string currentLine{};
+
+	while (!gameModeFound)
+	{
+		std::getline(file, currentLine);
+		if (currentLine == gameMode)
+			gameModeFound = true;
+
+		if (file.eof())
+			CLIENT_TRACE("Invalid Levels.txt");
+	}
+}
+
 
 bool LevelManager::CheckLevel()
 {

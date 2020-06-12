@@ -16,9 +16,12 @@ public:
 
 	void Execute() override
 	{
-		m_pControllerComponent->MoveLeft();
-		m_pBobblePlayer->ChangeState("walking");
-		m_pBobblePlayer->SetFlipState(SDL_FLIP_HORIZONTAL);
+		if (!m_pBobblePlayer->GetIsRespawning())
+		{
+			m_pControllerComponent->MoveLeft();
+			m_pBobblePlayer->ChangeState("walking");
+			m_pBobblePlayer->SetFlipState(SDL_FLIP_HORIZONTAL);
+		}
 	}
 
 private:
@@ -37,9 +40,12 @@ public:
 
 	void Execute() override
 	{
-		m_pControllerComponent->MoveRight();
-		m_pBobblePlayer->ChangeState("walking");
-		m_pBobblePlayer->SetFlipState(SDL_FLIP_NONE);
+		if (!m_pBobblePlayer->GetIsRespawning())
+		{
+			m_pControllerComponent->MoveRight();
+			m_pBobblePlayer->ChangeState("walking");
+			m_pBobblePlayer->SetFlipState(SDL_FLIP_NONE);
+		}
 	}
 
 private:
@@ -58,8 +64,11 @@ public:
 
 	void Execute() override
 	{
-		m_pControllerComponent->Jump();
-		m_pBobblePlayer->ChangeState("jumping");
+		if (!m_pBobblePlayer->GetIsRespawning())
+		{
+			m_pControllerComponent->Jump();
+			m_pBobblePlayer->ChangeState("jumping");
+		}
 	}
 
 private:
@@ -78,9 +87,12 @@ public:
 
 	void Execute() override
 	{
-		m_pControllerComponent->StopMove();
-		m_pBobblePlayer->ChangeState("idle");
-		m_pBobblePlayer->SetFlipState(SDL_FLIP_NONE);
+		if (!m_pBobblePlayer->GetIsRespawning())
+		{
+			m_pControllerComponent->StopMove();
+			m_pBobblePlayer->ChangeState("idle");
+			m_pBobblePlayer->SetFlipState(SDL_FLIP_NONE);
+		}
 	}
 
 private:
@@ -99,9 +111,12 @@ public:
 
 	void Execute() override
 	{
-		m_pControllerComponent->StopMove();
-		m_pBobblePlayer->ChangeState("idle");
-		m_pBobblePlayer->SetFlipState(SDL_FLIP_HORIZONTAL);
+		if (!m_pBobblePlayer->GetIsRespawning())
+		{
+			m_pControllerComponent->StopMove();
+			m_pBobblePlayer->ChangeState("idle");
+			m_pBobblePlayer->SetFlipState(SDL_FLIP_HORIZONTAL);
+		}
 	}
 
 private:
@@ -121,19 +136,22 @@ public:
 
 	void Execute() override
 	{
-		Bubble* pBubble = new Bubble();
+		if (!m_pBobblePlayer->GetIsRespawning())
+		{
+			Bubble* pBubble = new Bubble();
 
-		pBubble->Initialize();
-		pBubble->SetPosition(m_pBobblePlayer->GetPosition());
-		
-		if (m_pBobblePlayer->GetFlipState() == SDL_FLIP_NONE)
-			pBubble->ShootBubble(true);
-		else
-			pBubble->ShootBubble(false);
-		
-		m_pSceneManager->GetActiveScene()->Add(pBubble->GetGameObject());
+			pBubble->Initialize();
+			pBubble->SetPosition(m_pBobblePlayer->GetPosition());
 
-		m_pLevelManager->AddBubble(pBubble);
+			if (m_pBobblePlayer->GetFlipState() == SDL_FLIP_NONE)
+				pBubble->ShootBubble(true);
+			else
+				pBubble->ShootBubble(false);
+
+			m_pSceneManager->GetActiveScene()->Add(pBubble->GetGameObject());
+
+			m_pLevelManager->AddBubble(pBubble);
+		}
 	}
 
 private:

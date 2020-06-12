@@ -22,6 +22,9 @@ public:
 
 	void SetMoveSpeed(float moveSpeed);
 
+	void SetFreeze(float seconds);
+	bool GetFreeze() { return m_Frozen; }
+
 protected:
 	void Update() override;
 	void Render() override;

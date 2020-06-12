@@ -25,7 +25,7 @@ void Level3Scene::Initialize()
 	m_pFPSCounter->AddComponent(new FPSComponent());
 	m_pFPSCounter->GetTransform()->Translate(16, 16);
 
-	m_pLevelManager->Initialize(3);
+	m_pLevelManager->Initialize(3, GameMode::Solo);
 
 	Add(m_pFPSCounter);
 }

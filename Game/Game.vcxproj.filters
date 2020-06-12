@@ -112,6 +112,9 @@
     <ClCompile Include="SceneSelectorVersusScene.cpp">
       <Filter>Scenes\Versus</Filter>
     </ClCompile>
+    <ClCompile Include="BobbleDead.cpp">
+      <Filter>BobbleStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerCommands.h">
@@ -245,6 +248,9 @@
     </ClInclude>
     <ClInclude Include="SceneSelectorVersusScene.h">
       <Filter>Scenes\Versus</Filter>
+    </ClInclude>
+    <ClInclude Include="BobbleDead.h">
+      <Filter>BobbleStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
