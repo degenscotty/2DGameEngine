@@ -1,13 +1,12 @@
 #include "BobblePlayer.h"
 
-
 #include "BobbleDead.h"
 #include "PlayerCommands.h"
-
 #include "BobbleIdle.h"
 #include "BobbleJump.h"
 #include "BobbleWalking.h"
 #include "Bubble.h"
+#include "GameOverScene.h"
 #include "PopUpManager.h"
 
 #include "utils.h"
@@ -136,7 +135,12 @@ void BobblePlayer::OnTrigger(GameObject* other, bool trigger)
 		--m_Lives;
 
 		if (CheckDead())
+		{
 			CLIENT_TRACE("BOBBLE IS DEAD");
+			SceneManager::GetInstance()->AddScene(new GameOverScene());
+			SceneManager::GetInstance()->SetActiveScene(L"GameOverScene");
+			return;
+		}
 
 		m_pCollisionComponent->SetCollisionIgnoreGroups(static_cast<CollisionGroup>(Group1 | Group2));
 		m_IsRespawning = true;

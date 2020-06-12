@@ -242,6 +242,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="BubbleZenChan.cpp" />
     <ClCompile Include="BubbleZenChanDead.cpp" />
     <ClCompile Include="Fries.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="Level1CoopScene.cpp" />
     <ClCompile Include="Level1VersusScene.cpp" />
     <ClCompile Include="Level2CoopScene.cpp" />
@@ -285,6 +286,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="BubbleZenChan.h" />
     <ClInclude Include="BubbleZenChanDead.h" />
     <ClInclude Include="Fries.h" />
+    <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="Level1CoopScene.h" />
     <ClInclude Include="Level1VersusScene.h" />
     <ClInclude Include="Level2CoopScene.h" />

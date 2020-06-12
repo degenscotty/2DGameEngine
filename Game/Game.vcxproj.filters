@@ -115,6 +115,9 @@
     <ClCompile Include="BobbleDead.cpp">
       <Filter>BobbleStates</Filter>
     </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerCommands.h">
@@ -251,6 +254,9 @@
     </ClInclude>
     <ClInclude Include="BobbleDead.h">
       <Filter>BobbleStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
