@@ -17,6 +17,11 @@ PhysicsSystem::PhysicsSystem()
 
 }
 
+PhysicsSystem::~PhysicsSystem()
+{
+	m_CollisionComponents.clear();
+}
+
 void PhysicsSystem::AddCollisionComponent(CollisionComponent* collisionComponent)
 {
 	m_CollisionComponents.push_back(collisionComponent);

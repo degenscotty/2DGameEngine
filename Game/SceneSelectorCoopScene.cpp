@@ -61,7 +61,6 @@ void SceneSelectorCoopScene::Update()
 		}
 		if (m_BackButton.OnClick())
 		{
-			SceneManager::GetInstance()->AddScene(new MainMenuScene());
 			SceneManager::GetInstance()->SetActiveScene(L"MainMenuScene");
 		}
 	}

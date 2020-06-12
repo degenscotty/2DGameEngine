@@ -44,17 +44,14 @@ void MainMenuScene::Update()
 	{
 		if (m_PlayButton.OnClick())
 		{
-			SceneManager::GetInstance()->AddScene(new SceneSelectorScene());
 			SceneManager::GetInstance()->SetActiveScene(L"SceneSelectorScene");
 		}
 		if (m_VersusButton.OnClick())
 		{
-			SceneManager::GetInstance()->AddScene(new SceneSelectorVersusScene());
 			SceneManager::GetInstance()->SetActiveScene(L"SceneSelectorVersusScene");
 		}
 		if (m_CoopButton.OnClick())
 		{
-			SceneManager::GetInstance()->AddScene(new SceneSelectorCoopScene());
 			SceneManager::GetInstance()->SetActiveScene(L"SceneSelectorCoopScene");
 		}
 		if (m_ExitButton.OnClick())

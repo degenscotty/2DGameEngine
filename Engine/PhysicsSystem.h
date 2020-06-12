@@ -19,7 +19,7 @@ class PhysicsSystem : public Singleton<PhysicsSystem>
 {
 public:
 	PhysicsSystem();
-	~PhysicsSystem() = default;
+	~PhysicsSystem();
 
 	PhysicsSystem(const PhysicsSystem& other) = delete;
 	PhysicsSystem(PhysicsSystem&& other) noexcept = delete;

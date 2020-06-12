@@ -136,8 +136,7 @@ void BobblePlayer::OnTrigger(GameObject* other, bool trigger)
 
 		if (CheckDead())
 		{
-			CLIENT_TRACE("BOBBLE IS DEAD");
-			SceneManager::GetInstance()->AddScene(new GameOverScene());
+			GarbageCollector::GetInstance()->Destroy(SceneManager::GetInstance()->GetActiveScene());
 			SceneManager::GetInstance()->SetActiveScene(L"GameOverScene");
 			return;
 		}
@@ -146,7 +145,6 @@ void BobblePlayer::OnTrigger(GameObject* other, bool trigger)
 		m_IsRespawning = true;
 
 		ChangeState("dead");
-		CLIENT_TRACE("--Lives");
 		m_pControllerComponent->SetFreeze(2.5f);
 	}
 }
