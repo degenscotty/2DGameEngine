@@ -1,36 +1,37 @@
-#include "Level1Scene.h"
+#include "LevelScene.h"
 #include "FPSComponent.h"
 
-Level1Scene::Level1Scene()
-	: Scene(L"Level1Scene")
+LevelScene::LevelScene(int levelNumber)
+	: Scene(L"LevelScene")
 	, m_pBobblePlayer(nullptr)
 	, m_pFPSCounter(nullptr)
 	, m_pLevelManager(LevelManager::GetInstance())
 	, m_pScoreManager(ScoreManager::GetInstance())
 	, m_pPopUpManager(PopUpManager::GetInstance())
+	, m_LevelNumber(levelNumber)
 {
 
 }
 
-Level1Scene::~Level1Scene()
+LevelScene::~LevelScene()
 {
 	LevelManager::DestroyInstance();
 	ScoreManager::DestroyInstance();
 	PopUpManager::DestroyInstance();
 }
 
-void Level1Scene::Initialize()
+void LevelScene::Initialize()
 {
 	m_pFPSCounter = new GameObject();
 	m_pFPSCounter->AddComponent(new FPSComponent());
 	m_pFPSCounter->GetTransform()->Translate(16, 16);
 
-	m_pLevelManager->Initialize(1, GameMode::Solo);
+	m_pLevelManager->Initialize(m_LevelNumber, GameMode::Solo);
 
 	Add(m_pFPSCounter);
 }
 
-void Level1Scene::Update()
+void LevelScene::Update()
 {
 	if (!m_pLevelManager->CheckLevel())
 	{
@@ -41,7 +42,7 @@ void Level1Scene::Update()
 	m_pLevelManager->Update();
 }
 
-void Level1Scene::Render()
+void LevelScene::Render()
 {
 	m_pScoreManager->Render();
 	m_pPopUpManager->Render();

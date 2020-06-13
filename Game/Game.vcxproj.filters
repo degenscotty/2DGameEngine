@@ -76,33 +76,6 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="Level1Scene.cpp">
-      <Filter>Scenes\Solo</Filter>
-    </ClCompile>
-    <ClCompile Include="Level2Scene.cpp">
-      <Filter>Scenes\Solo</Filter>
-    </ClCompile>
-    <ClCompile Include="Level3Scene.cpp">
-      <Filter>Scenes\Solo</Filter>
-    </ClCompile>
-    <ClCompile Include="Level1CoopScene.cpp">
-      <Filter>Scenes\Coop</Filter>
-    </ClCompile>
-    <ClCompile Include="Level1VersusScene.cpp">
-      <Filter>Scenes\Versus</Filter>
-    </ClCompile>
-    <ClCompile Include="Level2CoopScene.cpp">
-      <Filter>Scenes\Coop</Filter>
-    </ClCompile>
-    <ClCompile Include="Level2VersusScene.cpp">
-      <Filter>Scenes\Versus</Filter>
-    </ClCompile>
-    <ClCompile Include="Level3CoopScene.cpp">
-      <Filter>Scenes\Coop</Filter>
-    </ClCompile>
-    <ClCompile Include="Level3VersusScene.cpp">
-      <Filter>Scenes\Versus</Filter>
-    </ClCompile>
     <ClCompile Include="SceneSelectorScene.cpp">
       <Filter>Scenes\Solo</Filter>
     </ClCompile>
@@ -120,6 +93,15 @@
     </ClCompile>
     <ClCompile Include="YouWinScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelScene.cpp">
+      <Filter>Scenes\Solo</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelCoopScene.cpp">
+      <Filter>Scenes\Coop</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelVersusScene.cpp">
+      <Filter>Scenes\Versus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,33 +201,6 @@
     <ClInclude Include="Wall.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="Level1Scene.h">
-      <Filter>Scenes\Solo</Filter>
-    </ClInclude>
-    <ClInclude Include="Level2Scene.h">
-      <Filter>Scenes\Solo</Filter>
-    </ClInclude>
-    <ClInclude Include="Level3Scene.h">
-      <Filter>Scenes\Solo</Filter>
-    </ClInclude>
-    <ClInclude Include="Level1CoopScene.h">
-      <Filter>Scenes\Coop</Filter>
-    </ClInclude>
-    <ClInclude Include="Level1VersusScene.h">
-      <Filter>Scenes\Versus</Filter>
-    </ClInclude>
-    <ClInclude Include="Level2CoopScene.h">
-      <Filter>Scenes\Coop</Filter>
-    </ClInclude>
-    <ClInclude Include="Level2VersusScene.h">
-      <Filter>Scenes\Versus</Filter>
-    </ClInclude>
-    <ClInclude Include="Level3CoopScene.h">
-      <Filter>Scenes\Coop</Filter>
-    </ClInclude>
-    <ClInclude Include="Level3VersusScene.h">
-      <Filter>Scenes\Versus</Filter>
-    </ClInclude>
     <ClInclude Include="SceneSelectorScene.h">
       <Filter>Scenes\Solo</Filter>
     </ClInclude>
@@ -263,6 +218,15 @@
     </ClInclude>
     <ClInclude Include="YouWinScene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelScene.h">
+      <Filter>Scenes\Solo</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelCoopScene.h">
+      <Filter>Scenes\Coop</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelVersusScene.h">
+      <Filter>Scenes\Versus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

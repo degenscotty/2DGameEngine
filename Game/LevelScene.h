@@ -5,16 +5,16 @@
 #include "PopUpManager.h"
 #include "ScoreManager.h"
 
-class Level1Scene final : public Scene
+class LevelScene final : public Scene
 {
 public:
-	Level1Scene();
-	~Level1Scene();
+	LevelScene(int levelNumber);
+	~LevelScene();
 
-	Level1Scene(const Level1Scene& other) = delete;
-	Level1Scene(Level1Scene&& other) = delete;
-	Level1Scene& operator=(const Level1Scene& other) = delete;
-	Level1Scene& operator=(Level1Scene&& other) = delete;
+	LevelScene(const LevelScene& other) = delete;
+	LevelScene(LevelScene&& other) = delete;
+	LevelScene& operator=(const LevelScene& other) = delete;
+	LevelScene& operator=(LevelScene&& other) = delete;
 
 protected:
 	void Initialize() override;
@@ -27,5 +27,7 @@ private:
 	LevelManager* m_pLevelManager;
 	ScoreManager* m_pScoreManager;
 	PopUpManager* m_pPopUpManager;
+
+	int m_LevelNumber;
 };
 
