@@ -11,7 +11,7 @@
 
 #include "utils.h"
 
-Bubble::Bubble()
+Bubble::Bubble(BubbleColor color)
 	: m_pBubble(nullptr)
 	, m_pBubbleComponent(nullptr)
 	, m_pSpriteComponent(nullptr)
@@ -19,6 +19,7 @@ Bubble::Bubble()
 	, m_pGarbageCollector(GarbageCollector::GetInstance())
 	, m_pGameTime(GameTime::GetInstance())
 	, m_pLevelManager(LevelManager::GetInstance())
+	, m_BubbleColor(color)
 	, m_ActiveTimer(0.0f)
 	, m_ActivationTime(0.5f)
 	, m_Poppable(false)
@@ -40,8 +41,10 @@ void Bubble::Initialize()
 
 	m_pBubbleComponent = new BubbleComponent();
 	m_pBubble->AddComponent(m_pBubbleComponent);
-
-	m_pSpriteComponent = new SpriteComponent("Bubble.png", 7, 4, 32);
+	if (m_BubbleColor == BubbleColor::GREEN)
+		m_pSpriteComponent = new SpriteComponent("BubbleGreen.png", 7, 4, 32);
+	else
+		m_pSpriteComponent = new SpriteComponent("BubbleBlue.png", 7, 4, 32);
 	m_pSpriteComponent->AddClip(4, false);
 	m_pSpriteComponent->AddClip(1, false);
 	m_pSpriteComponent->AddClip(2, false);
@@ -129,7 +132,7 @@ void Bubble::Update()
 		m_ActiveTimer = 0.0f;
 		m_Poppable = true;
 	}
-	
+
 	if (m_pSpriteComponent->GetClipIndex() == 0 && m_pSpriteComponent->CheckEndOfCurrentClip())
 	{
 		m_pSpriteComponent->SetClipIndex(1);

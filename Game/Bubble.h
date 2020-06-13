@@ -7,10 +7,16 @@
 #include "GameTime.h"
 #include "LevelManager.h"
 
+enum class BubbleColor
+{
+	GREEN = 0,
+	BLUE = 1
+};
+
 class Bubble
 {
 public:
-	Bubble();
+	Bubble(BubbleColor color);
 	~Bubble();
 
 	Bubble(const Bubble& other) = delete;
@@ -49,6 +55,8 @@ private:
 	GarbageCollector* m_pGarbageCollector;
 	GameTime* m_pGameTime;
 	LevelManager* m_pLevelManager;
+
+	BubbleColor m_BubbleColor;
 
 	float m_ActiveTimer;
 	float m_ActivationTime;

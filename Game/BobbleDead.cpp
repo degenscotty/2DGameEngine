@@ -17,7 +17,7 @@ void BobbleDead::Update()
 	if (m_RespawnTimer > m_RespawnTime)
 	{
 		m_RespawnTimer = 0.0f;
-		m_pBobblePlayer->SetPosition({ 32, 400 });
+		m_pBobblePlayer->SetPosition({ 64, 380 });
 		m_pBobblePlayer->ChangeState("idle");
 		m_pBobblePlayer->EnableEnemyCollision();
 		m_pBobblePlayer->SetIsRespawning(false);

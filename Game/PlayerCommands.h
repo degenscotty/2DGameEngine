@@ -138,7 +138,12 @@ public:
 	{
 		if (!m_pBobblePlayer->GetIsRespawning())
 		{
-			Bubble* pBubble = new Bubble();
+			Bubble* pBubble;
+
+			if (m_pBobblePlayer->GetPlayerID() == 1)
+				pBubble = new Bubble(BubbleColor::GREEN);
+			else
+				pBubble = new Bubble(BubbleColor::BLUE);
 
 			pBubble->Initialize();
 			pBubble->SetPosition(m_pBobblePlayer->GetPosition());

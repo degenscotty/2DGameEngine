@@ -32,6 +32,8 @@ public:
 	virtual bool GetIsRespawning() = 0;
 	virtual void EnableEnemyCollision() = 0;
 
+	virtual int GetPlayerID() = 0;
+
 	virtual void OnTrigger(GameObject* other, bool trigger) {};
 
 private:

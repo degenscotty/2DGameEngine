@@ -17,6 +17,7 @@ BobblePlayer1::BobblePlayer1()
 	, m_pCollisionComponent(nullptr)
 	, m_pSpriteComponent(nullptr)
 	, m_pStateComponent(nullptr)
+	, m_PlayerID(1)
 	, m_Lives(3)
 {
 }

@@ -36,6 +36,8 @@ public:
 	bool GetIsRespawning()  override { return m_IsRespawning; }
 	void EnableEnemyCollision() override;
 
+	int GetPlayerID() { return m_PlayerID; }
+
 	void OnTrigger(GameObject* other, bool trigger) override;
 private:
 	InputManager* m_pInputManager;
@@ -45,6 +47,7 @@ private:
 	SpriteComponent* m_pSpriteComponent;
 	StateComponent* m_pStateComponent;
 
+	int m_PlayerID;
 	int m_Lives;
 	bool m_IsRespawning;
 };
