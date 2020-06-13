@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "LevelManager.h"
 #include "MaitaState.h"
 
 class Maita;
@@ -22,6 +23,8 @@ public:
 	void GetBobblePosition();
 
 private:
+	LevelManager* m_pLevelManager;
+	
 	GameObject* m_pBobblePlayer;
 
 	glm::vec2 m_MaitaPosition;

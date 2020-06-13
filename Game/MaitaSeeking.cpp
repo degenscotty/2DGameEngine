@@ -6,6 +6,7 @@
 
 MaitaSeeking::MaitaSeeking(Maita* pMaita)
 	: MaitaState(pMaita)
+	, m_pLevelManager(LevelManager::GetInstance())
 	, m_pBobblePlayer(nullptr)
 	, m_BobblePosition({ 0, 0 })
 	, m_MaitaPosition(pMaita->GetPosition())
@@ -46,7 +47,7 @@ void MaitaSeeking::Update()
 void MaitaSeeking::GetBobblePosition()
 {
 	if (!m_pBobblePlayer)
-		m_pBobblePlayer = LevelManager::GetInstance()->GetBobblePlayer()->GetGameObject();
+		m_pBobblePlayer = m_pLevelManager->GetBobblePlayer()->GetGameObject();
 	else
 	{
 		m_BobblePosition = m_pBobblePlayer->GetTransform()->GetPosition();

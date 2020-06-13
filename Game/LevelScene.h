@@ -22,7 +22,6 @@ protected:
 	void Render() override;
 
 private:
-	BobblePlayer1* m_pBobblePlayer;
 	GameObject* m_pFPSCounter;
 	LevelManager* m_pLevelManager;
 	ScoreManager* m_pScoreManager;

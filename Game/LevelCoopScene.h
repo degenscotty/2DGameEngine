@@ -1,5 +1,8 @@
 #pragma once
 #include "Scene.h"
+#include "LevelManager.h"
+#include "PopUpManager.h"
+#include "ScoreManager.h"
 
 class LevelCoopScene final : public Scene
 {
@@ -18,6 +21,11 @@ protected:
 	void Render() override;
 	
 private:
+	GameObject* m_pFPSCounter;
+	LevelManager* m_pLevelManager;
+	ScoreManager* m_pScoreManager;
+	PopUpManager* m_pPopUpManager;
+	
 	int m_LevelNumber;
 };
 

@@ -1,6 +1,7 @@
 #include "SceneSelectorCoopScene.h"
 
-#include "LevelScene.h"
+
+#include "LevelCoopScene.h"
 
 SceneSelectorCoopScene::SceneSelectorCoopScene()
 	: Scene(L"SceneSelectorCoopScene")
@@ -56,18 +57,18 @@ void SceneSelectorCoopScene::Update()
 {
 	if (m_pLevel1ButtonComponent->OnClick())
 	{
-		SceneManager::GetInstance()->AddScene(new LevelScene(1));
-		SceneManager::GetInstance()->SetActiveScene(L"LevelScene");
+		SceneManager::GetInstance()->AddScene(new LevelCoopScene(1));
+		SceneManager::GetInstance()->SetActiveScene(L"LevelCoopScene");
 	}
 	if (m_pLevel2ButtonComponent->OnClick())
 	{
-		SceneManager::GetInstance()->AddScene(new LevelScene(2));
-		SceneManager::GetInstance()->SetActiveScene(L"LevelScene");
+		SceneManager::GetInstance()->AddScene(new LevelCoopScene(2));
+		SceneManager::GetInstance()->SetActiveScene(L"LevelCoopScene");
 	}
 	if (m_pLevel3ButtonComponent->OnClick())
 	{
-		SceneManager::GetInstance()->AddScene(new LevelScene(3));
-		SceneManager::GetInstance()->SetActiveScene(L"LevelScene");
+		SceneManager::GetInstance()->AddScene(new LevelCoopScene(3));
+		SceneManager::GetInstance()->SetActiveScene(L"LevelCoopScene");
 	}
 	if (m_pBackButtonComponent->OnClick())
 	{

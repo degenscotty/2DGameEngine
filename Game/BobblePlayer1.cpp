@@ -36,7 +36,7 @@ void BobblePlayer1::Initialize()
 
 	m_pControllerComponent = new ControllerComponent();
 	m_pBobblePlayer->AddComponent(m_pControllerComponent);
-	m_pSpriteComponent = new SpriteComponent("Player.png", 5, 4, 32);
+	m_pSpriteComponent = new SpriteComponent("Player1.png", 5, 4, 32);
 	m_pSpriteComponent->AddClip(2, true);
 	m_pSpriteComponent->AddClip(2, true);
 	m_pSpriteComponent->AddClip(2, false);
@@ -59,7 +59,7 @@ void BobblePlayer1::Initialize()
 	InputAction* pMoveRight = new InputAction("PlayerMoveRight", new BobbleMoveRightC(m_pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
 	InputAction* pStopMoveLeft = new InputAction("PlayerStopMoveLeft", new BobbleStopMoveLeftC(m_pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
 	InputAction* pStopMoveRight = new InputAction("PlayerStopMoveRight", new BobbleStopMoveRightC(m_pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
-	InputAction* pJump = new InputAction("PlayerJump", new BobbleJumpC(m_pControllerComponent, this), KEY_SPACE, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pJump = new InputAction("PlayerJump", new BobbleJumpC(m_pControllerComponent, this), KEY_UP, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
 	InputAction* pShootBubble = new InputAction("ShootBubble", new ShootBubbleC( this), KEY_RIGHT_CTRL, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
 	
 	m_pInputManager->AddInputActions(pMoveLeft);

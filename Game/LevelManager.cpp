@@ -4,6 +4,8 @@
 #include <fstream>
 #include "GameObject.h"
 #include "BobblePlayer1.h"
+#include "BobblePlayer2.h"
+#include "ZenChan.h"
 #include "Maita.h"
 #include "Bubble.h"
 #include "BubbleMaita.h"
@@ -16,7 +18,8 @@
 LevelManager::LevelManager()
 	: m_pGameTime(GameTime::GetInstance())
 	, m_pSceneManager(SceneManager::GetInstance())
-	, m_pBobblePlayer(nullptr)
+	, m_pBobblePlayer1(nullptr)
+	, m_pBobblePlayer2(nullptr)
 	, m_WinTimer(0.0f)
 	, m_WinTime(4.0f)
 	, m_EnemiesInBubbles(0)
@@ -47,7 +50,8 @@ LevelManager::~LevelManager()
 		delete zenChan;
 	}
 
-	delete m_pBobblePlayer;
+	delete m_pBobblePlayer1;
+	delete m_pBobblePlayer2;
 }
 
 void LevelManager::Initialize(int levelNumber, GameMode gameMode)
@@ -228,12 +232,20 @@ void LevelManager::InitializeLevel()
 			wchar_t tileID = GetTile(x, y);
 			switch (tileID)
 			{
-			case L'O':
+			case L'1':
 			{
-				m_pBobblePlayer = new BobblePlayer1();
-				m_pBobblePlayer->Initialize();
-				m_pBobblePlayer->SetPosition({ x * 16.0f, y * 16.0f });
-				m_pSceneManager->GetActiveScene()->Add(m_pBobblePlayer->GetGameObject());
+				m_pBobblePlayer1 = new BobblePlayer1();
+				m_pBobblePlayer1->Initialize();
+				m_pBobblePlayer1->SetPosition({ x * 16.0f, y * 16.0f });
+				m_pSceneManager->GetActiveScene()->Add(m_pBobblePlayer1->GetGameObject());
+			}
+			break;
+			case L'2':
+			{
+				m_pBobblePlayer2 = new BobblePlayer2();
+				m_pBobblePlayer2->Initialize();
+				m_pBobblePlayer2->SetPosition({ x * 16.0f, y * 16.0f });
+				m_pSceneManager->GetActiveScene()->Add(m_pBobblePlayer2->GetGameObject());
 			}
 			break;
 			case L'#':

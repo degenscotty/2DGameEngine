@@ -1,5 +1,6 @@
 #include "MainMenuScene.h"
 #include "ResourceManager.h"
+#include "ScoreManager.h"
 
 MainMenuScene::MainMenuScene()
 	: Scene(L"MainMenuScene")
@@ -14,7 +15,7 @@ MainMenuScene::MainMenuScene()
 
 MainMenuScene::~MainMenuScene()
 {
-
+	ScoreManager::DestroyInstance();
 }
 
 void MainMenuScene::Initialize()

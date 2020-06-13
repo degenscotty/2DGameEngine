@@ -5,11 +5,13 @@
 #include "SceneManager.h"
 #include <string>
 
-#include "ZenChan.h"
+#include "GameTime.h"
 
 class BobblePlayer1;
+class BobblePlayer2;
 class Wall;
 class Maita;
+class ZenChan;
 class Bubble;
 class GameObject;
 
@@ -36,7 +38,7 @@ public:
 	void Update();
 	void Render();
 
-	BobblePlayer1* GetBobblePlayer() { if (m_pBobblePlayer) return m_pBobblePlayer; return nullptr; }
+	BobblePlayer1* GetBobblePlayer() { if (m_pBobblePlayer1) return m_pBobblePlayer1; return nullptr; }
 
 	void AddMaita(Maita* pMaita);
 	void DestroyMaita(GameObject* pGameObject);
@@ -67,7 +69,8 @@ private:
 
 	GameTime* m_pGameTime;
 	SceneManager* m_pSceneManager;
-	BobblePlayer1* m_pBobblePlayer;
+	BobblePlayer1* m_pBobblePlayer1;
+	BobblePlayer2* m_pBobblePlayer2;
 	std::vector<Wall*> m_Walls;
 	std::vector<Maita*> m_EnemyMaita;
 	std::vector<ZenChan*> m_EnemyZenChan;
