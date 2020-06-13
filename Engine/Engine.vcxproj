@@ -172,7 +172,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="BubbleComponent.h" />
-    <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonComponent.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="CollisionGroups.h" />
     <ClInclude Include="Commands.h" />
@@ -211,7 +211,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="BubbleComponent.cpp" />
-    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonComponent.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="ControllerComponent.cpp" />
     <ClCompile Include="EntryPoint.cpp" />

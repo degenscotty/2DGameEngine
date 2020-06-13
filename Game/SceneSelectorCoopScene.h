@@ -1,8 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-#include "Button.h"
-#include "InputManager.h"
+#include "ButtonComponent.h"
 
 class SceneSelectorCoopScene final : public Scene
 {
@@ -21,13 +20,9 @@ protected:
 	void Render() override;
 	
 private:
-	InputManager* m_pInputManager;
-
-	Button m_BackButton;
-	Button m_Level1Button;
-	Button m_Level2Button;
-	Button m_Level3Button;
-
-	Texture2D* m_pMainMenuBackGround;
+	ButtonComponent* m_pLevel1ButtonComponent;
+	ButtonComponent* m_pLevel2ButtonComponent;
+	ButtonComponent* m_pLevel3ButtonComponent;
+	ButtonComponent* m_pBackButtonComponent;
 };
 

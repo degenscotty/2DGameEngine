@@ -3,17 +3,13 @@
 #include "Level1Scene.h"
 #include "Level2Scene.h"
 #include "Level3Scene.h"
-#include "MainMenuScene.h"
-#include "ResourceManager.h"
 
 SceneSelectorVersusScene::SceneSelectorVersusScene()
 	: Scene(L"SceneSelectorVersusScene")
-	, m_pInputManager(InputManager::GetInstance())
-	, m_BackButton({ 422, 423 }, "BackButtonS.png", "BackButtonNS.png")
-	, m_Level1Button({ 256, 300 }, "Level1ButtonS.png", "Level1ButtonNS.png")
-	, m_Level2Button({ 256, 341 }, "Level2ButtonS.png", "Level2ButtonNS.png")
-	, m_Level3Button({ 256, 382 }, "Level3ButtonS.png", "Level3ButtonNS.png")
-	, m_pMainMenuBackGround(nullptr)
+	, m_pLevel1ButtonComponent(nullptr)
+	, m_pLevel2ButtonComponent(nullptr)
+	, m_pLevel3ButtonComponent(nullptr)
+	, m_pBackButtonComponent(nullptr)
 {
 	
 }
@@ -25,53 +21,62 @@ SceneSelectorVersusScene::~SceneSelectorVersusScene()
 
 void SceneSelectorVersusScene::Initialize()
 {
-	m_pMainMenuBackGround = ResourceManager::GetInstance()->LoadTexture("VersusSelectorBackGround.png");
+	auto* mainMenuBackGround = new GameObject();
+	mainMenuBackGround->AddComponent(new TextureComponent("VersusSelectorBackGround.png"));
+	Add(mainMenuBackGround);
 
-	m_BackButton.Initialize();
-	m_Level1Button.Initialize();
-	m_Level2Button.Initialize();
-	m_Level3Button.Initialize();
+	auto* level1Button = new GameObject();
+	m_pLevel1ButtonComponent = new ButtonComponent("Level1ButtonS.png", "Level1ButtonNS.png");
+	level1Button->AddComponent(m_pLevel1ButtonComponent);
+	level1Button->GetTransform()->Translate(256, 300);
+
+	Add(level1Button);
+
+	auto* level2Button = new GameObject();
+	m_pLevel2ButtonComponent = new ButtonComponent("Level2ButtonS.png", "Level2ButtonNS.png");
+	level2Button->AddComponent(m_pLevel2ButtonComponent);
+	level2Button->GetTransform()->Translate(256, 341);
+
+	Add(level2Button);
+
+	auto* level3Button = new GameObject();
+	m_pLevel3ButtonComponent = new ButtonComponent("Level3ButtonS.png", "Level3ButtonNS.png");
+	level3Button->AddComponent(m_pLevel3ButtonComponent);
+	level3Button->GetTransform()->Translate(256, 382);
+
+	Add(level3Button);
+
+	auto* backButton = new GameObject();
+	m_pBackButtonComponent = new ButtonComponent("BackButtonS.png", "BackButtonNS.png");
+	backButton->AddComponent(m_pBackButtonComponent);
+	backButton->GetTransform()->Translate(422, 423);
+
+	Add(backButton);
 }
 
 void SceneSelectorVersusScene::Update()
 {
-	glm::vec2 mousePos = { m_pInputManager->GetMousePos() };
-
-	m_Level1Button.Update(mousePos);
-	m_Level2Button.Update(mousePos);
-	m_Level3Button.Update(mousePos);
-	m_BackButton.Update(mousePos);
-
-	if (m_pInputManager->IsMouseButtonPressed(MOUSE_LEFT))
+	if (m_pLevel1ButtonComponent->OnClick())
 	{
-		if (m_Level1Button.OnClick())
-		{
-			SceneManager::GetInstance()->AddScene(new Level1Scene());
-			SceneManager::GetInstance()->SetActiveScene(L"Level1Scene");
-		}
-		if (m_Level2Button.OnClick())
-		{
-			SceneManager::GetInstance()->AddScene(new Level2Scene());
-			SceneManager::GetInstance()->SetActiveScene(L"Level2Scene");
-		}
-		if (m_Level3Button.OnClick())
-		{
-			SceneManager::GetInstance()->AddScene(new Level3Scene());
-			SceneManager::GetInstance()->SetActiveScene(L"Level3Scene");
-		}
-		if (m_BackButton.OnClick())
-		{
-			SceneManager::GetInstance()->SetActiveScene(L"MainMenuScene");
-		}
+		SceneManager::GetInstance()->AddScene(new Level1Scene());
+		SceneManager::GetInstance()->SetActiveScene(L"Level1Scene");
+	}
+	if (m_pLevel2ButtonComponent->OnClick())
+	{
+		SceneManager::GetInstance()->AddScene(new Level2Scene());
+		SceneManager::GetInstance()->SetActiveScene(L"Level2Scene");
+	}
+	if (m_pLevel3ButtonComponent->OnClick())
+	{
+		SceneManager::GetInstance()->AddScene(new Level3Scene());
+		SceneManager::GetInstance()->SetActiveScene(L"Level3Scene");
+	}
+	if (m_pBackButtonComponent->OnClick())
+	{
+		SceneManager::GetInstance()->SetActiveScene(L"MainMenuScene");
 	}
 }
 
 void SceneSelectorVersusScene::Render()
 {
-	Renderer::GetInstance()->RenderTexture(m_pMainMenuBackGround->GetSDLTexture(), 0, 0);
-
-	m_Level1Button.Render();
-	m_Level2Button.Render();
-	m_Level3Button.Render();
-	m_BackButton.Render();
 }

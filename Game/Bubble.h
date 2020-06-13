@@ -33,6 +33,7 @@ public:
 	void MoveToPopPosition(const glm::vec2& position);
 
 	void SetBubblePopped() { m_BubblePopped = true; }
+	State* GetCurrentState();
 
 	void SetActive(bool active) { m_Active = active; }
 

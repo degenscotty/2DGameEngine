@@ -26,9 +26,6 @@
     <Filter Include="States">
       <UniqueIdentifier>{ff63c86c-ce1e-4b05-a71d-cfe9a9616bcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI">
-      <UniqueIdentifier>{237f49cb-2c30-49bf-857a-19483a40ebe8}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -109,10 +106,10 @@
     <ClCompile Include="StateComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="BubbleComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -219,14 +216,14 @@
     <ClInclude Include="StateComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="BubbleComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="CollisionGroups.h">
       <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

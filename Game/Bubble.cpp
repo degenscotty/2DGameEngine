@@ -110,6 +110,11 @@ const glm::vec2& Bubble::GetPosition()
 	return m_pBubble->GetTransform()->GetPosition();
 }
 
+State* Bubble::GetCurrentState()
+{
+	return m_pStateComponent->GetCurrentState();
+}
+
 void Bubble::ShootBubble(bool right)
 {
 	m_pBubbleComponent->ShootBubble(right);

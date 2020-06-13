@@ -266,6 +266,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="Level1Scene.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="WaterMelon.cpp" />
+    <ClCompile Include="YouWinScene.cpp" />
     <ClCompile Include="ZenChan.cpp" />
     <ClCompile Include="ZenChanIdle.cpp" />
     <ClCompile Include="ZenChanSeeking.cpp" />
@@ -312,6 +313,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="Level1Scene.h" />
     <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="WaterMelon.h" />
+    <ClInclude Include="YouWinScene.h" />
     <ClInclude Include="ZenChan.h" />
     <ClInclude Include="ZenChanCommands.h" />
     <ClInclude Include="ZenChanIdle.h" />

@@ -1,16 +1,25 @@
 #include "LevelManager.h"
 
+#include <typeinfo>
+#include <fstream>
 #include "GameObject.h"
 #include "BobblePlayer.h"
 #include "Maita.h"
 #include "Bubble.h"
+#include "BubbleMaita.h"
 #include "Wall.h"
 #include "Scene.h"
-#include <fstream>
+
+#include "BubbleState.h"
+#include "BubbleZenChan.h"
 
 LevelManager::LevelManager()
-	: m_pSceneManager(SceneManager::GetInstance())
+	: m_pGameTime(GameTime::GetInstance())
+	, m_pSceneManager(SceneManager::GetInstance())
 	, m_pBobblePlayer(nullptr)
+	, m_WinTimer(0.0f)
+	, m_WinTime(4.0f)
+	, m_EnemiesInBubbles(0)
 	, m_LevelWidth(32)
 	, m_LevelHeight(28)
 	, m_EnemyCount(0)
@@ -151,6 +160,7 @@ bool LevelManager::CheckLevel()
 void LevelManager::AddMaita(Maita* pMaita)
 {
 	m_EnemyMaita.push_back(pMaita);
+	++m_EnemyCount;
 }
 
 void LevelManager::DestroyMaita(GameObject* pGameObject)
@@ -165,11 +175,14 @@ void LevelManager::DestroyMaita(GameObject* pGameObject)
 
 	delete* it;
 	m_EnemyMaita.erase(it);
+
+	--m_EnemyCount;
 }
 
 void LevelManager::AddZenChan(ZenChan* pZenChan)
 {
 	m_EnemyZenChan.push_back(pZenChan);
+	++m_EnemyCount;
 }
 
 void LevelManager::DestroyZenChan(GameObject* pGameObject)
@@ -184,6 +197,8 @@ void LevelManager::DestroyZenChan(GameObject* pGameObject)
 
 	delete* it;
 	m_EnemyZenChan.erase(it);
+
+	--m_EnemyCount;
 }
 
 void LevelManager::AddBubble(Bubble* pBubble)
@@ -389,8 +404,36 @@ void LevelManager::Update()
 {
 	for (int i{}; i < m_Bubbles.size(); ++i)
 	{
+		auto* pBubbleState = m_Bubbles[i]->GetCurrentState();
+
+		auto* maitaCheck = reinterpret_cast<BubbleMaita*>(pBubbleState);
+		auto* zenchanCheck = reinterpret_cast<BubbleZenChan*>(pBubbleState);
+
+		if (maitaCheck || zenchanCheck)
+			++m_EnemiesInBubbles;
+
 		m_Bubbles[i]->Update();
 	}
+
+	if (m_EnemyCount <= 0 && m_EnemiesInBubbles <= 0)
+	{
+		m_WinTimer += m_pGameTime->GetElapsedSec();
+
+		CLIENT_TRACE("WinTimer: {0}", m_WinTimer);
+
+		if (m_WinTimer >= m_WinTime)
+		{
+			GarbageCollector::GetInstance()->Destroy(m_pSceneManager->GetActiveScene());
+			m_pSceneManager->SetActiveScene(L"YouWinScene");
+			return;
+		}
+	}
+	else
+	{
+		m_WinTimer = 0.0f;
+	}
+
+	m_EnemiesInBubbles = 0;
 }
 
 wchar_t LevelManager::GetTile(int x, int y)

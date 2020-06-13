@@ -65,12 +65,17 @@ private:
 	void SearchLevelNumber(const std::string& level, std::ifstream& file);
 	void SearchGameMode(const std::string& gameMode, std::ifstream& file);
 
+	GameTime* m_pGameTime;
 	SceneManager* m_pSceneManager;
 	BobblePlayer* m_pBobblePlayer;
 	std::vector<Wall*> m_Walls;
 	std::vector<Maita*> m_EnemyMaita;
 	std::vector<ZenChan*> m_EnemyZenChan;
 	std::vector<Bubble*> m_Bubbles;
+
+	float m_WinTimer;
+	float m_WinTime;
+	int m_EnemiesInBubbles;
 
 	int m_LevelWidth;
 	int m_LevelHeight;

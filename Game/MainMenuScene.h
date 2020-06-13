@@ -1,7 +1,7 @@
 #pragma once
+#include "ButtonComponent.h"
 #include "Scene.h"
 
-#include "Button.h"
 #include "InputManager.h"
 
 class MainMenuScene final : public Scene
@@ -22,10 +22,10 @@ protected:
 
 private:
 	InputManager* m_pInputManager;
-	Button m_PlayButton;
-	Button m_VersusButton;
-	Button m_CoopButton;
-	Button m_ExitButton;
-	Texture2D* m_pMainMenuBackGround;
+	
+	ButtonComponent* m_pPlayButtonComponent;
+	ButtonComponent* m_pVersusButtonComponent;
+	ButtonComponent* m_pCoopButtonComponent;
+	ButtonComponent* m_pExitButtonComponent;
 };
 

@@ -1,7 +1,6 @@
+#pragma once
 #include "Scene.h"
-
-#include "Button.h"
-#include "InputManager.h"
+#include "ButtonComponent.h"
 
 class GameOverScene final : public Scene
 {
@@ -20,8 +19,6 @@ protected:
 	void Render() override;
 
 private:
-	InputManager* m_pInputManager;
-	Button m_BackButton;
-	Texture2D* m_pGameOverBackGround;
+	ButtonComponent* m_pBackButtonComponent;
 };
 

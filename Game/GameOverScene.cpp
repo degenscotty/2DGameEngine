@@ -1,15 +1,8 @@
 #include "GameOverScene.h"
 
-
-#include "GarbageCollector.h"
-#include "MainMenuScene.h"
-#include "ResourceManager.h"
-
 GameOverScene::GameOverScene()
 	: Scene(L"GameOverScene")
-	, m_pInputManager(InputManager::GetInstance())
-	, m_BackButton({ 422, 423 }, "BackButtonS.png", "BackButtonNS.png")
-	, m_pGameOverBackGround(nullptr)
+	, m_pBackButtonComponent(nullptr)
 {
 
 }
@@ -21,28 +14,28 @@ GameOverScene::~GameOverScene()
 
 void GameOverScene::Initialize()
 {
-	m_pGameOverBackGround = ResourceManager::GetInstance()->LoadTexture("GameOverBackGround.png");
+	GameObject* pBackGround = new GameObject();
 
-	m_BackButton.Initialize();
+	pBackGround->AddComponent(new TextureComponent("GameOverBackGround.png"));
+
+	Add(pBackGround);
+
+	auto* backButton = new GameObject();
+	m_pBackButtonComponent = new ButtonComponent("BackButtonS.png", "BackButtonNS.png");
+	backButton->AddComponent(m_pBackButtonComponent);
+	backButton->GetTransform()->Translate(422, 423);
+
+	Add(backButton);
 }
 
 void GameOverScene::Update()
 {
-	glm::vec2 mousePos = { m_pInputManager->GetMousePos() };
-
-	m_BackButton.Update(mousePos);
-
-	if (m_pInputManager->IsMouseButtonPressed(MOUSE_LEFT))
+	if (m_pBackButtonComponent->OnClick())
 	{
-		if (m_BackButton.OnClick())
-		{
-			SceneManager::GetInstance()->SetActiveScene(L"MainMenuScene");
-		}
+		SceneManager::GetInstance()->SetActiveScene(L"MainMenuScene");
 	}
 }
 
 void GameOverScene::Render()
 {
-	Renderer::GetInstance()->RenderTexture(m_pGameOverBackGround->GetSDLTexture(), 0, 0);
-	m_BackButton.Render();
 }
