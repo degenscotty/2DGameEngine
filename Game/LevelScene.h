@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-#include "BobblePlayer.h"
+#include "BobblePlayer1.h"
 #include "LevelManager.h"
 #include "PopUpManager.h"
 #include "ScoreManager.h"
@@ -22,7 +22,7 @@ protected:
 	void Render() override;
 
 private:
-	BobblePlayer* m_pBobblePlayer;
+	BobblePlayer1* m_pBobblePlayer;
 	GameObject* m_pFPSCounter;
 	LevelManager* m_pLevelManager;
 	ScoreManager* m_pScoreManager;

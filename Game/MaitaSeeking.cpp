@@ -1,7 +1,7 @@
 #include "MaitaSeeking.h"
 #include "LevelManager.h"
 #include "Maita.h"
-#include "BobblePlayer.h"
+#include "BobblePlayer1.h"
 #include "utils.h"
 
 MaitaSeeking::MaitaSeeking(Maita* pMaita)

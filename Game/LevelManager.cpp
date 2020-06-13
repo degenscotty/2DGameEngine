@@ -3,7 +3,7 @@
 #include <typeinfo>
 #include <fstream>
 #include "GameObject.h"
-#include "BobblePlayer.h"
+#include "BobblePlayer1.h"
 #include "Maita.h"
 #include "Bubble.h"
 #include "BubbleMaita.h"
@@ -230,7 +230,7 @@ void LevelManager::InitializeLevel()
 			{
 			case L'O':
 			{
-				m_pBobblePlayer = new BobblePlayer();
+				m_pBobblePlayer = new BobblePlayer1();
 				m_pBobblePlayer->Initialize();
 				m_pBobblePlayer->SetPosition({ x * 16.0f, y * 16.0f });
 				m_pSceneManager->GetActiveScene()->Add(m_pBobblePlayer->GetGameObject());
@@ -418,8 +418,6 @@ void LevelManager::Update()
 	if (m_EnemyCount <= 0 && m_EnemiesInBubbles <= 0)
 	{
 		m_WinTimer += m_pGameTime->GetElapsedSec();
-
-		CLIENT_TRACE("WinTimer: {0}", m_WinTimer);
 
 		if (m_WinTimer >= m_WinTime)
 		{

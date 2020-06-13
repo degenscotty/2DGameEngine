@@ -1,4 +1,4 @@
-#include "BobblePlayer.h"
+#include "BobblePlayer2.h"
 
 #include "BobbleDead.h"
 #include "PlayerCommands.h"
@@ -6,12 +6,11 @@
 #include "BobbleJump.h"
 #include "BobbleWalking.h"
 #include "Bubble.h"
-#include "GameOverScene.h"
 #include "PopUpManager.h"
 
 #include "utils.h"
 
-BobblePlayer::BobblePlayer()
+BobblePlayer2::BobblePlayer2()
 	: m_pInputManager(InputManager::GetInstance())
 	, m_pBobblePlayer(nullptr)
 	, m_pControllerComponent(nullptr)
@@ -22,11 +21,11 @@ BobblePlayer::BobblePlayer()
 {
 }
 
-BobblePlayer::~BobblePlayer()
+BobblePlayer2::~BobblePlayer2()
 {
 }
 
-void BobblePlayer::Initialize()
+void BobblePlayer2::Initialize()
 {
 	m_pBobblePlayer = new GameObject();
 	
@@ -54,7 +53,7 @@ void BobblePlayer::Initialize()
 	m_pStateComponent->SetState("idle");
 	m_pBobblePlayer->AddComponent(m_pStateComponent);
 	
-	m_pBobblePlayer->SetCollisionCallBack(BIND_FN(BobblePlayer::OnTrigger));
+	m_pBobblePlayer->SetCollisionCallBack(BIND_FN(BobblePlayer2::OnTrigger));
 
 	InputAction* pMoveLeft = new InputAction("PlayerMoveLeft", new BobbleMoveLeftC(m_pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
 	InputAction* pMoveRight = new InputAction("PlayerMoveRight", new BobbleMoveRightC(m_pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
@@ -73,56 +72,56 @@ void BobblePlayer::Initialize()
 	m_pBobblePlayer->SetTag("BobblePlayer");
 }
 
-void BobblePlayer::SetPosition(const glm::vec2& position)
+void BobblePlayer2::SetPosition(const glm::vec2& position)
 {
 	m_pBobblePlayer->GetTransform()->Translate(position.x, position.y);
 }
 
-const glm::vec2& BobblePlayer::GetPosition()
+const glm::vec2& BobblePlayer2::GetPosition()
 {
 	return m_pBobblePlayer->GetTransform()->GetPosition();
 }
 
-void BobblePlayer::SetAnimationClip(int index) const
+void BobblePlayer2::SetAnimationClip(int index) const
 {
 	m_pSpriteComponent->SetClipIndex(index);
 }
 
-void BobblePlayer::SetFlipState(const SDL_RendererFlip& flip) const
+void BobblePlayer2::SetFlipState(const SDL_RendererFlip& flip) const
 {
 	m_pSpriteComponent->SetFlip(flip);
 }
 
-const SDL_RendererFlip& BobblePlayer::GetFlipState()
+const SDL_RendererFlip& BobblePlayer2::GetFlipState()
 {
 	return m_pSpriteComponent->GetFlip();
 }
 
-void BobblePlayer::ChangeState(const std::string& newState)
+void BobblePlayer2::ChangeState(const std::string& newState)
 {
 	m_pStateComponent->ChangeState(newState);
 }
 
-void BobblePlayer::Update() const
+void BobblePlayer2::Update() const
 {
 }
 
-void BobblePlayer::Render() const
+void BobblePlayer2::Render() const
 {
 
 }
 
-GameObject* BobblePlayer::GetGameObject() const
+GameObject* BobblePlayer2::GetGameObject() const
 {
 	return m_pBobblePlayer;
 }
 
-void BobblePlayer::EnableEnemyCollision()
+void BobblePlayer2::EnableEnemyCollision()
 {
 	m_pCollisionComponent->SetCollisionIgnoreGroups(static_cast<CollisionGroup>(Group1));
 }
 
-void BobblePlayer::OnTrigger(GameObject* other, bool trigger)
+void BobblePlayer2::OnTrigger(GameObject* other, bool trigger)
 {
 	if (other->GetTag() == "Fries")
 	{

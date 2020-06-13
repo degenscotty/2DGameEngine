@@ -233,6 +233,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="BobbleDead.cpp" />
     <ClCompile Include="BobbleIdle.cpp" />
     <ClCompile Include="BobbleJump.cpp" />
+    <ClCompile Include="BobblePlayer2.cpp" />
     <ClCompile Include="BobbleWalking.cpp" />
     <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="BubbleIdle.cpp" />
@@ -255,7 +256,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClCompile Include="SceneSelectorVersusScene.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="SandboxApplication.cpp" />
-    <ClCompile Include="BobblePlayer.cpp" />
+    <ClCompile Include="BobblePlayer1.cpp" />
     <ClCompile Include="MaitaIdle.cpp" />
     <ClCompile Include="LevelScene.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
@@ -269,6 +270,8 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="BobbleDead.h" />
     <ClInclude Include="BobbleIdle.h" />
     <ClInclude Include="BobbleJump.h" />
+    <ClInclude Include="BobblePlayer.h" />
+    <ClInclude Include="BobblePlayer2.h" />
     <ClInclude Include="BobbleState.h" />
     <ClInclude Include="BobbleWalking.h" />
     <ClInclude Include="Bubble.h" />
@@ -291,7 +294,7 @@ xcopy "$(SolutionDir)3rdParty\FMOD\bin\fmod64.dll" "$(OutputPath)" /R /Y</Comman
     <ClInclude Include="MaitaSeeking.h" />
     <ClInclude Include="PlayerCommands.h" />
     <ClInclude Include="PopUpManager.h" />
-    <ClInclude Include="BobblePlayer.h" />
+    <ClInclude Include="BobblePlayer1.h" />
     <ClInclude Include="SceneSelectorCoopScene.h" />
     <ClInclude Include="SceneSelectorScene.h" />
     <ClInclude Include="SceneSelectorVersusScene.h" />

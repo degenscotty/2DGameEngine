@@ -1,51 +1,39 @@
 #pragma once
-#include "ControllerComponent.h"
-#include "GameObject.h"
-#include "InputManager.h"
 #include "SpriteComponent.h"
-#include "StateComponent.h"
 
-class Bubble;
+class GameObject;
 
 class BobblePlayer
 {
 public:
-	BobblePlayer();
-	~BobblePlayer();
+	BobblePlayer() = default;
+	virtual ~BobblePlayer() = default;
 
 	BobblePlayer(const BobblePlayer& other) = delete;
 	BobblePlayer(BobblePlayer&& other) = delete;
 	BobblePlayer& operator=(const BobblePlayer& other) = delete;
 	BobblePlayer& operator=(BobblePlayer&& other) = delete;
 
-	void Initialize();
-	void Update() const;
-	void Render() const;
+	virtual void Initialize() = 0;
+	virtual void Update() const = 0;
+	virtual void Render() const = 0;
 
-	void SetAnimationClip(int index) const;
-	void ChangeState(const std::string& newState);
-	void SetFlipState(const SDL_RendererFlip& flip) const;
-	const SDL_RendererFlip& GetFlipState();
-	void SetPosition(const glm::vec2& position);
-	const glm::vec2& GetPosition();
+	virtual void SetAnimationClip(int index) const = 0;
+	virtual void ChangeState(const std::string& newState) = 0;
+	virtual void SetFlipState(const SDL_RendererFlip& flip) const = 0;
+	virtual const SDL_RendererFlip& GetFlipState() = 0;
+	virtual void SetPosition(const glm::vec2& position) = 0;
+	virtual const glm::vec2& GetPosition() = 0;
 
-	GameObject* GetGameObject() const;
+	virtual GameObject* GetGameObject() const = 0;
 
-	bool CheckDead() { return m_Lives <= 0; }
-	void SetIsRespawning(bool respawn) { m_IsRespawning = respawn; }
-	bool GetIsRespawning() { return m_IsRespawning; }
-	void EnableEnemyCollision();
+	virtual bool CheckDead() = 0;
+	virtual void SetIsRespawning(bool respawn) = 0;
+	virtual bool GetIsRespawning() = 0;
+	virtual void EnableEnemyCollision() = 0;
 
-	void OnTrigger(GameObject* other, bool trigger);
+	virtual void OnTrigger(GameObject* other, bool trigger) {};
+
 private:
-	InputManager* m_pInputManager;
-	GameObject* m_pBobblePlayer;
-	ControllerComponent* m_pControllerComponent;
-	CollisionComponent* m_pCollisionComponent;
-	SpriteComponent* m_pSpriteComponent;
-	StateComponent* m_pStateComponent;
-
-	int m_Lives;
-	bool m_IsRespawning;
 };
 

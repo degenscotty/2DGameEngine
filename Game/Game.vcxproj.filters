@@ -4,9 +4,6 @@
     <ClCompile Include="SandboxApplication.cpp">
       <Filter>Application</Filter>
     </ClCompile>
-    <ClCompile Include="BobblePlayer.cpp">
-      <Filter>Prefabs</Filter>
-    </ClCompile>
     <ClCompile Include="BobbleIdle.cpp">
       <Filter>BobbleStates</Filter>
     </ClCompile>
@@ -103,6 +100,12 @@
     <ClCompile Include="LevelVersusScene.cpp">
       <Filter>Scenes\Versus</Filter>
     </ClCompile>
+    <ClCompile Include="BobblePlayer1.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="BobblePlayer2.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerCommands.h">
@@ -110,9 +113,6 @@
     </ClInclude>
     <ClInclude Include="BobbleState.h">
       <Filter>BobbleStates</Filter>
-    </ClInclude>
-    <ClInclude Include="BobblePlayer.h">
-      <Filter>Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="BobbleIdle.h">
       <Filter>BobbleStates</Filter>
@@ -227,6 +227,15 @@
     </ClInclude>
     <ClInclude Include="LevelVersusScene.h">
       <Filter>Scenes\Versus</Filter>
+    </ClInclude>
+    <ClInclude Include="BobblePlayer1.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="BobblePlayer2.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="BobblePlayer.h">
+      <Filter>Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

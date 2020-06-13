@@ -1,7 +1,7 @@
 #include "ZenChanSeeking.h"
 #include "LevelManager.h"
 #include "ZenChan.h"
-#include "BobblePlayer.h"
+#include "BobblePlayer1.h"
 #include "utils.h"
 
 ZenChanSeeking::ZenChanSeeking(ZenChan* pZenChan)
