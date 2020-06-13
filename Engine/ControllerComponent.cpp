@@ -50,13 +50,10 @@ void ControllerComponent::SetFreeze(float seconds)
 
 void ControllerComponent::Jump()
 {
-	if (!m_Frozen)
+	if (!m_Frozen && !m_Jumping && m_pRigidbodyComponent->GetVelocity().y <= 0)
 	{
-		if (!m_Jumping)
-		{
-			m_Jumping = true;
-			m_pRigidbodyComponent->AddVelocity({ 0, -m_JumpSpeed });
-		}
+		m_Jumping = true;
+		m_pRigidbodyComponent->AddVelocity({ 0, -m_JumpSpeed });
 	}
 }
 
