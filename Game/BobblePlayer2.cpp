@@ -58,12 +58,12 @@ void BobblePlayer2::Initialize()
 	
 	m_pBobblePlayer->SetCollisionCallBack(BIND_FN(BobblePlayer2::OnTrigger));
 
-	InputAction* pMoveLeft = new InputAction("PlayerMoveLeft", "Player2", new BobbleMoveLeftC(m_pControllerComponent, this), KEY_A, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pMoveRight = new InputAction("PlayerMoveRight", "Player2", new BobbleMoveRightC(m_pControllerComponent, this), KEY_D, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pStopMoveLeft = new InputAction("PlayerStopMoveLeft", "Player2", new BobbleStopMoveLeftC(m_pControllerComponent, this), KEY_A, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
-	InputAction* pStopMoveRight = new InputAction("PlayerStopMoveRight", "Player2", new BobbleStopMoveRightC(m_pControllerComponent, this), KEY_D, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
-	InputAction* pJump = new InputAction("PlayerJump", "Player2", new BobbleJumpC(m_pControllerComponent, this), KEY_W, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pShootBubble = new InputAction("ShootBubble", "Player2", new ShootBubbleC( this), KEY_LEFT_CTRL, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pMoveLeft = new InputAction("Player2MoveLeft", "Player2", new BobbleMoveLeftC(m_pControllerComponent, this), KEY_A, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pMoveRight = new InputAction("Player2MoveRight", "Player2", new BobbleMoveRightC(m_pControllerComponent, this), KEY_D, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pStopMoveLeft = new InputAction("Player2StopMoveLeft", "Player2", new BobbleStopMoveLeftC(m_pControllerComponent, this), KEY_A, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pStopMoveRight = new InputAction("Player2StopMoveRight", "Player2", new BobbleStopMoveRightC(m_pControllerComponent, this), KEY_D, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pJump = new InputAction("Player2Jump", "Player2", new BobbleJumpC(m_pControllerComponent, this), KEY_W, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pShootBubble = new InputAction("Player2ShootBubble", "Player2", new ShootBubbleC( this), KEY_LEFT_CTRL, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
 	
 	m_pInputManager->AddInputActions(pMoveLeft);
 	m_pInputManager->AddInputActions(pMoveRight);
