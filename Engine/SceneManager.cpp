@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "GarbageCollector.h"
+#include "InputManager.h"
 
 SceneManager::SceneManager()
 	: m_Scenes()
@@ -35,6 +36,7 @@ void SceneManager::Update()
 
 	if (m_NewActiveScene)
 	{
+		InputManager::GetInstance()->ClearInputActions();
 		m_ActiveScene = m_NewActiveScene;
 		m_NewActiveScene = nullptr;
 

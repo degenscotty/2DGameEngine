@@ -1,8 +1,8 @@
-#include "MaitaIdle.h"
+#include "MaitaIdleAI.h"
 #include "Maita.h"
 
-MaitaIdle::MaitaIdle(Maita* pMaita)
-	: MaitaState(pMaita)
+MaitaIdleAI::MaitaIdleAI(Maita* pMaita)
+	: MaitaStateAI(pMaita)
 	, m_pGameTime(GameTime::GetInstance())
 	, m_SpawnTimer(0.0f)
 	, m_TimeToSeek(1.2f)
@@ -10,7 +10,7 @@ MaitaIdle::MaitaIdle(Maita* pMaita)
 	
 }
 
-void MaitaIdle::Update()
+void MaitaIdleAI::Update()
 {
 	m_SpawnTimer += m_pGameTime->GetElapsedSec();
 
@@ -21,14 +21,14 @@ void MaitaIdle::Update()
 	}
 }
 
-void MaitaIdle::OnEnter()
+void MaitaIdleAI::OnEnter()
 {
 	m_SpawnTimer = 0;
 	m_CommandMap.at("stopmove")->Execute();
 	m_pMaita->SetAnimationClip(0);
 }
 
-void MaitaIdle::OnExit()
+void MaitaIdleAI::OnExit()
 {
 	
 }

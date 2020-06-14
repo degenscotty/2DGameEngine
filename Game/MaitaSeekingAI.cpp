@@ -1,11 +1,11 @@
-#include "MaitaSeeking.h"
+#include "MaitaSeekingAI.h"
 #include "LevelManager.h"
 #include "Maita.h"
 #include "BobblePlayer1.h"
 #include "utils.h"
 
-MaitaSeeking::MaitaSeeking(Maita* pMaita)
-	: MaitaState(pMaita)
+MaitaSeekingAI::MaitaSeekingAI(Maita* pMaita)
+	: MaitaStateAI(pMaita)
 	, m_pLevelManager(LevelManager::GetInstance())
 	, m_pBobblePlayer(nullptr)
 	, m_BobblePosition({ 0, 0 })
@@ -14,7 +14,7 @@ MaitaSeeking::MaitaSeeking(Maita* pMaita)
 
 }
 
-void MaitaSeeking::Update()
+void MaitaSeekingAI::Update()
 {
 	GetBobblePosition();
 	m_MaitaPosition = m_pMaita->GetPosition();
@@ -44,7 +44,7 @@ void MaitaSeeking::Update()
 	}
 }
 
-void MaitaSeeking::GetBobblePosition()
+void MaitaSeekingAI::GetBobblePosition()
 {
 	if (!m_pBobblePlayer)
 		m_pBobblePlayer = m_pLevelManager->GetBobblePlayer()->GetGameObject();
@@ -54,12 +54,12 @@ void MaitaSeeking::GetBobblePosition()
 	}
 }
 
-void MaitaSeeking::OnEnter()
+void MaitaSeekingAI::OnEnter()
 {
 	m_pMaita->SetAnimationClip(0);
 }
 
-void MaitaSeeking::OnExit()
+void MaitaSeekingAI::OnExit()
 {
 
 }

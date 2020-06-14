@@ -1,8 +1,8 @@
-#include "ZenChanIdle.h"
+#include "ZenChanIdleAI.h"
 #include "ZenChan.h"
 
-ZenChanIdle::ZenChanIdle(ZenChan* pZenChan)
-	: ZenChanState(pZenChan)
+ZenChanIdleAI::ZenChanIdleAI(ZenChan* pZenChan)
+	: ZenChanStateAI(pZenChan)
 	, m_pGameTime(GameTime::GetInstance())
 	, m_SpawnTimer(0.0f)
 	, m_TimeToSeek(1.2f)
@@ -10,7 +10,7 @@ ZenChanIdle::ZenChanIdle(ZenChan* pZenChan)
 	
 }
 
-void ZenChanIdle::Update()
+void ZenChanIdleAI::Update()
 {
 	m_SpawnTimer += m_pGameTime->GetElapsedSec();
 
@@ -21,14 +21,14 @@ void ZenChanIdle::Update()
 	}
 }
 
-void ZenChanIdle::OnEnter()
+void ZenChanIdleAI::OnEnter()
 {
 	m_SpawnTimer = 0;
 	m_CommandMap.at("stopmove")->Execute();
 	m_pZenChan->SetAnimationClip(0);
 }
 
-void ZenChanIdle::OnExit()
+void ZenChanIdleAI::OnExit()
 {
 	
 }

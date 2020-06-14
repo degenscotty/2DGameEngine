@@ -2,8 +2,8 @@
 
 #include "MaitaCommands.h"
 
-#include "MaitaIdle.h"
-#include "MaitaSeeking.h"
+#include "MaitaIdleAI.h"
+#include "MaitaSeekingAI.h"
 
 #include "CollisionGroups.h"
 #include "utils.h"
@@ -47,14 +47,14 @@ void Maita::Initialize()
 	
 	m_pStateComponent = new StateComponent();
 
-	MaitaState* pMatiaIdle = new MaitaIdle(this);
-	pMatiaIdle->AddCommand("stopmove", new MaitaStopMovingC(pControllerComponent, this));
+	MaitaStateAI* pMatiaIdle = new MaitaIdleAI(this);
+	pMatiaIdle->AddCommand("stopmove", new MaitaStopMovingAIC(pControllerComponent, this));
 	m_pStateComponent->AddState("idle", pMatiaIdle);
 
-	MaitaState* pMatiaSeeking = new MaitaSeeking(this);
-	pMatiaSeeking->AddCommand("moveleft", new MaitaMoveLeftC(pControllerComponent, this));
-	pMatiaSeeking->AddCommand("moveright", new MaitaMoveRightC(pControllerComponent, this));
-	pMatiaSeeking->AddCommand("jump", new MaitaJumpC(pControllerComponent, this));
+	MaitaStateAI* pMatiaSeeking = new MaitaSeekingAI(this);
+	pMatiaSeeking->AddCommand("moveleft", new MaitaMoveLeftAIC(pControllerComponent, this));
+	pMatiaSeeking->AddCommand("moveright", new MaitaMoveRightAIC(pControllerComponent, this));
+	pMatiaSeeking->AddCommand("jump", new MaitaJumpAIC(pControllerComponent, this));
 	m_pStateComponent->AddState("seeking", pMatiaSeeking);
 
 	m_pStateComponent->SetState("idle");

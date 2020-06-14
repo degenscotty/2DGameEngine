@@ -16,6 +16,16 @@ InputManager::~InputManager()
 	m_InputActions.clear();
 }
 
+void InputManager::ClearInputActions()
+{
+	for (auto inputAction : m_InputActions)
+	{
+		delete inputAction;
+	}
+
+	m_InputActions.clear();
+}
+
 void InputManager::ProcessInputActions()
 {
 	for (auto inputAction : m_InputActions)

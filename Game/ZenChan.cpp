@@ -2,8 +2,8 @@
 
 #include "ZenChanCommands.h"
 
-#include "ZenChanIdle.h"
-#include "ZenChanSeeking.h"
+#include "ZenChanIdleAI.h"
+#include "ZenChanSeekingAI.h"
 
 #include "CollisionGroups.h"
 #include "utils.h"
@@ -47,11 +47,11 @@ void ZenChan::Initialize()
 	
 	m_pStateComponent = new StateComponent();
 
-	ZenChanState* pZenChanIdle = new ZenChanIdle(this);
+	ZenChanStateAI* pZenChanIdle = new ZenChanIdleAI(this);
 	pZenChanIdle->AddCommand("stopmove", new ZenChanStopMovingC(pControllerComponent, this));
 	m_pStateComponent->AddState("idle", pZenChanIdle);
 
-	ZenChanState* pZenChanSeeking = new ZenChanSeeking(this);
+	ZenChanStateAI* pZenChanSeeking = new ZenChanSeekingAI(this);
 	pZenChanSeeking->AddCommand("moveleft", new ZenChanMoveLeftC(pControllerComponent, this));
 	pZenChanSeeking->AddCommand("moveright", new ZenChanMoveRightC(pControllerComponent, this));
 	pZenChanSeeking->AddCommand("jump", new ZenChanJumpC(pControllerComponent, this));

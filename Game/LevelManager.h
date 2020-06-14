@@ -9,6 +9,7 @@
 
 class BobblePlayer1;
 class BobblePlayer2;
+class MaitaPlayer;
 class Wall;
 class Maita;
 class ZenChan;
@@ -49,6 +50,9 @@ public:
 	void AddBubble(Bubble* pBubble);
 	void DestroyBubble(GameObject* pGameObject);
 
+	void SetMaitaPlayer(MaitaPlayer* pMaitaPlayer);
+	void DestroyMaitaPlayer();
+
 	bool CheckLevel();
 
 private:
@@ -71,6 +75,7 @@ private:
 	SceneManager* m_pSceneManager;
 	BobblePlayer1* m_pBobblePlayer1;
 	BobblePlayer2* m_pBobblePlayer2;
+	MaitaPlayer* m_pMaitaPlayer;
 	std::vector<Wall*> m_Walls;
 	std::vector<Maita*> m_EnemyMaita;
 	std::vector<ZenChan*> m_EnemyZenChan;

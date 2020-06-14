@@ -3,6 +3,7 @@
 #include "Bubble.h"
 #include "Fries.h"
 #include "Maita.h"
+#include "MaitaPlayer.h"
 #include "WaterMelon.h"
 #include "ZenChan.h"
 
@@ -23,6 +24,31 @@ public:
 		pMaita->SetPosition(m_pBubble->GetPosition());
 		m_pLevelManager->AddMaita(pMaita);
 		m_pSceneManager->GetActiveScene()->Add(pMaita->GetGameObject());
+	}
+
+private:
+	Bubble* m_pBubble;
+	LevelManager* m_pLevelManager;
+	SceneManager* m_pSceneManager;
+};
+
+class BubbleRMaitaPlayerC : public Command
+{
+public:
+	explicit BubbleRMaitaPlayerC(Bubble* pBubble)
+		: m_pBubble(pBubble)
+		, m_pLevelManager(LevelManager::GetInstance())
+		, m_pSceneManager(SceneManager::GetInstance())
+	{
+	}
+
+	void Execute() override
+	{
+		auto pMaitaPlayer = new MaitaPlayer();
+		pMaitaPlayer->Initialize();
+		pMaitaPlayer->SetPosition(m_pBubble->GetPosition());
+		m_pLevelManager->SetMaitaPlayer(pMaitaPlayer);
+		m_pSceneManager->GetActiveScene()->Add(pMaitaPlayer->GetGameObject());
 	}
 
 private:

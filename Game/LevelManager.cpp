@@ -5,15 +5,16 @@
 #include "GameObject.h"
 #include "BobblePlayer1.h"
 #include "BobblePlayer2.h"
+#include "MaitaPlayer.h"
 #include "ZenChan.h"
 #include "Maita.h"
 #include "Bubble.h"
+#include "BubbleState.h"
 #include "BubbleMaita.h"
+#include "BubbleMaitaPlayer.h"
+#include "BubbleZenChan.h"
 #include "Wall.h"
 #include "Scene.h"
-
-#include "BubbleState.h"
-#include "BubbleZenChan.h"
 
 LevelManager::LevelManager()
 	: m_pGameTime(GameTime::GetInstance())
@@ -223,6 +224,18 @@ void LevelManager::DestroyBubble(GameObject* pGameObject)
 	m_Bubbles.erase(it);
 }
 
+void LevelManager::SetMaitaPlayer(MaitaPlayer* pMaitaPlayer)
+{
+	m_pMaitaPlayer = pMaitaPlayer;
+	++m_EnemyCount;
+}
+
+void LevelManager::DestroyMaitaPlayer()
+{
+	delete m_pMaitaPlayer;
+	--m_EnemyCount;
+}
+
 void LevelManager::InitializeLevel()
 {
 	for (int x = 0; x < m_LevelWidth; ++x)
@@ -246,6 +259,15 @@ void LevelManager::InitializeLevel()
 				m_pBobblePlayer2->Initialize();
 				m_pBobblePlayer2->SetPosition({ x * 16.0f, y * 16.0f });
 				m_pSceneManager->GetActiveScene()->Add(m_pBobblePlayer2->GetGameObject());
+			}
+			break;
+			case L'3':
+			{
+				m_pMaitaPlayer = new MaitaPlayer();
+				m_pMaitaPlayer->Initialize();
+				m_pMaitaPlayer->SetPosition({ x * 16.0f, y * 16.0f });
+				m_pSceneManager->GetActiveScene()->Add(m_pMaitaPlayer->GetGameObject());
+				++m_EnemyCount;
 			}
 			break;
 			case L'#':
@@ -420,8 +442,9 @@ void LevelManager::Update()
 
 		auto* maitaCheck = reinterpret_cast<BubbleMaita*>(pBubbleState);
 		auto* zenchanCheck = reinterpret_cast<BubbleZenChan*>(pBubbleState);
+		auto* maitaPlayerCheck = reinterpret_cast<BubbleMaitaPlayer*>(pBubbleState);
 
-		if (maitaCheck || zenchanCheck)
+		if (maitaCheck || zenchanCheck || maitaPlayerCheck)
 			++m_EnemiesInBubbles;
 
 		m_Bubbles[i]->Update();

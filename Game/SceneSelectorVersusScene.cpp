@@ -1,6 +1,6 @@
 #include "SceneSelectorVersusScene.h"
 
-#include "LevelScene.h"
+#include "LevelVersusScene.h"
 
 SceneSelectorVersusScene::SceneSelectorVersusScene()
 	: Scene(L"SceneSelectorVersusScene")
@@ -56,18 +56,18 @@ void SceneSelectorVersusScene::Update()
 {
 	if (m_pLevel1ButtonComponent->OnClick())
 	{
-		SceneManager::GetInstance()->AddScene(new LevelScene(1));
-		SceneManager::GetInstance()->SetActiveScene(L"LevelScene");
+		SceneManager::GetInstance()->AddScene(new LevelVersusScene(1));
+		SceneManager::GetInstance()->SetActiveScene(L"LevelVersusScene");
 	}
 	if (m_pLevel2ButtonComponent->OnClick())
 	{
-		SceneManager::GetInstance()->AddScene(new LevelScene(2));
-		SceneManager::GetInstance()->SetActiveScene(L"LevelScene");
+		SceneManager::GetInstance()->AddScene(new LevelVersusScene(2));
+		SceneManager::GetInstance()->SetActiveScene(L"LevelVersusScene");
 	}
 	if (m_pLevel3ButtonComponent->OnClick())
 	{
-		SceneManager::GetInstance()->AddScene(new LevelScene(3));
-		SceneManager::GetInstance()->SetActiveScene(L"LevelScene");
+		SceneManager::GetInstance()->AddScene(new LevelVersusScene(3));
+		SceneManager::GetInstance()->SetActiveScene(L"LevelVersusScene");
 	}
 	if (m_pBackButtonComponent->OnClick())
 	{

@@ -5,7 +5,7 @@
 #include "StateComponent.h"
 #include "TransformComponent.h"
 
-class Maita
+class Maita final
 {
 public:
 	Maita();

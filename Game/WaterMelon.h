@@ -3,7 +3,7 @@
 #include "TextureComponent.h"
 #include "RigidbodyComponent.h"
 
-class WaterMelon
+class WaterMelon final
 {
 public:
 	WaterMelon();

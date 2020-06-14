@@ -5,13 +5,13 @@
 #include <map>
 #include <string>
 
-class ZenChan;
+class Maita;
 
-class ZenChanState : public State
+class MaitaStateAI : public State
 {
 public:
-	ZenChanState(ZenChan* pZenChan) : m_pZenChan(pZenChan) {}
-	~ZenChanState()
+	MaitaStateAI(Maita* pMaita) : m_pMaita(pMaita) {}
+	~MaitaStateAI()
 	{
 		for (auto command : m_CommandMap)
 		{
@@ -20,10 +20,10 @@ public:
 		m_CommandMap.clear();
 	}
 
-	ZenChanState(const ZenChanState& other) = delete;
-	ZenChanState(ZenChanState&& other) noexcept = delete;
-	ZenChanState& operator=(const ZenChanState& other) = delete;
-	ZenChanState& operator=(ZenChanState&& other) noexcept = delete;
+	MaitaStateAI(const MaitaStateAI& other) = delete;
+	MaitaStateAI(MaitaStateAI&& other) noexcept = delete;
+	MaitaStateAI& operator=(const MaitaStateAI& other) = delete;
+	MaitaStateAI& operator=(MaitaStateAI&& other) noexcept = delete;
 
 	virtual void Update() = 0;
 	virtual void OnEnter() = 0;
@@ -35,7 +35,7 @@ public:
 	}
 
 protected:
-	ZenChan* m_pZenChan;
+	Maita* m_pMaita;
 	std::map<std::string, Command*> m_CommandMap;
 };
 

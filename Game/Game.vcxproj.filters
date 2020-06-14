@@ -19,9 +19,6 @@
     <ClCompile Include="PopUpManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-    <ClCompile Include="MaitaSeeking.cpp">
-      <Filter>MaitaStates</Filter>
-    </ClCompile>
     <ClCompile Include="Maita.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
@@ -52,17 +49,8 @@
     <ClCompile Include="Fries.cpp">
       <Filter>Prefabs\PickUp</Filter>
     </ClCompile>
-    <ClCompile Include="MaitaIdle.cpp">
-      <Filter>MaitaStates</Filter>
-    </ClCompile>
     <ClCompile Include="ZenChan.cpp">
       <Filter>Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="ZenChanIdle.cpp">
-      <Filter>ZenChanStates</Filter>
-    </ClCompile>
-    <ClCompile Include="ZenChanSeeking.cpp">
-      <Filter>ZenChanStates</Filter>
     </ClCompile>
     <ClCompile Include="BubbleZenChanDead.cpp">
       <Filter>BubbleStates</Filter>
@@ -106,6 +94,27 @@
     <ClCompile Include="BobblePlayer2.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
+    <ClCompile Include="MaitaSeekingAI.cpp">
+      <Filter>MaitaStatesAI</Filter>
+    </ClCompile>
+    <ClCompile Include="MaitaIdleAI.cpp">
+      <Filter>MaitaStatesAI</Filter>
+    </ClCompile>
+    <ClCompile Include="ZenChanSeekingAI.cpp">
+      <Filter>ZenChanStatesAI</Filter>
+    </ClCompile>
+    <ClCompile Include="ZenChanIdleAI.cpp">
+      <Filter>ZenChanStatesAI</Filter>
+    </ClCompile>
+    <ClCompile Include="MaitaPlayer.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="MaitaWalking.cpp">
+      <Filter>MaitaStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleMaitaPlayer.cpp">
+      <Filter>BubbleStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerCommands.h">
@@ -129,17 +138,8 @@
     <ClInclude Include="PopUpManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="MaitaIdle.h">
-      <Filter>MaitaStates</Filter>
-    </ClInclude>
-    <ClInclude Include="MaitaState.h">
-      <Filter>MaitaStates</Filter>
-    </ClInclude>
     <ClInclude Include="MaitaCommands.h">
       <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="MaitaSeeking.h">
-      <Filter>MaitaStates</Filter>
     </ClInclude>
     <ClInclude Include="Maita.h">
       <Filter>Prefabs</Filter>
@@ -179,15 +179,6 @@
     </ClInclude>
     <ClInclude Include="ZenChan.h">
       <Filter>Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="ZenChanIdle.h">
-      <Filter>ZenChanStates</Filter>
-    </ClInclude>
-    <ClInclude Include="ZenChanSeeking.h">
-      <Filter>ZenChanStates</Filter>
-    </ClInclude>
-    <ClInclude Include="ZenChanState.h">
-      <Filter>ZenChanStates</Filter>
     </ClInclude>
     <ClInclude Include="ZenChanCommands.h">
       <Filter>Commands</Filter>
@@ -237,6 +228,36 @@
     <ClInclude Include="BobblePlayer.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
+    <ClInclude Include="MaitaStateAI.h">
+      <Filter>MaitaStatesAI</Filter>
+    </ClInclude>
+    <ClInclude Include="MaitaSeekingAI.h">
+      <Filter>MaitaStatesAI</Filter>
+    </ClInclude>
+    <ClInclude Include="MaitaIdleAI.h">
+      <Filter>MaitaStatesAI</Filter>
+    </ClInclude>
+    <ClInclude Include="ZenChanStateAI.h">
+      <Filter>ZenChanStatesAI</Filter>
+    </ClInclude>
+    <ClInclude Include="ZenChanSeekingAI.h">
+      <Filter>ZenChanStatesAI</Filter>
+    </ClInclude>
+    <ClInclude Include="ZenChanIdleAI.h">
+      <Filter>ZenChanStatesAI</Filter>
+    </ClInclude>
+    <ClInclude Include="MaitaState.h">
+      <Filter>MaitaStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MaitaPlayer.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="MaitaWalking.h">
+      <Filter>MaitaStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BubbleMaitaPlayer.h">
+      <Filter>BubbleStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scenes">
@@ -257,9 +278,6 @@
     <Filter Include="BobbleStates">
       <UniqueIdentifier>{689c639a-c455-43d9-9146-b3a7b4492793}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MaitaStates">
-      <UniqueIdentifier>{17efe9f7-5607-46ec-bc52-d5880b91de05}</UniqueIdentifier>
-    </Filter>
     <Filter Include="BubbleStates">
       <UniqueIdentifier>{1ad1d485-b717-4e4b-b064-6dc78c79687c}</UniqueIdentifier>
     </Filter>
@@ -269,9 +287,6 @@
     <Filter Include="Prefabs\PickUp">
       <UniqueIdentifier>{db594ad1-23c6-420c-9852-0ee3965592c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ZenChanStates">
-      <UniqueIdentifier>{c82c40f1-965e-49c0-95c9-94c95fff2be1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scenes\Solo">
       <UniqueIdentifier>{fceac17f-397a-4aea-9187-45ced9b8c326}</UniqueIdentifier>
     </Filter>
@@ -280,6 +295,15 @@
     </Filter>
     <Filter Include="Scenes\Versus">
       <UniqueIdentifier>{8bfedb3a-abb9-4132-84e8-aeb662b82d58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MaitaStatesAI">
+      <UniqueIdentifier>{17efe9f7-5607-46ec-bc52-d5880b91de05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZenChanStatesAI">
+      <UniqueIdentifier>{c82c40f1-965e-49c0-95c9-94c95fff2be1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MaitaStates">
+      <UniqueIdentifier>{903c7a81-178e-4751-895b-3599ce33ecf7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

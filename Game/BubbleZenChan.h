@@ -21,7 +21,7 @@ public:
 
 	void PopBubble() override;
 
-public:
+private:
 	GameTime* m_pGameTime;
 
 	float m_BubbleTimer;

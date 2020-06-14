@@ -5,7 +5,7 @@
 #include "StateComponent.h"
 #include "TransformComponent.h"
 
-class ZenChan
+class ZenChan final
 {
 public:
 	ZenChan();

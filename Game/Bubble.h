@@ -13,7 +13,7 @@ enum class BubbleColor
 	BLUE = 1
 };
 
-class Bubble
+class Bubble final
 {
 public:
 	Bubble(BubbleColor color);

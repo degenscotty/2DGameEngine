@@ -1,24 +1,13 @@
 #pragma once
 #include "State.h"
-#include "Commands.h"
 
-#include <map>
-#include <string>
-
-class Maita;
+class MaitaPlayer;
 
 class MaitaState : public State
 {
 public:
-	MaitaState(Maita* pMaita) : m_pMaita(pMaita) {}
-	~MaitaState()
-	{
-		for (auto command : m_CommandMap)
-		{
-			delete command.second;
-		}
-		m_CommandMap.clear();
-	}
+	MaitaState(MaitaPlayer* pMaitaPlayer) : m_pMaitaPlayer(pMaitaPlayer) {}
+	~MaitaState() = default;
 
 	MaitaState(const MaitaState& other) = delete;
 	MaitaState(MaitaState&& other) noexcept = delete;
@@ -29,13 +18,7 @@ public:
 	virtual void OnEnter() = 0;
 	virtual void OnExit() = 0;
 
-	virtual void AddCommand(const std::string& commandName, Command* pCommand)
-	{
-		m_CommandMap.insert(std::make_pair(commandName, pCommand));
-	}
-
 protected:
-	Maita* m_pMaita;
-	std::map<std::string, Command*> m_CommandMap;
+	MaitaPlayer* m_pMaitaPlayer;
 };
 

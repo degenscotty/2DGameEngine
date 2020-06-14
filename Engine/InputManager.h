@@ -50,6 +50,8 @@ public:
 	void IsInputActionTriggered();
 	void ProcessInputActions();
 
+	void ClearInputActions();
+
 	void AddInputActions(InputAction* inputAction);
 
 	bool IsKeyPressed(int keycode);

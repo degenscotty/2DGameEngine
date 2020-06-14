@@ -7,7 +7,7 @@
 
 class Bubble;
 
-class BobblePlayer1 : public BobblePlayer
+class BobblePlayer1 final : public BobblePlayer
 {
 public:
 	BobblePlayer1();

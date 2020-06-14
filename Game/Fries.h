@@ -3,7 +3,7 @@
 #include "TextureComponent.h"
 #include "RigidbodyComponent.h"
 
-class Fries
+class Fries final
 {
 public:
 	Fries();

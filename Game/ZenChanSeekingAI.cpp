@@ -1,11 +1,11 @@
-#include "ZenChanSeeking.h"
+#include "ZenChanSeekingAI.h"
 #include "LevelManager.h"
 #include "ZenChan.h"
 #include "BobblePlayer1.h"
 #include "utils.h"
 
-ZenChanSeeking::ZenChanSeeking(ZenChan* pZenChan)
-	: ZenChanState(pZenChan)
+ZenChanSeekingAI::ZenChanSeekingAI(ZenChan* pZenChan)
+	: ZenChanStateAI(pZenChan)
 	, m_pBobblePlayer(nullptr)
 	, m_BobblePosition({ 0, 0 })
 	, m_ZenChanPosition(pZenChan->GetPosition())
@@ -13,7 +13,7 @@ ZenChanSeeking::ZenChanSeeking(ZenChan* pZenChan)
 
 }
 
-void ZenChanSeeking::Update()
+void ZenChanSeekingAI::Update()
 {
 	GetBobblePosition();
 	m_ZenChanPosition = m_pZenChan->GetPosition();
@@ -43,7 +43,7 @@ void ZenChanSeeking::Update()
 	}
 }
 
-void ZenChanSeeking::GetBobblePosition()
+void ZenChanSeekingAI::GetBobblePosition()
 {
 	if (!m_pBobblePlayer)
 		m_pBobblePlayer = LevelManager::GetInstance()->GetBobblePlayer()->GetGameObject();
@@ -53,12 +53,12 @@ void ZenChanSeeking::GetBobblePosition()
 	}
 }
 
-void ZenChanSeeking::OnEnter()
+void ZenChanSeekingAI::OnEnter()
 {
 	m_pZenChan->SetAnimationClip(0);
 }
 
-void ZenChanSeeking::OnExit()
+void ZenChanSeekingAI::OnExit()
 {
 
 }

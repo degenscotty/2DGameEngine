@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-class Wall
+class Wall final
 {
 public:
 	Wall(const glm::vec2& position, int levelNumber);

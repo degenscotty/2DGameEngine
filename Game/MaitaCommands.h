@@ -2,11 +2,12 @@
 #include "Commands.h"
 #include "ControllerComponent.h"
 #include "Maita.h"
+#include "MaitaPlayer.h"
 
-class MaitaMoveLeftC : public Command
+class MaitaMoveLeftAIC : public Command
 {
 public:
-	explicit MaitaMoveLeftC(ControllerComponent* pControllerComponent, Maita* pMaita)
+	explicit MaitaMoveLeftAIC(ControllerComponent* pControllerComponent, Maita* pMaita)
 		: m_pControllerComponent(pControllerComponent)
 		, m_pMaita(pMaita)
 	{
@@ -23,10 +24,10 @@ private:
 	Maita* m_pMaita;
 };
 
-class MaitaMoveRightC : public Command
+class MaitaMoveRightAIC : public Command
 {
 public:
-	explicit MaitaMoveRightC(ControllerComponent* pControllerComponent, Maita* pMaita)
+	explicit MaitaMoveRightAIC(ControllerComponent* pControllerComponent, Maita* pMaita)
 		: m_pControllerComponent(pControllerComponent)
 		, m_pMaita(pMaita)
 	{
@@ -43,10 +44,10 @@ private:
 	Maita* m_pMaita;
 };
 
-class MaitaJumpC : public Command
+class MaitaJumpAIC : public Command
 {
 public:
-	explicit MaitaJumpC(ControllerComponent* pControllerComponent, Maita* pMaita)
+	explicit MaitaJumpAIC(ControllerComponent* pControllerComponent, Maita* pMaita)
 		: m_pControllerComponent(pControllerComponent)
 		, m_pMaita(pMaita)
 	{
@@ -62,10 +63,10 @@ private:
 	Maita* m_pMaita;
 };
 
-class MaitaStopMovingC : public Command
+class MaitaStopMovingAIC : public Command
 {
 public:
-	explicit MaitaStopMovingC(ControllerComponent* pControllerComponent, Maita* pMaita)
+	explicit MaitaStopMovingAIC(ControllerComponent* pControllerComponent, Maita* pMaita)
 		: m_pControllerComponent(pControllerComponent)
 		, m_pMaita(pMaita)
 	{
@@ -80,3 +81,82 @@ private:
 	ControllerComponent* m_pControllerComponent;
 	Maita* m_pMaita;
 };
+
+class MaitaMoveLeftC : public Command
+{
+public:
+	explicit MaitaMoveLeftC(ControllerComponent* pControllerComponent, MaitaPlayer* pMaitaPlayer)
+		: m_pControllerComponent(pControllerComponent)
+		, m_pMaitaPlayer(pMaitaPlayer)
+	{
+	}
+
+	void Execute() override
+	{
+		m_pControllerComponent->MoveLeft();
+		m_pMaitaPlayer->SetFlipState(SDL_FLIP_NONE);
+	}
+
+private:
+	ControllerComponent* m_pControllerComponent;
+	MaitaPlayer* m_pMaitaPlayer;
+};
+
+class MaitaMoveRightC : public Command
+{
+public:
+	explicit MaitaMoveRightC(ControllerComponent* pControllerComponent, MaitaPlayer* pMaitaPlayer)
+		: m_pControllerComponent(pControllerComponent)
+		, m_pMaitaPlayer(pMaitaPlayer)
+	{
+	}
+
+	void Execute() override
+	{
+		m_pControllerComponent->MoveRight();
+		m_pMaitaPlayer->SetFlipState(SDL_FLIP_HORIZONTAL);
+	}
+
+private:
+	ControllerComponent* m_pControllerComponent;
+	MaitaPlayer* m_pMaitaPlayer;
+};
+
+class MaitaJumpC : public Command
+{
+public:
+	explicit MaitaJumpC(ControllerComponent* pControllerComponent, MaitaPlayer* pMaitaPlayer)
+		: m_pControllerComponent(pControllerComponent)
+		, m_pMaitaPlayer(pMaitaPlayer)
+	{
+	}
+
+	void Execute() override
+	{
+		m_pControllerComponent->Jump();
+	}
+
+private:
+	ControllerComponent* m_pControllerComponent;
+	MaitaPlayer* m_pMaitaPlayer;
+};
+
+class MaitaStopMovingC : public Command
+{
+public:
+	explicit MaitaStopMovingC(ControllerComponent* pControllerComponent, MaitaPlayer* pMaitaPlayer)
+		: m_pControllerComponent(pControllerComponent)
+		, m_pMaitaPlayer(pMaitaPlayer)
+	{
+	}
+
+	void Execute() override
+	{
+		m_pControllerComponent->StopMove();
+	}
+
+private:
+	ControllerComponent* m_pControllerComponent;
+	MaitaPlayer* m_pMaitaPlayer;
+};
+
