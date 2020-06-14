@@ -7,6 +7,7 @@
 #include "BobbleWalking.h"
 #include "Bubble.h"
 #include "PopUpManager.h"
+#include "ScoreManager.h"
 
 #include "utils.h"
 
@@ -127,6 +128,7 @@ void BobblePlayer2::OnTrigger(GameObject* other, bool trigger)
 	if (other->GetTag() == "Fries")
 	{
 		PopUpManager::GetInstance()->AddPopUp("2000", this->GetPosition(), {69, 224, 50});
+		ScoreManager::GetInstance()->AddScore(2000);
 		GarbageCollector::GetInstance()->Destroy(other);
 	}
 

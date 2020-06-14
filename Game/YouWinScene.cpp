@@ -3,6 +3,7 @@
 YouWinScene::YouWinScene()
 	: Scene(L"YouWinScene")
 	, m_pBackButtonComponent(nullptr)
+	, m_pScoreManager(ScoreManager::GetInstance())
 {
 
 }
@@ -47,5 +48,5 @@ void YouWinScene::Update()
 
 void YouWinScene::Render()
 {
-
+	m_pScoreManager->Render();
 }

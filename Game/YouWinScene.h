@@ -2,6 +2,7 @@
 #include "Scene.h"
 
 #include "ButtonComponent.h"
+#include "ScoreManager.h"
 
 class YouWinScene final : public Scene
 {
@@ -21,4 +22,5 @@ protected:
 
 private:
 	ButtonComponent* m_pBackButtonComponent;
+	ScoreManager* m_pScoreManager;
 };

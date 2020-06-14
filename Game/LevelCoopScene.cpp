@@ -20,6 +20,8 @@ LevelCoopScene::~LevelCoopScene()
 
 void LevelCoopScene::Initialize()
 {
+	ScoreManager::GetInstance()->Reset();
+	
 	m_pFPSCounter = new GameObject();
 	m_pFPSCounter->AddComponent(new FPSComponent());
 	m_pFPSCounter->GetTransform()->Translate(16, 16);

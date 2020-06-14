@@ -3,6 +3,7 @@
 
 ScoreManager::ScoreManager()
 	: m_pRenderer(Renderer::GetInstance())
+	, m_RenderPosition({ 256, 16 })
 	, m_Score(0)
 {
 }
@@ -19,6 +20,11 @@ void ScoreManager::Initialize()
 void ScoreManager::Update()
 {
 
+}
+
+void ScoreManager::SetPosition(const glm::vec2& position)
+{
+	m_RenderPosition = position;
 }
 
 void ScoreManager::AddScore(int score)
@@ -38,5 +44,6 @@ void ScoreManager::Reset()
 
 void ScoreManager::Render()
 {
-	m_pRenderer->RenderText(std::to_string(m_Score), { 255, 255, 255 }, "RetroGaming.ttf", 20, 256, 16);
+	m_pRenderer->RenderText("SCORE:", { 150, 255, 150 }, "RetroGaming.ttf", 11, int(m_RenderPosition.x - 60), int(m_RenderPosition.y));
+	m_pRenderer->RenderText(std::to_string(m_Score), { 150, 255, 150 }, "RetroGaming.ttf", 20, int(m_RenderPosition.x), int(m_RenderPosition.y));
 }

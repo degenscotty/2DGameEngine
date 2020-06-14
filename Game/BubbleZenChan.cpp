@@ -1,6 +1,7 @@
 #include "BubbleZenChan.h"
 #include "Bubble.h"
 #include "PopUpManager.h"
+#include "ScoreManager.h"
 
 BubbleZenChan::BubbleZenChan(Bubble* pBubble)
 	: BubbleState(pBubble)
@@ -26,6 +27,7 @@ void BubbleZenChan::Update()
 void BubbleZenChan::PopBubble()
 {
 	PopUpManager::GetInstance()->AddPopUp("1000", m_pBubble->GetPosition(), { 41, 133, 224 });
+	ScoreManager::GetInstance()->AddScore(1000);
 	m_pBubble->ChangeState("bubbleZenChanDead");
 
 }

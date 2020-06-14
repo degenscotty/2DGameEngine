@@ -2,6 +2,7 @@
 
 #include "Bubble.h"
 #include "PopUpManager.h"
+#include "ScoreManager.h"
 
 BubbleMaitaPlayer::BubbleMaitaPlayer(Bubble* pBubble)
 	: BubbleState(pBubble)
@@ -27,6 +28,7 @@ void BubbleMaitaPlayer::Update()
 void BubbleMaitaPlayer::PopBubble()
 {
 	PopUpManager::GetInstance()->AddPopUp("1000", m_pBubble->GetPosition(), { 41, 133, 224 });
+	ScoreManager::GetInstance()->AddScore(1000);
 	m_pBubble->ChangeState("bubbleMaitaDead");
 }
 

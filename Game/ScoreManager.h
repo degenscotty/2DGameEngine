@@ -20,11 +20,14 @@ public:
 	void AddScore(int score);
 	int GetScore();
 
+	void SetPosition(const glm::vec2& position);
+
 	void Reset();
 
 private:
 	Renderer* m_pRenderer;
 
+	glm::vec2 m_RenderPosition;
 	int m_Score;
 };
 
