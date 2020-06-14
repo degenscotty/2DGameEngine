@@ -11,7 +11,10 @@ void WaterMelon::Initialize()
 	m_pWaterMelon = new GameObject();
 
 	m_pWaterMelon->AddComponent(new TextureComponent("WaterMelon.png"));
-	m_pWaterMelon->AddComponent(new CollisionComponent(32, 32, false));
+	auto* pCollisionComponent = new CollisionComponent(32, 32, false);
+	pCollisionComponent->SetCollisionGroup(Group3);
+	pCollisionComponent->SetCollisionIgnoreGroups(Group3);
+	m_pWaterMelon->AddComponent(pCollisionComponent);
 	m_pWaterMelon->AddComponent(new RigidbodyComponent());
 
 	m_pWaterMelon->SetTag("Fries");

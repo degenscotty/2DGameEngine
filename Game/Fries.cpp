@@ -11,7 +11,10 @@ void Fries::Initialize()
 	m_pFries = new GameObject();
 
 	m_pFries->AddComponent(new TextureComponent("Fries.png"));
-	m_pFries->AddComponent(new CollisionComponent(32, 32, false));
+	auto* pCollisionComponent = new CollisionComponent(32, 32, false);
+	pCollisionComponent->SetCollisionGroup(Group3);
+	pCollisionComponent->SetCollisionIgnoreGroups(Group3);
+	m_pFries->AddComponent(pCollisionComponent);
 	m_pFries->AddComponent(new RigidbodyComponent());
 
 	m_pFries->SetTag("Fries");
