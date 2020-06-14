@@ -28,7 +28,7 @@ void ZenChan::Initialize()
 
 	CollisionComponent* pCollisionComponent = new CollisionComponent(32, 32, false);
 	pCollisionComponent->SetCollisionGroup(static_cast<CollisionGroup>(Group2));
-	pCollisionComponent->SetCollisionIgnoreGroups(static_cast<CollisionGroup>(Group2));
+	pCollisionComponent->SetCollisionIgnoreGroups(static_cast<CollisionGroup>(Group2 | Group3));
 	m_pZenChan->AddComponent(pCollisionComponent);
 	
 	auto pCollisionComponentTrigger(new CollisionComponent(32, 32, true));

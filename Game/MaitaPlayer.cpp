@@ -24,7 +24,7 @@ void MaitaPlayer::Initialize()
 
 	m_pCollisionComponent = new CollisionComponent(32, 32, false);
 	m_pCollisionComponent->SetCollisionGroup(static_cast<CollisionGroup>(Group2));
-	m_pCollisionComponent->SetCollisionIgnoreGroups(static_cast<CollisionGroup>(Group2));
+	m_pCollisionComponent->SetCollisionIgnoreGroups(static_cast<CollisionGroup>(Group2 | Group3));
 	m_pMaitaPlayer->AddComponent(m_pCollisionComponent);
 
 	m_pSpriteComponent = new SpriteComponent("Maita.png", 3, 2, 32);
