@@ -177,6 +177,7 @@ void Bubble::OnTrigger(GameObject* other, bool trigger)
 {
 	if (other->GetTag() == "MaitaPlayer" && m_Active && !trigger && !m_BubblePopped)
 	{
+		InputManager::GetInstance()->RemoveActionsWithTag("MaitaPlayer");
 		this->ChangeState("bubbleMaitaPlayer");
 		m_pGarbageCollector->Destroy(other);
 		m_pLevelManager->DestroyMaitaPlayer();

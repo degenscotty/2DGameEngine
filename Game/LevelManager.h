@@ -15,6 +15,8 @@ class Maita;
 class ZenChan;
 class Bubble;
 class GameObject;
+class Fries;
+class WaterMelon;
 
 enum class GameMode
 {
@@ -53,6 +55,12 @@ public:
 	void SetMaitaPlayer(MaitaPlayer* pMaitaPlayer);
 	void DestroyMaitaPlayer();
 
+	void AddFries(Fries* pFries);
+	void DestroyFries(GameObject* pGameObject);
+	
+	void AddWaterMelon(WaterMelon* pWaterMelon);
+	void DestroyWaterMelon(GameObject* pGameObject);
+
 	bool CheckLevel();
 
 private:
@@ -80,6 +88,8 @@ private:
 	std::vector<Maita*> m_EnemyMaita;
 	std::vector<ZenChan*> m_EnemyZenChan;
 	std::vector<Bubble*> m_Bubbles;
+	std::vector<Fries*> m_Fries;
+	std::vector<WaterMelon*> m_WaterMelon;
 
 	float m_WinTimer;
 	float m_WinTime;

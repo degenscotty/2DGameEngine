@@ -17,7 +17,7 @@ void WaterMelon::Initialize()
 	m_pWaterMelon->AddComponent(pCollisionComponent);
 	m_pWaterMelon->AddComponent(new RigidbodyComponent());
 
-	m_pWaterMelon->SetTag("Fries");
+	m_pWaterMelon->SetTag("WaterMelon");
 }
 
 void WaterMelon::Update() const

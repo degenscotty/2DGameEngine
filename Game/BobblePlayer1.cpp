@@ -20,6 +20,7 @@ BobblePlayer1::BobblePlayer1()
 	, m_pStateComponent(nullptr)
 	, m_PlayerID(1)
 	, m_Lives(3)
+	, m_IsRespawning(false)
 {
 }
 
@@ -57,12 +58,12 @@ void BobblePlayer1::Initialize()
 	
 	m_pBobblePlayer->SetCollisionCallBack(BIND_FN(BobblePlayer1::OnTrigger));
 
-	InputAction* pMoveLeft = new InputAction("PlayerMoveLeft", new BobbleMoveLeftC(m_pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pMoveRight = new InputAction("PlayerMoveRight", new BobbleMoveRightC(m_pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pStopMoveLeft = new InputAction("PlayerStopMoveLeft", new BobbleStopMoveLeftC(m_pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
-	InputAction* pStopMoveRight = new InputAction("PlayerStopMoveRight", new BobbleStopMoveRightC(m_pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
-	InputAction* pJump = new InputAction("PlayerJump", new BobbleJumpC(m_pControllerComponent, this), KEY_UP, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pShootBubble = new InputAction("ShootBubble", new ShootBubbleC( this), KEY_RIGHT_CTRL, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pMoveLeft = new InputAction("PlayerMoveLeft", "Player1", new BobbleMoveLeftC(m_pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pMoveRight = new InputAction("PlayerMoveRight", "Player1", new BobbleMoveRightC(m_pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pStopMoveLeft = new InputAction("PlayerStopMoveLeft", "Player1", new BobbleStopMoveLeftC(m_pControllerComponent, this), KEY_LEFT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pStopMoveRight = new InputAction("PlayerStopMoveRight", "Player1", new BobbleStopMoveRightC(m_pControllerComponent, this), KEY_RIGHT, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pJump = new InputAction("PlayerJump", "Player1", new BobbleJumpC(m_pControllerComponent, this), KEY_UP, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pShootBubble = new InputAction("ShootBubble", "Player1", new ShootBubbleC( this), KEY_RIGHT_CTRL, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
 	
 	m_pInputManager->AddInputActions(pMoveLeft);
 	m_pInputManager->AddInputActions(pMoveRight);
@@ -130,9 +131,18 @@ void BobblePlayer1::OnTrigger(GameObject* other, bool trigger)
 		PopUpManager::GetInstance()->AddPopUp("2000", this->GetPosition(), {69, 224, 50});
 		ScoreManager::GetInstance()->AddScore(2000);
 		GarbageCollector::GetInstance()->Destroy(other);
+		LevelManager::GetInstance()->DestroyFries(other);
 	}
 
-	if (!m_IsRespawning && !trigger && (other->GetTag() == "Maita" || other->GetTag() == "ZenChan") && !m_pControllerComponent->GetFreeze())
+	if (other->GetTag() == "WaterMelon")
+	{
+		PopUpManager::GetInstance()->AddPopUp("2000", this->GetPosition(), { 69, 224, 50 });
+		ScoreManager::GetInstance()->AddScore(2000);
+		GarbageCollector::GetInstance()->Destroy(other);
+		LevelManager::GetInstance()->DestroyWaterMelon(other);
+	}
+
+	if (!m_IsRespawning && !trigger && (other->GetTag() == "Maita" || other->GetTag() == "ZenChan" || other->GetTag() == "MaitaPlayer") && !m_pControllerComponent->GetFreeze())
 	{
 		--m_Lives;
 

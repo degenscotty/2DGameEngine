@@ -44,11 +44,11 @@ void MaitaPlayer::Initialize()
 
 	m_pMaitaPlayer->SetCollisionCallBack(BIND_FN(MaitaPlayer::OnTrigger));
 
-	InputAction* pMoveLeft = new InputAction("PlayerMaitaMoveLeft", new MaitaMoveLeftC(m_pControllerComponent, this), KEY_A, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pMoveRight = new InputAction("PlayerMaitaMoveRight", new MaitaMoveRightC(m_pControllerComponent, this), KEY_D, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
-	InputAction* pStopMoveLeft = new InputAction("PlayerMaitaStopMoveLeft", new MaitaStopMovingC(m_pControllerComponent, this), KEY_A, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
-	InputAction* pStopMoveRight = new InputAction("PlayerMaitaStopMoveRight", new MaitaStopMovingC(m_pControllerComponent, this), KEY_D, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
-	InputAction* pJump = new InputAction("PlayerMaitaJump", new MaitaJumpC(m_pControllerComponent, this), KEY_W, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pMoveLeft = new InputAction("PlayerMaitaMoveLeft", "MaitaPlayer", new MaitaMoveLeftC(m_pControllerComponent, this), KEY_A, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pMoveRight = new InputAction("PlayerMaitaMoveRight", "MaitaPlayer", new MaitaMoveRightC(m_pControllerComponent, this), KEY_D, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
+	InputAction* pStopMoveLeft = new InputAction("PlayerMaitaStopMoveLeft", "MaitaPlayer", new MaitaStopMovingC(m_pControllerComponent, this), KEY_A, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pStopMoveRight = new InputAction("PlayerMaitaStopMoveRight", "MaitaPlayer", new MaitaStopMovingC(m_pControllerComponent, this), KEY_D, MOUSE_UNKNOWN, BUTTON_STATE::RELEASED);
+	InputAction* pJump = new InputAction("PlayerMaitaJump", "MaitaPlayer", new MaitaJumpC(m_pControllerComponent, this), KEY_W, MOUSE_UNKNOWN, BUTTON_STATE::PRESSED);
 	
 	m_pInputManager->AddInputActions(pMoveLeft);
 	m_pInputManager->AddInputActions(pMoveRight);

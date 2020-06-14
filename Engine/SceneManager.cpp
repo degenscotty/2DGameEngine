@@ -14,7 +14,7 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
-	for (int i{ 0 }; i < m_Scenes.size(); ++i)
+	for (size_t i{ 0 }; i < m_Scenes.size(); ++i)
 	{
 		SafeDelete(m_Scenes[i]);
 	}
@@ -22,7 +22,7 @@ SceneManager::~SceneManager()
 
 void SceneManager::Initialize()
 {
-	for (int i{0}; i < m_Scenes.size(); ++i)
+	for (size_t i{0}; i < m_Scenes.size(); ++i)
 	{
 		m_Scenes[i]->RootInitialize();
 	}

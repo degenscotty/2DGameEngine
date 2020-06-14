@@ -104,6 +104,7 @@ class BubbleSpawnFriesC : public Command
 public:
 	explicit BubbleSpawnFriesC(Bubble* pBubble)
 		: m_pSceneManager(SceneManager::GetInstance())
+		, m_pLevelManager(LevelManager::GetInstance())
 		, m_pBubble(pBubble)
 	{
 	}
@@ -113,14 +114,13 @@ public:
 		Fries* pFries = new Fries();
 		pFries->Initialize();
 		pFries->SetPosition(m_pBubble->GetPosition());
+		m_pLevelManager->AddFries(pFries);
 		m_pSceneManager->GetActiveScene()->Add(pFries->GetGameObject());
-
-		delete pFries;
-		pFries = nullptr;
 	}
 
 private:
 	SceneManager* m_pSceneManager;
+	LevelManager* m_pLevelManager;
 	Bubble* m_pBubble;
 };
 
@@ -129,6 +129,7 @@ class BubbleSpawnWaterMelonC : public Command
 public:
 	explicit BubbleSpawnWaterMelonC(Bubble* pBubble)
 		: m_pSceneManager(SceneManager::GetInstance())
+		, m_pLevelManager(LevelManager::GetInstance())
 		, m_pBubble(pBubble)
 	{
 	}
@@ -138,13 +139,12 @@ public:
 		WaterMelon* pWaterMelon = new WaterMelon();
 		pWaterMelon->Initialize();
 		pWaterMelon->SetPosition(m_pBubble->GetPosition());
+		m_pLevelManager->AddWaterMelon(pWaterMelon);
 		m_pSceneManager->GetActiveScene()->Add(pWaterMelon->GetGameObject());
-
-		delete pWaterMelon;
-		pWaterMelon = nullptr;
 	}
 
 private:
 	SceneManager* m_pSceneManager;
+	LevelManager* m_pLevelManager;
 	Bubble* m_pBubble;
 };

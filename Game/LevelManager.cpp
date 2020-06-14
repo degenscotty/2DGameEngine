@@ -8,6 +8,8 @@
 #include "MaitaPlayer.h"
 #include "ZenChan.h"
 #include "Maita.h"
+#include "WaterMelon.h"
+#include "Fries.h"
 #include "Bubble.h"
 #include "BubbleState.h"
 #include "BubbleMaita.h"
@@ -37,22 +39,40 @@ LevelManager::~LevelManager()
 	for (auto wall : m_Walls)
 	{
 		delete wall;
+		wall = nullptr;
 	}
 	for (auto maita : m_EnemyMaita)
 	{
 		delete maita;
+		maita = nullptr;
 	}
 	for (auto bubble : m_Bubbles)
 	{
 		delete bubble;
+		bubble = nullptr;
 	}
 	for (auto zenChan : m_EnemyZenChan)
 	{
 		delete zenChan;
+		zenChan = nullptr;
+	}
+	for (auto fries : m_Fries)
+	{
+		delete fries;
+		fries = nullptr;
+	}
+	for (auto waterMelon : m_WaterMelon)
+	{
+		delete waterMelon;
+		waterMelon = nullptr;
 	}
 
 	delete m_pBobblePlayer1;
+	m_pBobblePlayer1 = nullptr;
 	delete m_pBobblePlayer2;
+	m_pBobblePlayer2 = nullptr;
+	delete m_pMaitaPlayer;
+	m_pMaitaPlayer = nullptr;
 }
 
 void LevelManager::Initialize(int levelNumber, GameMode gameMode)
@@ -177,8 +197,8 @@ void LevelManager::DestroyMaita(GameObject* pGameObject)
 			return false;
 		});
 
-
 	delete* it;
+	*it = nullptr;
 	m_EnemyMaita.erase(it);
 
 	--m_EnemyCount;
@@ -199,8 +219,8 @@ void LevelManager::DestroyZenChan(GameObject* pGameObject)
 			return false;
 		});
 
-
 	delete* it;
+	*it = nullptr;
 	m_EnemyZenChan.erase(it);
 
 	--m_EnemyCount;
@@ -221,7 +241,46 @@ void LevelManager::DestroyBubble(GameObject* pGameObject)
 		});
 
 	delete* it;
+	*it = nullptr;
 	m_Bubbles.erase(it);
+}
+
+void LevelManager::AddFries(Fries* pFries)
+{
+	m_Fries.push_back(pFries);
+}
+
+void LevelManager::DestroyFries(GameObject* pGameObject)
+{
+	auto it = std::find_if(m_Fries.begin(), m_Fries.end(), [pGameObject](Fries* pFries)
+		{
+			if (reinterpret_cast<GameObject*>(pFries->GetGameObject()) == pGameObject)
+				return true;
+			return false;
+		});
+
+	delete* it;
+	*it = nullptr;
+	m_Fries.erase(it);
+}
+
+void LevelManager::AddWaterMelon(WaterMelon* pWaterMelon)
+{
+	m_WaterMelon.push_back(pWaterMelon);
+}
+
+void LevelManager::DestroyWaterMelon(GameObject* pGameObject)
+{
+	auto it = std::find_if(m_WaterMelon.begin(), m_WaterMelon.end(), [pGameObject](WaterMelon* pWaterMelon)
+		{
+			if (reinterpret_cast<GameObject*>(pWaterMelon->GetGameObject()) == pGameObject)
+				return true;
+			return false;
+		});
+
+	delete* it;
+	*it = nullptr;
+	m_WaterMelon.erase(it);
 }
 
 void LevelManager::SetMaitaPlayer(MaitaPlayer* pMaitaPlayer)
@@ -233,6 +292,7 @@ void LevelManager::SetMaitaPlayer(MaitaPlayer* pMaitaPlayer)
 void LevelManager::DestroyMaitaPlayer()
 {
 	delete m_pMaitaPlayer;
+	m_pMaitaPlayer = nullptr;
 	--m_EnemyCount;
 }
 
@@ -436,7 +496,7 @@ void LevelManager::ClearWalls(const glm::vec2& startPosition, int horizontalCoun
 
 void LevelManager::Update()
 {
-	for (int i{}; i < m_Bubbles.size(); ++i)
+	for (size_t i{}; i < m_Bubbles.size(); ++i)
 	{
 		auto* pBubbleState = m_Bubbles[i]->GetCurrentState();
 

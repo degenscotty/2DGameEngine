@@ -12,8 +12,9 @@ enum class BUTTON_STATE
 
 struct InputAction final
 {
-	explicit InputAction(const std::string& name, Command* pCommand, KeyBoardButton key, MouseButton mouseButton, BUTTON_STATE buttonState)
+	explicit InputAction(const std::string& name, const std::string& tag, Command* pCommand, KeyBoardButton key, MouseButton mouseButton, BUTTON_STATE buttonState)
 		: m_ActionName(name)
+		, m_Tag(tag)
 		, m_pCommand(pCommand)
 		, m_ButtonState(buttonState)
 		, m_Key(key)
@@ -28,6 +29,7 @@ struct InputAction final
 	}
 
 	std::string m_ActionName;
+	std::string m_Tag;
 	Command* m_pCommand;
 	BUTTON_STATE m_ButtonState;
 	KeyBoardButton m_Key;
@@ -61,6 +63,8 @@ public:
 	float GetMouseY();
 
 	const glm::vec2 GetMousePos();
+
+	void RemoveActionsWithTag(const std::string& tag);
 
 	bool Quit();
 

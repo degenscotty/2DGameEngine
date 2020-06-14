@@ -26,6 +26,20 @@ void InputManager::ClearInputActions()
 	m_InputActions.clear();
 }
 
+void InputManager::RemoveActionsWithTag(const std::string& tag)
+{
+	for (size_t i{0}; i < m_InputActions.size(); ++i)
+	{
+		if (m_InputActions[i]->m_Tag == tag)
+		{
+			delete m_InputActions[i];
+			m_InputActions.erase(m_InputActions.begin() + i);
+
+			--i;
+		}
+	}
+}
+
 void InputManager::ProcessInputActions()
 {
 	for (auto inputAction : m_InputActions)
@@ -42,7 +56,7 @@ void InputManager::IsInputActionTriggered()
 {
 	for (auto inputAction : m_InputActions)
 	{
-		if (inputAction->m_Key > KEY_UNKNOWN && inputAction->m_Key < KEYBOARD_SIZE + 1)
+		if (inputAction->m_Key > KEY_UNKNOWN&& inputAction->m_Key < KEYBOARD_SIZE + 1)
 		{
 			if (inputAction->m_ButtonState == BUTTON_STATE::PRESSED || inputAction->m_ButtonState == BUTTON_STATE::DOWN)
 			{
@@ -171,6 +185,19 @@ void InputManager::Update()
 
 void InputManager::AddInputActions(InputAction* inputAction)
 {
+	auto it = std::find_if(m_InputActions.begin(), m_InputActions.end(), [inputAction](InputAction* currentInputAction)
+		{
+			if (inputAction->m_ActionName == currentInputAction->m_ActionName)
+				return true;
+			return false;
+		});
+
+	if (it != m_InputActions.end())
+	{
+		delete* it;
+		m_InputActions.erase(it);
+	}
+
 	m_InputActions.push_back(inputAction);
 }
 
