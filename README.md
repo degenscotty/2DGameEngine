@@ -84,22 +84,22 @@ Very easy to use and available everywhere in your code.
 
 ## Components  
 
-# TransformComponent:	
+### TransformComponent:	
 All around positioning and rotations for every GameObject.
 GetPosition()
 GetRotation()
 etc..
 			
-# TextureComponent 	
+### TextureComponent 	
 If you'd wanna give your GameObjects a .png or a .jpg you'd wanna use this one.
 
-# TextComponent	
+### TextComponent	
 Use this one to add Text to any GameObject.
 
-# SpriteComponent	
+### SpriteComponent	
 This is the same as a TextureComponent but with some animation capabilities.
 
-# CollisionComponent	
+### CollisionComponent	
 A CollisionComponent basically holds a rectangle (pos.x, pos.y, width, height).
 An active Scene checks if either of those components are colliding with eachother.
 If they do, this triggers a FunctionCallback to the GameObjects in question.
@@ -107,23 +107,23 @@ So you can just add an OnTrigger(GameObject* gameObject) to any GameObject.
 These CollisionComponents also are gathered in a PhysicsSystem class which checks if
 the GameObjects in question have to be put back in place using minowski AABB collision detection.
 			
-# BubbleComponent	
+### BubbleComponent	
 Component which will make any object float like if it was caught in a bubble.
 Used in bubble bobble ofcourse to have the right behavior for the bubbles that bobble shoots.
 					
-# ButtonComponent	
+### ButtonComponent	
 Allows you to add a button to any GameObject you want.
 
-# FPSComponent 		
+### FPSComponent 		
 Makes the client FPS visisble.
 
-# StateComponent 	
+### StateComponent 	
 Holds a map containing states. There can only be 1 active state at once. The current state updates.
 
-# RigidbodyComponent	
+### RigidbodyComponent	
 Adds gravity to any GameObject in your scene.
 
-# ControllerComponent	
+### ControllerComponent	
 Used to interact with the players inputcommands, can be used by AI too.
 Is in direct communication with the rigidbody components to allow smooth velocity changes (movement, including running, jumping etc..)
 											
