@@ -32,7 +32,7 @@ I started the engine from scratch following TheCherno on youtube! Big thanks to 
 
 ## InputManager  	
 
-Input is rather simple in PEngine. I used arrays of bools. These get set to true if an SDL_event would trigger them ofcourse.
+Input is rather simple in this Engine. I used arrays of bools. These get set to true if an SDL_event would trigger them ofcourse.
 
 ## SceneManager  
 
