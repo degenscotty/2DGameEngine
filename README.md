@@ -1,7 +1,5 @@
 # SDL Engine
 
-A 2D Game Engine made for an assignment at DAE (howest) Kortrijk.
-
 I started the engine from scratch following TheCherno on youtube! Big thanks to him!
 
 ## 3rd Party Libraries
